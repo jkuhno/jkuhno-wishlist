@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Wishlist</title>
         <!-- Favicon -->
-        <link rel="icon" href="resources/img/favicon.png"/>
+        <link rel="icon" href="/img/favicon.png"/>
 
         <!-- Latest Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
 
         <!-- Custom stylesheet -->
-        <link rel="stylesheet" href="resources/css/style.css"/>
+        <link rel="stylesheet" href="/css/style.css"/>
 
         <!-- Lates jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -26,7 +26,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     
         <!-- Custom scripts -->
-        <script src="resources/scripts/script.js"></script>
+        <script src="/scripts/script.js"></script>
     </head>
     <body>
         <div class="container">
