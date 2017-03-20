@@ -1,5 +1,7 @@
 <?php
-$router->get('/', 'GamesController@index');
-$router->post('/create', 'GamesController@create');
-$router->post('/delete', 'GamesController@delete');
-$router->post('/update', 'GamesController@update');
+$router->get('/', 'UserController@index');
+
+$router->get('/games', 'GamesController@index');
+$router->post('/games/create', 'GamesController@create');
+$router->post('/games/delete', 'GamesController@delete');
+$router->post('/games/update', 'GamesController@update');
