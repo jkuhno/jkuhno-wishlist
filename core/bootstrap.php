@@ -1,8 +1,8 @@
 <?php
-    /* Debugging.
+    //Debugging.
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    */
+    
     require "core/App.php";
     require "core/Request.php";
     require "core/Router.php";
