@@ -68,6 +68,15 @@ abstract class Model
 		return App::get('database')->lastInsertId();
 	}
 
+    public static function createEmptyRow()
+    {
+        App::get('database')
+            ->query('INSERT INTO '
+                . static::getTableName()
+                . ' () VALUES()')
+            ->execute();
+    }
+	
 	public static function delete($id)
 	{
 		App::get('database')
