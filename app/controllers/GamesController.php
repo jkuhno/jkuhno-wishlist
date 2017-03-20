@@ -88,4 +88,4 @@
     date_default_timezone_set('Europe/Helsinki');
     $currentDate = date('Y-m-d');
     $currentMonth = date('m');
-    require 'app/resources/views/index.view.php';
+    require 'app/resources/views/game.view.php';
