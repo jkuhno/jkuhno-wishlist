@@ -2,12 +2,13 @@
 
 namespace Wishlist\App\Controllers;
 
-class UserController
+class HomeController
 {
-    public function index()
-    {
-        $message = 'Login';
+	public function index()
+	{
+		$message = "Login";
 
-        require 'app/resources/views/user.view.php';
-    }
+		require 'app/resources/views/user.view.php';
+
+	}
 }
