@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Wishlist\\": "."
+        },
+        "files": [
+            "core/bootstrap.php"
+        ]
+    },
+    "require": {
+        "symfony/http-foundation": "^3.2"
+    }
+}

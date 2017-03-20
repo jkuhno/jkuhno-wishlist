@@ -1,5 +1,7 @@
 <?php
 
+namespace Wishlist\Core;
+
 class App
 {
     protected static $registry = [];

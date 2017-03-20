@@ -56,7 +56,6 @@ $(document).ready(function() {
             $(this).prop('contenteditable', false);
           });
           var data = {};
-          data['action'] = 'update';
           data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
           var number = 0;
           var name = $(this).parent('td').parent('tr').find('td[col-index="' + number + '"]');
@@ -71,94 +70,29 @@ $(document).ready(function() {
           if($(name).attr('oldVal') !== name.text() || $(releasedate).attr('oldVal') !== releasedate.text()) {
             $.ajax({
               type: "POST",
-              url: "/",
+              url: "/update",
               cache: false, //in case of IE8
-              data: data,
-              //dataType: "json",
-              complete: function(response)
-              {
-                if(response.status) {
-                    localStorage.setItem("Success",response.msg);
-                    location.reload();
-                } else {
-                    localStorage.setItem("Failure",response.msg);
-                    location.reload();
-                }
-              }
+              data: data
             });
           }
         }
     });
     $('#create').click(function() {
-        data = {};
-        data['action'] = 'create';
         $.ajax({
             type: "POST",
-            url: "/",
+            url: "/create",
             cache: false, //in case of IE8
-            data: data,
-            //dataType: "json",
-            /*complete: function(response)
-            {
-                alert(response.status);
-                if(response.status) {
-                    localStorage.setItem("Success",response.msg);
-                    location.reload();
-                } else {
-                    localStorage.setItem("Failure",response.msg);
-                    location.reload();
-                }
-            }*/
-            success: function(response)
-            {
-              alert(response.status);
-              if(response.status) {
-                localStorage.setItem("Success",response.msg);
-                location.reload();
-              } else {
-                localStorage.setItem("Failure",response.msg);
-                location.reload();
-              }
-            },
-            //This is mostly for debugging.
-            error:function(x,e) {
-              if (x.status==0) {
-                alert('You are offline!!\n Please Check Your Network.');
-              } else if(x.status==404) {
-                alert('Requested URL not found.');
-              } else if(x.status==500) {
-                alert('Internel Server Error.');
-              } else if(e=='parsererror') {
-                alert('Error.\nParsing JSON Request failed.');
-              } else if(e=='timeout'){
-                alert('Request Time out.');
-              } else {
-                alert('Unknow Error.\n'+x.responseText);
-              }
-            }
+            data: data
         });
     });
     $('.remove').click(function() {
         data = {};
-        data['action'] = 'remove';
         data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
-
         $.ajax({
             type: "POST",
-            url: "/",
+            url: "/delete",
             cache: false, //in case of IE8
-            data: data,
-            //dataType: "json",
-            complete: function(response)
-            {
-                if(response.status) {
-                    localStorage.setItem("Success",response.msg);
-                    location.reload();
-                } else {
-                    localStorage.setItem("Failure",response.msg);
-                    location.reload();
-                }
-            }
+            data: data
         });
     });
 });

@@ -1,4 +1,9 @@
 <?php
+
+namespace Wishlist\Core\Database;
+
+use PDO;
+
 class QueryBuilder
 {
     protected $pdo;

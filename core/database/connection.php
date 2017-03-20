@@ -1,4 +1,7 @@
 <?php
+
+namespace Wishlist\Core\Database;
+
 class Connection
 {
     public static function make($config) {

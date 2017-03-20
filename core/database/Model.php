@@ -1,11 +1,17 @@
 <?php
+
+namespace Wishlist\Core\Database;
+
+use Wishlist\Core\App;
+
 abstract class Model
 {
     protected static $primaryKey = 'id';
     protected static $tableName = NULL;
+
     private static function getTableName() {
         if(is_null(static::$tableName)) {
-            return lcfirst(get_called_class());
+            return lcfirst(substr(strrchr(get_called_class(), "\\"), 1));
         }
         return static::$tableName;
     }
