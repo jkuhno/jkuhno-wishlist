@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Wishlist</title>
         <!-- Favicon -->
-        <link rel="icon" href="/app/resources/img/favicon.png"/>
+        <link rel="icon" href="app/resources/img/favicon.png"/>
 
         <!-- Latest Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
