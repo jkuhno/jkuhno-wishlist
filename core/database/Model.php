@@ -2,7 +2,7 @@
 abstract class Model
 {
     protected static $primaryKey = 'id';
-    protected static $tableName = 'games'; // Table name added.
+    protected static $tableName = NULL;
     private static function getTableName() {
         if(is_null(static::$tableName)) {
             return lcfirst(get_called_class());

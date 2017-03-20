@@ -1,7 +1,7 @@
 <?php
 class Game extends Model
 {
-    protected static $tablename = 'game';
+    protected static $tablename = 'games';
 
     public $id;
     public $name;
