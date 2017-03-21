@@ -72,7 +72,10 @@ $(document).ready(function() {
               type: "POST",
               url: "/games/update",
               cache: false, //in case of IE8
-              data: data
+              data: data,
+              complete: function(data) {
+                location.reload();
+              }
             });
           }
         }
@@ -81,8 +84,9 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: "/games/create",
-            cache: false, //in case of IE8
-            data: data
+            complete: function(data) {
+              location.reload();
+            }
         });
     });
     $('.remove').click(function() {
@@ -92,7 +96,10 @@ $(document).ready(function() {
             type: "POST",
             url: "/games/delete",
             cache: false, //in case of IE8
-            data: data
+            data: data,
+            complete: function(data) {
+              location.reload();
+            }
         });
     });
 });
