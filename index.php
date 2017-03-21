@@ -1,5 +1,14 @@
 <?php
-    require 'core/bootstrap.php';
 
-    require Router::define(require 'app/routes.php')
-        ->fire(Request::uri());
+session_start();
+
+require 'vendor/autoload.php';
+
+use Wishlist\Core\Router;
+use Wishlist\Core\App;
+
+Router::define('app/routes.php')
+	->fire(
+		App::get('request')->getPathInfo(),
+		App::get('request')->getMethod()
+	);
