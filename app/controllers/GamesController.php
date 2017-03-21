@@ -28,8 +28,8 @@ class GamesController
     public function create()
     {
         Game::create([
-            'name' => NULL;
-            'releasedate' => NULL;    
+            'name' => NULL,
+            'releasedate' => NULL    
         ]);
         $_SESSION['message'] = 'Succesfully created!';
         header('Location: /games');
