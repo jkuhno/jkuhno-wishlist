@@ -62,9 +62,9 @@ class GamesController
             {
                 $_SESSION['message'] = 'Failed to update!';
                 return header('Location: /games');
-            }*/
+            }
             Game::update($request->get('id'), $request->get('name'));
-        }
+        }*/
         if($request->has('releasedate'))
         {
             $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
