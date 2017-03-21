@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    if(localStorage.getItem("Failure")) {
+    /*if(localStorage.getItem("Failure")) {
         toastr.options = {
           "closeButton": false,
           "debug": false,
@@ -39,7 +39,7 @@ $(document).ready(function() {
         }
         toastr.success(localStorage.getItem("Success"));
         localStorage.clear();
-    }
+    }*/
     $('.edit').click(function() {
         if($(this).find('span').hasClass("glyphicon-edit")) {
           $(this).find('span').removeClass("glyphicon-edit");
