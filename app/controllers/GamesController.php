@@ -27,7 +27,10 @@ class GamesController
     }
     public function create()
     {
-        Game::createEmptyRow();
+        Game::create([
+            'name' => NULL;
+            'releasedate' => NULL;    
+        ]);
         $_SESSION['message'] = 'Succesfully created!';
         header('Location: /games');
     }
