@@ -54,7 +54,7 @@ class GamesController
 
         if($request->has('name'))
         {
-            if(preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$request->get('name')))
+            /*if(preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$request->get('name')))
             {
                 Game::update($request->get('id'), $request->get('name'));
             }
@@ -62,12 +62,13 @@ class GamesController
             {
                 $_SESSION['message'] = 'Failed to update!';
                 return header('Location: /games');
-            }
+            }*/
+            Game::update($request->get('id'), $request->get('name'));
         }
         if($request->has('releasedate'))
         {
             $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
-            if($dt !== false && !array_sum($dt->getLastErrors())) {
+            /*if($dt !== false && !array_sum($dt->getLastErrors())) {
                 $rdate = $dt->format("Y-m-d");
                 Game::update($request->get('id'), $rdate);
             }
@@ -75,7 +76,9 @@ class GamesController
             {
                 $_SESSION['message'] = 'Failed to update!';
                 return header('Location: /games');
-            }
+            }*/
+            $rdate = $dt->format("Y-m-d");
+            Game::update($request->get('id'), $rdate);
         }
 
         $_SESSION['message'] = 'Succesfully updated!';
