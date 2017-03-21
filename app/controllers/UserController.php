@@ -7,7 +7,7 @@ class UserController
 	public function index()
 	{
 
-		require '/public/resources/views/user.view.php';
+		require 'app/resources/views/user.view.php';
 
 	}
 }
