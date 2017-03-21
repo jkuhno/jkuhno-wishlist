@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
 
         <!-- Custom stylesheet -->
-        <link rel="stylesheet" href="/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
         <!-- Lates jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -26,7 +26,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     
         <!-- Custom scripts -->
-        <script src="/scripts/script.js"></script>
+        <script type="text/javascript" src="/scripts/script.js"></script>
     </head>
     <body>
         <div class="container">
