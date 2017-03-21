@@ -55,7 +55,7 @@ $(document).ready(function() {
           $.each(currentTD, function () {
             $(this).prop('contenteditable', false);
           });
-          var data = {};
+          data = {};
           data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
           var number = 0;
           var name = $(this).parent('td').parent('tr').find('td[col-index="' + number + '"]');

@@ -51,8 +51,8 @@ class GamesController
     public function update()
     {
         $request = App::get('request')->request;
-
-        if($request->has('name'))
+        Game::update($request->get('id'), $request->get('name'));
+        /*if($request->has('name'))
         {
             /*if(preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$request->get('name')))
             {
@@ -79,7 +79,7 @@ class GamesController
             }*/
             $rdate = $dt->format("Y-m-d");
             Game::update($request->get('id'), $rdate);
-        }
+        }*/
 
         $_SESSION['message'] = 'Succesfully updated!';
         header('Location: /games');
