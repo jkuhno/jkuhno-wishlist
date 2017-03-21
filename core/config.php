@@ -9,5 +9,6 @@ return [
 		'options' => [
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 		]
-	]
+	],
+    'beginning' => 'https://tranquil-anchorage-29605.herokuapp.com/'
 ];

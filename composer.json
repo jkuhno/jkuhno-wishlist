@@ -4,7 +4,8 @@
         	"Wishlist\\": "."
         },
         "files": [
-        	"core/bootstrap.php"
+        	"core/bootstrap.php",
+            "core/helpers.php"
         ]
     },
     "require": {

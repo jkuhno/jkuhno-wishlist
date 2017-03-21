@@ -23,7 +23,7 @@ class GamesController
         $currentDate = date('Y-m-d');
         $currentMonth = date('m');
 
-        require '../public/resources/views/game.view.php';
+        require '/public/resources/views/game.view.php';
     }
     public function create()
     {

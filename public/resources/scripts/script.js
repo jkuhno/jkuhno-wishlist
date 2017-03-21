@@ -70,7 +70,7 @@ $(document).ready(function() {
           if($(name).attr('oldVal') !== name.text() || $(releasedate).attr('oldVal') !== releasedate.text()) {
             $.ajax({
               type: "POST",
-              url: "/update",
+              url: "/games/update",
               cache: false, //in case of IE8
               data: data
             });
@@ -80,7 +80,7 @@ $(document).ready(function() {
     $('#create').click(function() {
         $.ajax({
             type: "POST",
-            url: "/create",
+            url: "/games/create",
             cache: false, //in case of IE8
             data: data
         });
@@ -90,7 +90,7 @@ $(document).ready(function() {
         data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
         $.ajax({
             type: "POST",
-            url: "/delete",
+            url: "/games/delete",
             cache: false, //in case of IE8
             data: data
         });
