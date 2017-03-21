@@ -6,7 +6,6 @@ class UserController
 {
 	public function index()
 	{
-		$message = "Login";
 
 		require 'app/resources/views/user.view.php';
 
