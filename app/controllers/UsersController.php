@@ -2,7 +2,7 @@
 
 namespace Wishlist\App\Controllers;
 
-class UserController
+class UsersController
 {
 	public function index()
 	{
