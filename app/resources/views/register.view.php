@@ -6,7 +6,7 @@
             </div>
         <?php endif; ?>
         <?php if(isset($errors)): ?>
-            <div class="alert alert-error">
+            <div class="alert alert-danger">
                 <ul>
             <?php foreach($errors as $error): ?>
                 <li><?= $error; ?></li>
