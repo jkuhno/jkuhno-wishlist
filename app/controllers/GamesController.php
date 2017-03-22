@@ -19,7 +19,7 @@ class GamesController
     {
         $field = 'user_id';
         $user_id = $_SESSION['user_id'];
-        $data = = array('releasedate ASC name ASC');
+        $data = array('releasedate ASC name ASC');
         $games = Game::allOrdered($field, $user_id, $data);
 
         $message = '';
