@@ -48,10 +48,10 @@ class UsersController
         }
         else
         {
-            return view("login", ["message" => "Invalid email or password!"]);
+            //return view("login", ["message" => "Invalid email or password!"]);
             // SRP!!!
-            //$_SESSION['message'] = "Invalid email or password!";
-            //header('Location: /');
+            $_SESSION['message'] = "Invalid email or password!";
+            return header('Location: /login');
         }
     }
     public function logout()
@@ -59,9 +59,6 @@ class UsersController
         session_unset();
         session_destroy();
 
-        return view("index", ["message" => "Session closed"]);
-        // SRP !!!!
-        //$_SESSION['message'] = "Succesfully logged out!";
-        //header('Location: /');
+        return view("index", ["message" => "Succesfully logged out!"]);
     }
 }
