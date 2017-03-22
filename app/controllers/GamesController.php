@@ -17,7 +17,8 @@ class GamesController
     }
     public function index()
     {
-        $games = Game::allOrdered();
+        $field = 'user_id';
+        $games = Game::allOrdered($field, $_SESSION['user_id']);
 
         $message = '';
 
@@ -27,17 +28,26 @@ class GamesController
             unset($_SESSION['message']);
         }
 
+        $_SESSION['token'] = '';
+        if (function_exists('mcrypt_create_iv')) {
+            $token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+        } else {
+            $token = bin2hex(openssl_random_pseudo_bytes(32));
+        }
+        $_SESSION['token'] = $token;
+
         date_default_timezone_set('Europe/Helsinki');
         $currentDate = date('Y-m-d');
         $currentMonth = date('m');
 
-        return view('game', compact('message', 'games', 'currentDate', 'currentMonth'));
+        return view('game', compact('message', 'games', 'token', 'currentDate', 'currentMonth'));
     }
     public function create()
     {
         Game::create([
             'name' => NULL,
-            'releasedate' => NULL    
+            'releasedate' => NULL,
+            'user_id' => $_SESSION['user_id']    
         ]);
         $_SESSION['message'] = 'Succesfully created!';
     }
@@ -61,7 +71,10 @@ class GamesController
         {
             if(preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$request->get('name')))
             {
-                Game::update($request->get('id'), ['name' => $request->get('name')]);
+                Game::update($request->get('id'), [
+                    'name' => $request->get('name'),
+                    'user_id' => $_SESSION['user_id']
+                ]);
             }
             else
             {
@@ -74,7 +87,10 @@ class GamesController
             $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
             if($dt !== false && !array_sum($dt->getLastErrors())) {
                 $rdate = $dt->format("Y-m-d");
-                Game::update($request->get('id'), ['releasedate' => $rdate]);
+                Game::update($request->get('id'), [
+                    'releasedate' => $rdate,
+                    'user_id' => $_SESSION['user_id']
+                ]);
             }
             else
             {

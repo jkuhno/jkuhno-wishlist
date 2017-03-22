@@ -28,17 +28,28 @@ abstract class Model
 			->query("SELECT $selectFields FROM " . static::getTableName())
 			->getAll(get_called_class());
 	}
-	public static function allOrdered($fields = []) //ABSTRAKTOI!!!!
+	public static function allOrdered($field, $id)
 	{
-		$selectFields = '*';
-		if(count($fields) > 0) {
-			$selectFields = implode(', ', $fields);
-		}
-
 		return App::get('database')
-			->query("SELECT $selectFields FROM " . static::getTableName() . " ORDER BY releasedate ASC, name ASC")
+			->query("SELECT * FROM " . static::getTableName() . "WHERE " . $field . " = :id")
+			->bind(':id', $id)
 			->getAll(get_called_class());
 	}
+
+	/* SELECT * FROM game WHERE $_SESSION['user_id'] = user_id ORDER BY releasedate ASC, name ASC
+		
+		$fieldNames = implode(', ', array_keys($data));
+		$bindNames = ':' . implode(', :', array_keys($data));
+
+		$statement = App::get('database')
+			->query('INSERT INTO '
+				. static::getTableName()
+				. ' ('.$fieldNames.') VALUES (' . $bindNames .')');
+
+		foreach($data as $key => $value) {
+			$statement->bind(':'.$key, $value);
+		}
+	*/
 
 	public static function find($id)
 	{
