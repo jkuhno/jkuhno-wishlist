@@ -21,9 +21,9 @@ class UsersController
             $_SESSION['user_id'] = $user->id;
             header('Location: /games');
         }
-        return view("login", ["message" => "The email or password was invalid"]);
-        //$_SESSION['message'] = "The email or password was invalid!";
-        //header('Location: /');
+        //return view("login", ["message" => "The email or password was invalid"]);
+        $_SESSION['message'] = "The email or password was invalid!";
+        return header('Location: /');
     }
     public function logout()
     {
@@ -31,6 +31,6 @@ class UsersController
         session_destroy();
         //return view("login", ["message" => "Session closed"]);
         $_SESSION['message'] = "Succesfully logged out!";
-        header('Location: /');
+        return header('Location: /');
     }
 }
