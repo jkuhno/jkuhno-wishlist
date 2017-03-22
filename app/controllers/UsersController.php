@@ -25,4 +25,12 @@ class UsersController
         $_SESSION['message'] = "The email or password was invalid!";
         header('Location: /');
     }
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+        //return view("login", ["message" => "Session closed"]);
+        $_SESSION['message'] = "Succesfully logged out!";
+        header('Location: /');
+    }
 }
