@@ -32,8 +32,8 @@ class UsersController
         }
         else
         {
-            return view("login", ["message" => "The email or password was invalid"]);
-            //$_SESSION['message'] = "The email or password was invalid!";
+            return view("login", ["message" => "Invalid email or password!"]);
+            //$_SESSION['message'] = "Invalid email or password!";
             //header('Location: /');
         }
     }
@@ -43,7 +43,7 @@ class UsersController
         session_destroy();
 
         //return view("login", ["message" => "Session closed"]);
-        $_SESSION['message'] = "Succesfully logged out!";
-        header('Location: /');
+        //$_SESSION['message'] = "Succesfully logged out!";
+        //header('Location: /');
     }
 }
