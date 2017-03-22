@@ -5,6 +5,7 @@ namespace Wishlist\App\Controllers;
 use \DateTime;
 use Wishlist\App\Models\Game;
 use Wishlist\Core\App;
+use Wishlist\Core\Gate;
 
 class GamesController
 {
@@ -24,7 +25,7 @@ class GamesController
         $currentDate = date('Y-m-d');
         $currentMonth = date('m');
 
-        require 'app/resources/views/game.view.php';
+        return view('game', compact('message', 'games'));
     }
     public function create()
     {
