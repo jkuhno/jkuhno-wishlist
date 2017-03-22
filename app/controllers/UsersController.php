@@ -29,8 +29,10 @@ class UsersController
             'email' => $req->get('email'),
             'password' => password_hash($req->get('password'), PASSWORD_DEFAULT)
         ]);
-        return view("register", ["message" => "Account created!"]);
+        //return view("register", ["message" => "Account created!"]);
         // SRP!!!
+        $_SESSION['message'] = "Account created!";
+        header('Location: /register');
     }
 	public function showLogin()
 	{
