@@ -18,15 +18,15 @@
             <form action="<?= url('/register') ?>" method="POST">
                 <div class="input-group">
                     <span class="glyphicon glyphicon-user"></i></span>
-                    <input class="input" type="text" name="name" placeholder="Enter your name">
+                    <input id="name" class="form-control" type="text" name="name" placeholder="Enter your name">
                 </div>
                 <div class="input-group">
                     <span class="glyphicon glyphicon-envelope"></i></span>
-                    <input class="input" type="email" name="email" placeholder="Enter email">
+                    <input id="email" class="form-control" type="email" name="email" placeholder="Enter email">
                 </div>
                 <div class="input-group">
                     <span class="glyphicon glyphicon-lock"></i></span>
-                    <input class="input" type="password" name="password" placeholder="Enter password">
+                    <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
                 </div>
                 <div class="text-center">
                     <button class="btn btn-default">Register</button>

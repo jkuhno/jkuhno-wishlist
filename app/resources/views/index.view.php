@@ -1,6 +1,6 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <div class="center-block">
+        <div class="center-block text-center">
             <a href="/login">Login</a><br>
             <a href="/register">Register</a>
         </div>
