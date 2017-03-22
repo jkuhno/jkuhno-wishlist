@@ -19,6 +19,6 @@ class UsersController
         }
         //return view("login", ["message" => "The email or password was invalid"]);
         $_SESSION['message'] = "The email or password was invalid!";
-        header('Location: /')
+        header('Location: /');
     }
 }
