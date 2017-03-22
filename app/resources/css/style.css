@@ -5,6 +5,9 @@ body {
     background: -moz-radial-gradient(circle, #1a1a1a, #333333); /* For Firefox 3.6 to 15 */
     background: radial-gradient(circle, #1a1a1a, #333333); /* Standard syntax */
 }
-.login-form .register-form {
+.login-form {
+    width: 300px;
+}
+.register-form {
     width: 300px;
 }
