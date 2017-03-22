@@ -30,10 +30,12 @@ class UsersController
             $_SESSION['user_id'] = $user->id;
             header('Location: /games');
         }
-
-        //return view("login", ["message" => "The email or password was invalid"]);
-        $_SESSION['message'] = "The email or password was invalid!";
-        return header('Location: /');
+        else
+        {
+            //return view("login", ["message" => "The email or password was invalid"]);
+            $_SESSION['message'] = "The email or password was invalid!";
+            header('Location: /');
+        }
     }
     public function logout()
     {
