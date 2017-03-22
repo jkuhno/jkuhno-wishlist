@@ -30,7 +30,7 @@ abstract class Model
 	}
 	public static function allOrdered($field, $id, $data)
 	{
-		$orderNames = implode(" ", $data);
+		$orderNames = implode(", ", $data);
 		return App::get('database')
 			->query("SELECT * FROM " . static::getTableName() . " WHERE " . $field . " = :id ORDER BY " . $orderNames)
 			->bind(':id', $id)
