@@ -25,7 +25,7 @@ class GamesController
         $currentDate = date('Y-m-d');
         $currentMonth = date('m');
 
-        return view('game', compact('message', 'games'));
+        return view('game', compact('message', 'games', 'currentDate', 'currentMonth'));
     }
     public function create()
     {
