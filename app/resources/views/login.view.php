@@ -5,7 +5,7 @@
         <?= $message ?>
         </div>
         <?php endif; ?>
-        <div id="login-form" class="center-block">
+        <div class="center-block login-form">
             <form action="<?= url('/login') ?>" method="POST">
                 <div class="form-group">
                     <label for="email" class="label">Email:</label>
@@ -17,6 +17,6 @@
                 </div>
                 <button type="submit" class="btn btn-default">Log in</button>
             </form>
-        <div>
+        </div>
     </div>
 <?php require "_footer.view.php";?>
