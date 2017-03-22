@@ -7,16 +7,18 @@
         <?php endif; ?>
         <div class="center-block login-form">
             <form action="<?= url('/login') ?>" method="POST">
-                <div class="form-group input-group">
-                    <span class="form-control input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="email" class="form-control" type="email" name="email" placeholder="Enter email">
-                </div>
-                <div class="input-group">
-                    <span class="form-control input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-default">Log in</button>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="email" class="form-control" type="email" name="email" placeholder="Enter email">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-default">Log in</button>
+                    </div>
                 </div>
             </form>
         </div>
