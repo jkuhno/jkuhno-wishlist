@@ -42,7 +42,7 @@ class UsersController
         session_unset();
         session_destroy();
 
-        //return view("login", ["message" => "Session closed"]);
+        return view("login", ["message" => "Session closed"]);
         //$_SESSION['message'] = "Succesfully logged out!";
         //header('Location: /');
     }
