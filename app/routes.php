@@ -2,7 +2,7 @@
 
 $router->get('/', 'UsersController@index');
 $router->post('/login', 'UsersController@login');
-$router->get('/logout', 'UsersController@logout');
+$router->post('/logout', 'UsersController@logout');
 
 $router->get('/games', 'GamesController@index');
 $router->post('/games/create', 'GamesController@create');
