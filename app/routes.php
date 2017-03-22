@@ -1,7 +1,7 @@
 <?php
 
 $router->get('/', 'UsersController@index');
-$router->post('login', 'UsersController@login');
+$router->post('/login', 'UsersController@login');
 
 $router->get('/games', 'GamesController@index');
 $router->post('/games/create', 'GamesController@create');
