@@ -7,4 +7,5 @@ body {
 }
 .login-form {
     width: 300px;
+    outline: 1px solid black;
 }

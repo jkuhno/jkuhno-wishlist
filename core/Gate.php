@@ -13,19 +13,19 @@ class Gate
         }
         return static::$method();
     }
-    private static function SeeTasks()
+    private static function SeeGames()
     {
         return isset($_SESSION['user_id']);
     }
-    private static function CreateTasks()
+    private static function CreateGames()
     {
         return isset($_SESSION['user_id']);
     }
-    private static function UpdateTasks()
+    private static function UpdateGames()
     {
         return isset($_SESSION['user_id']);
     }
-    private static function DeleteTasks()
+    private static function DeleteGames()
     {
         return isset($_SESSION['user_id']);
     }

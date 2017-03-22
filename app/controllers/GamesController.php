@@ -9,6 +9,12 @@ use Wishlist\Core\Gate;
 
 class GamesController
 {
+    public function __construct()
+    {
+        if(!Gate::can('see-tasks')) {
+            return header('Location: /');
+        }
+    }
     public function index()
     {
         $games = Game::allOrdered();
