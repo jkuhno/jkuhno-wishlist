@@ -22,8 +22,6 @@ class GamesController
         $data = array('releasedate ASC', 'name ASC');
         $games = Game::allOrdered($field, $user_id, $data);
 
-        $message = '';
-
         if(isset($_SESSION['message']))
         {
             $message = $_SESSION['message'];

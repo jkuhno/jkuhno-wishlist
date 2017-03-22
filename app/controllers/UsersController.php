@@ -10,6 +10,11 @@ class UsersController
 {
     public function showRegister()
     {
+        if(isset($_SESSION['message']))
+        {
+            $message = $_SESSION['message'];
+            unset($_SESSION['message']);
+        }
         return view('register', compact('message'));
     }
     public function register()
@@ -29,8 +34,7 @@ class UsersController
             'email' => $req->get('email'),
             'password' => password_hash($req->get('password'), PASSWORD_DEFAULT)
         ]);
-        //return view("register", ["message" => "Account created!"]);
-        // SRP!!!
+
         $_SESSION['message'] = "Account created!";
         header('Location: /register');
     }
@@ -55,8 +59,6 @@ class UsersController
         }
         else
         {
-            //return view("login", ["message" => "Invalid email or password!"]);
-            // SRP!!!
             $_SESSION['message'] = "Invalid email or password!";
             return header('Location: /login');
         }
