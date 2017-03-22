@@ -37,21 +37,6 @@ abstract class Model
 			->getAll(get_called_class());
 	}
 
-	/* SELECT * FROM game WHERE $_SESSION['user_id'] = user_id ORDER BY releasedate ASC, name ASC
-		
-		$fieldNames = implode(', ', array_keys($data));
-		$bindNames = ':' . implode(', :', array_keys($data));
-
-		$statement = App::get('database')
-			->query('INSERT INTO '
-				. static::getTableName()
-				. ' ('.$fieldNames.') VALUES (' . $bindNames .')');
-
-		foreach($data as $key => $value) {
-			$statement->bind(':'.$key, $value);
-		}
-	*/
-
 	public static function find($id)
 	{
 		return App::get('database')
