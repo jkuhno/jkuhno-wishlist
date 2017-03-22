@@ -18,7 +18,8 @@ class GamesController
     public function index()
     {
         $field = 'user_id';
-        $games = Game::allOrdered($field, $_SESSION['user_id']);
+        $user_id = $_SESSION['user_id'];
+        $games = Game::allOrdered($field, $user_id);
 
         $message = '';
 
@@ -44,10 +45,11 @@ class GamesController
     }
     public function create()
     {
+        $user_id = $_SESSION['user_id'];
         Game::create([
             'name' => NULL,
             'releasedate' => NULL,
-            'user_id' => $_SESSION['user_id']    
+            'user_id' => $user_id   
         ]);
         $_SESSION['message'] = 'Succesfully created!';
     }
@@ -66,6 +68,7 @@ class GamesController
     }
     public function update()
     {
+        $user_id = $_SESSION['user_id'];
         $request = App::get('request')->request;
         if($request->has('name'))
         {
@@ -73,7 +76,7 @@ class GamesController
             {
                 Game::update($request->get('id'), [
                     'name' => $request->get('name'),
-                    'user_id' => $_SESSION['user_id']
+                    'user_id' => $user_id
                 ]);
             }
             else
@@ -89,7 +92,7 @@ class GamesController
                 $rdate = $dt->format("Y-m-d");
                 Game::update($request->get('id'), [
                     'releasedate' => $rdate,
-                    'user_id' => $_SESSION['user_id']
+                    'user_id' => $user_id
                 ]);
             }
             else

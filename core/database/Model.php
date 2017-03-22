@@ -31,7 +31,7 @@ abstract class Model
 	public static function allOrdered($field, $id)
 	{
 		return App::get('database')
-			->query("SELECT * FROM " . static::getTableName() . "WHERE " . $field . " = :id")
+			->query("SELECT * FROM " . static::getTableName() . " WHERE " . $field . " = :id")
 			->bind(':id', $id)
 			->getAll(get_called_class());
 	}
