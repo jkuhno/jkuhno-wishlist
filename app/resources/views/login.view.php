@@ -5,7 +5,7 @@
         <?= $message ?>
         </div>
         <?php endif; ?>
-        <div class="center-block">
+        <div id="login-form" class="center-block">
             <form action="<?= url('/login') ?>" method="POST">
                 <div class="form-group">
                     <label for="email" class="label">Email:</label>
