@@ -5,6 +5,6 @@ class HomeController
 {
     public function index()
     {
-        return view('index' compact('message'));
+        return view('index', compact('message'));
     }
 }
