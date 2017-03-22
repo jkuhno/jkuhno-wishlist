@@ -33,7 +33,6 @@ class GamesController
             'releasedate' => NULL    
         ]);
         $_SESSION['message'] = 'Succesfully created!';
-        header('Location: /games');
     }
     public function delete()
     {
