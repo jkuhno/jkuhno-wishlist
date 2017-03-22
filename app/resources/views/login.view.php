@@ -8,12 +8,10 @@
         <div class="center-block login-form">
             <form action="<?= url('/login') ?>" method="POST">
                 <div class="input-group">
-                    <label for="email" class="label">Email:</label>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                     <input id="email" class="form-control" type="email" name="email" placeholder="Enter email">
                 </div>
                 <div class="input-group">
-                    <label for="pwd" class="label">Password:</label>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
                 </div>
