@@ -42,12 +42,11 @@ class GamesController
         if(!$request->has('id'))
         {
             $_SESSION['message'] = 'Missing id!';
-            return header('Location: /games');
+            return;
         }
 
         Game::delete($request->get('id'));
         $_SESSION['message'] = 'Succesfully removed!';
-        header('Location: /games');
     }
     public function update()
     {
@@ -61,7 +60,7 @@ class GamesController
             else
             {
                 $_SESSION['message'] = 'Failed to update!';
-                return header('Location: /games');
+                return;
             }
         }
         if($request->has('releasedate'))
@@ -74,11 +73,10 @@ class GamesController
             else
             {
                 $_SESSION['message'] = 'Failed to update!';
-                return header('Location: /games');
+                return;
             }
         }
 
         $_SESSION['message'] = 'Succesfully updated!';
-        header('Location: /games');
     }
 }
