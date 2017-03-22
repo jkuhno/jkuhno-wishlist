@@ -34,7 +34,12 @@ class UsersController
     }
 	public function showLogin()
 	{
-		return view('login', compact('message'));
+        if(isset($_SESSION['message']))
+        {
+            $message = $_SESSION['message'];
+            unset($_SESSION['message']);
+        }
+        return view('login', compact('message'));
 	}
     public function login()
     {
