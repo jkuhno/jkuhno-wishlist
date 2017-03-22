@@ -12,7 +12,7 @@ class GamesController
     public function __construct()
     {
         if(!Gate::can('see-games')) {
-            return header('Location: /');
+            return header('Location: /login');
         }
     }
     public function index()

@@ -1,0 +1,8 @@
+<?php require "_header.view.php"; ?>
+    <div class="panel-body">
+        <div class="center-block">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+    </div>
+<?php require "_footer.view.php"; ?>

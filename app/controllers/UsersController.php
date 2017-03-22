@@ -8,7 +8,38 @@ use Wishlist\Core\Validator;
 
 class UsersController
 {
-	public function index()
+    public function showRegister()
+    {
+        $message = '';
+
+        if(isset($_SESSION['message']))
+        {
+            $message = $_SESSION['message'];
+            unset($_SESSION['message']);
+        }
+
+        return view('register', compact('message'));
+    }
+    public function register()
+    {
+        $req = App::get('request');
+        $errors = (new Validator([
+            'name' => 'required',
+            'email' => 'required',
+            'email' => 'validEmail',
+            'password' => 'required'
+        ]))->validate();
+        if(count($errors) > 0) {
+            return view("register", compact("errors"));
+        }
+        User::create([
+            'name' => $req->get('name'),
+            'email' => $req->get('email'),
+            'password' => password_hash($req->get('password'), PASSWORD_DEFAULT)
+        ]);
+        return view("register", ["message" => "Account created!"]);
+    }
+	public function showLogin()
 	{
         $message = '';
 
@@ -18,7 +49,7 @@ class UsersController
             unset($_SESSION['message']);
         }
 
-		return view('login', 'message');
+		return view('login', compact('message'));
 	}
     public function login()
     {
@@ -43,7 +74,7 @@ class UsersController
         session_unset();
         session_destroy();
 
-        return view("login", ["message" => "Session closed"]);
+        return view("/", ["message" => "Session closed"]);
         // SRP !!!!
         //$_SESSION['message'] = "Succesfully logged out!";
         //header('Location: /');
