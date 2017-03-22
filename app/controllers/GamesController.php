@@ -11,7 +11,7 @@ class GamesController
 {
     public function __construct()
     {
-        if(!Gate::can('see-tasks')) {
+        if(!Gate::can('see-games')) {
             return header('Location: /');
         }
     }
