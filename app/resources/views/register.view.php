@@ -8,7 +8,7 @@
         <?php if(isset($errors)): ?>
             <div class="alert alert-danger">
             <?php foreach($errors as $error): ?>
-                <?= $error; ?>
+                <?= $error; ?><br>
             <?php endforeach; ?>
             </div>
         <?php endif; ?>
