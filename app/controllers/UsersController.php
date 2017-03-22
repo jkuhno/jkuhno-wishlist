@@ -32,9 +32,9 @@ class UsersController
         }
         else
         {
-            //return view("login", ["message" => "The email or password was invalid"]);
-            $_SESSION['message'] = "The email or password was invalid!";
-            header('Location: /');
+            return view("login", ["message" => "The email or password was invalid"]);
+            //$_SESSION['message'] = "The email or password was invalid!";
+            //header('Location: /');
         }
     }
     public function logout()
