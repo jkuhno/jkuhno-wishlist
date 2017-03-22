@@ -1,7 +1,7 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
         <div class="center-block">
-            <a href="/login">Login</a>
+            <a href="/login">Login</a><br>
             <a href="/register">Register</a>
         </div>
     </div>

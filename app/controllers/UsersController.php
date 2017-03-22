@@ -10,14 +10,6 @@ class UsersController
 {
     public function showRegister()
     {
-        $message = '';
-
-        if(isset($_SESSION['message']))
-        {
-            $message = $_SESSION['message'];
-            unset($_SESSION['message']);
-        }
-
         return view('register', compact('message'));
     }
     public function register()
@@ -38,17 +30,10 @@ class UsersController
             'password' => password_hash($req->get('password'), PASSWORD_DEFAULT)
         ]);
         return view("register", ["message" => "Account created!"]);
+        // SRP!!!
     }
 	public function showLogin()
 	{
-        $message = '';
-
-        if(isset($_SESSION['message']))
-        {
-            $message = $_SESSION['message'];
-            unset($_SESSION['message']);
-        }
-
 		return view('login', compact('message'));
 	}
     public function login()

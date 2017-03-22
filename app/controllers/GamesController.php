@@ -30,13 +30,13 @@ class GamesController
             unset($_SESSION['message']);
         }
 
-        $_SESSION['token'] = '';
+        /*$_SESSION['token'] = '';
         if (function_exists('mcrypt_create_iv')) {
             $token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
         } else {
             $token = bin2hex(openssl_random_pseudo_bytes(32));
         }
-        $_SESSION['token'] = $token;
+        $_SESSION['token'] = $token;*/
 
         date_default_timezone_set('Europe/Helsinki');
         $currentDate = date('Y-m-d');
