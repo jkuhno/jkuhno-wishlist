@@ -28,10 +28,11 @@ abstract class Model
 			->query("SELECT $selectFields FROM " . static::getTableName())
 			->getAll(get_called_class());
 	}
-	public static function allOrdered($field, $id)
+	public static function allOrdered($field, $id, $data)
 	{
+		$orderNames = implode(" ", $data);
 		return App::get('database')
-			->query("SELECT * FROM " . static::getTableName() . " WHERE " . $field . " = :id")
+			->query("SELECT * FROM " . static::getTableName() . " WHERE " . $field . " = :id ORDER BY " . $orderNames)
 			->bind(':id', $id)
 			->getAll(get_called_class());
 	}
