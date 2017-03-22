@@ -2,6 +2,10 @@
 
 namespace Wishlist\App\Controllers;
 
+use Wishlist\Core\App;
+use Wishlist\App\Models\User;
+use Wishlist\Core\Validator;
+
 class UsersController
 {
 	public function index()
