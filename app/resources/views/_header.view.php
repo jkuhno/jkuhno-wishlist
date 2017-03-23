@@ -47,7 +47,13 @@
             </script>
         <?php endif; ?>
         <?php if(isset($failure)): ?>
-            <script>
-                localStorage.setItem('failure', '<?= implode("<br>",$failure); ?>');
-            </script>
+            <?php if(is_array($failure)): ?>
+                <script>
+                    localStorage.setItem('failure', '<?= implode("<br>",$failure); ?>');
+                </script>
+            <?php else: ?>
+                <script>
+                    localStorage.setItem('failure', '<?= $failure; ?>');
+                </script>
+            <?php endif; ?>
         <?php endif; ?>
