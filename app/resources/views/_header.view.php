@@ -29,41 +29,60 @@
         <!-- Custom scripts -->
         <script src="app/resources/scripts/script.js"></script>
     </head>
+    <?php if(isset($_SESSION['success'])) {
+            $success = $_SESSION['success'];
+            unset($_SESSION['success']);
+        }
+    ?>
+    <?php if(isset($_SESSION['failure'])) {
+            $failure = $_SESSION['failure'];
+            unset($_SESSION['failure']);
+        }
+    ?>
+    <?php if(isset($success)): ?>
+        <script>
+            localStorage.setItem('success', '<?= $success; ?>');
+        </script>
+    <?php endif; ?>
+    <?php if(isset($failure)): ?>
+        <?php if(is_array($failure)): ?>
+            <script>
+                localStorage.setItem('failure', '<?= implode("<br>",$failure); ?>');
+            </script>
+        <?php else: ?>
+            <script>
+                localStorage.setItem('failure', '<?= $failure; ?>');
+            </script>
+        <?php endif; ?>
+    <?php endif; ?>
     <body>
         <div class="container">
         <div class="panel panel-default">
         <div class="panel-heading">
-            <?php if(isset($_SESSION['user_id'])): ?>
-                <div class="text-right">
-                    <p class="small">You are logged in as <?= $_SESSION['name']; ?></p>
-                    <a class="btn btn-sm" href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
-                </div>
-            <?php endif; ?>
             <h1>Wishlist</h1>
         </div>
-        <?php if(isset($_SESSION['success'])) {
-                $success = $_SESSION['success'];
-                unset($_SESSION['success']);
-            }
-        ?>
-        <?php if(isset($_SESSION['failure'])) {
-                $failure = $_SESSION['failure'];
-                unset($_SESSION['failure']);
-            }
-        ?>
-        <?php if(isset($success)): ?>
-            <script>
-                localStorage.setItem('success', '<?= $success; ?>');
-            </script>
-        <?php endif; ?>
-        <?php if(isset($failure)): ?>
-            <?php if(is_array($failure)): ?>
-                <script>
-                    localStorage.setItem('failure', '<?= implode("<br>",$failure); ?>');
-                </script>
-            <?php else: ?>
-                <script>
-                    localStorage.setItem('failure', '<?= $failure; ?>');
-                </script>
-            <?php endif; ?>
-        <?php endif; ?>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                    </button>
+                </div>
+                <?php if(isset($_SESSION['user_id'])): ?>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+                    </div>
+                <?php else; ?>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="<?= url('/register') ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="<?= url('/login') ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </nav>

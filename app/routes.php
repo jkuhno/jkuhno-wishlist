@@ -8,6 +8,7 @@ $router->get('/login', 'UsersController@showLogin');
 $router->post('/login', 'UsersController@login');
 $router->get('/logout', 'UsersController@logout');
 $router->get('/admin', 'UsersController@showAdmin');
+$router->post('/admin/delete', 'UsersController@delete');
 
 $router->get('/games', 'GamesController@index');
 $router->post('/games/create', 'GamesController@create');
