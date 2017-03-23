@@ -38,7 +38,7 @@ class UsersController
     }
     public function showAdmin()
     {
-        $users = User::all();
+        $users = User::findWhere('group_id', 2);
         return view('admin', compact('users'));
     }
     public function delete()
