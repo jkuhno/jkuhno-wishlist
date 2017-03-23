@@ -48,6 +48,6 @@
         <?php endif; ?>
         <?php if(isset($failure)): ?>
             <script>
-                localStorage.setItem('failure', '<?= json_encode($failure); ?>');
+                localStorage.setItem('failure', '<?= implode("<br>",$failure); ?>');
             </script>
         <?php endif; ?>
