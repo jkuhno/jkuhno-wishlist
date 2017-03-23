@@ -39,7 +39,9 @@
         <?php endif; ?>-->
         <div class="panel-heading">
             <?php if(isset($_SESSION['user_id'])): ?>
-                <a class="text-right btn btn-default" href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Kirjaudu ulos</a>
+                <div class="text-right">
+                    <a class="btn btn-sm" href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Kirjaudu ulos</a>
+                </div>
             <?php endif; ?>
             <h1>Wishlist</h1>
         </div>
