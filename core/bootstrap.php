@@ -1,7 +1,7 @@
 <?php
-// For debugging.
+/* For debugging.
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 1);*/
 
 use Wishlist\Core\App;
 use Wishlist\Core\Database\QueryBuilder;
