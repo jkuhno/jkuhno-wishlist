@@ -1,18 +1,27 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <div class="pull-left text-left register-form form-group">
+        <div class="pull-left text-left register-form">
             <form action="<?= url('/register') ?>" method="POST">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="name" class="form-control" type="text" name="name" placeholder="Enter your name">
+                <div class="form-group">
+                    <label class="sr-only">Name</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="name" class="form-control" type="text" name="name" placeholder="Enter your name">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input id="email" class="form-control" type="email" name="email" placeholder="Enter email">
+                <div class="form-group">
+                    <label class="sr-only">Name</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input id="email" class="form-control" type="email" name="email" placeholder="Enter email">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
+                <div class="form-group">
+                    <label class="sr-only">Name</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
+                    </div>
                 </div>
                 <div>
                     <button class="btn btn-default">Register</button>
