@@ -1,6 +1,6 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <div class="pull-left text-left register-form">
+        <div class="pull-left text-left register-form well">
             <form action="<?= url('/register') ?>" method="POST">
                 <div class="form-group">
                     <label class="sr-only">Name</label>
