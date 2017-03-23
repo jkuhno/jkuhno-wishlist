@@ -60,29 +60,29 @@
         <div class="panel panel-default">
         <div class="panel-heading">
             <h1>Wishlist</h1>
-        </div>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span> 
-                    </button>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span> 
+                        </button>
+                    </div>
+                    <?php if(isset($_SESSION['user_id'])): ?>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            </ul>
+                        </div>
+                    <?php else: ?>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav">
+                                <li><a href="<?= url('/register') ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                                <li><a href="<?= url('/login') ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <?php if(isset($_SESSION['user_id'])): ?>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                        </ul>
-                    </div>
-                <?php else: ?>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li><a href="<?= url('/register') ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="<?= url('/login') ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        </ul>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </nav>
+            </nav>
+        </div>
