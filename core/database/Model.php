@@ -57,6 +57,16 @@ abstract class Model
 			->getOne(get_called_class());
 	}
 
+	public static function findAllWhere($field, $value)
+	{
+		return App::get('database')
+			->query("SELECT * FROM "
+				. static::getTableName()
+				. " WHERE " . $field . " = :id")
+			->bind(':id', $value)
+			->getAll(get_called_class());
+	}
+
 	public static function create($data)
 	{
 		$fieldNames = implode(', ', array_keys($data));
