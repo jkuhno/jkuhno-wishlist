@@ -9,6 +9,11 @@
                 </tr>
             </thead>
             <tbody id="_editable_table">
+                <?php
+                    date_default_timezone_set('Europe/Helsinki');
+                    $currentDate = date('Y-m-d');
+                    $currentMonth = date('m');
+                ?>
                 <?php foreach($games as $game) :?>
                     <?php if(!is_null($game->name) && !is_null($game->releasedate) && date("Y-m-d", strtotime(htmlspecialchars($game->releasedate))) <= $currentDate):?>
                         <tr class="active" data-row-id="<?= htmlspecialchars($game->id);?>">

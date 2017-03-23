@@ -34,16 +34,12 @@ class GamesController
             unset($_SESSION['failure']);
         }
 
-        date_default_timezone_set('Europe/Helsinki');
-        $currentDate = date('Y-m-d');
-        $currentMonth = date('m');
-
-        return view('game', compact('success', 'failure', 'games', 'token', 'currentDate', 'currentMonth'));
+        return view('game', compact('success', 'failure', 'games'));
     }
     public function create()
     {
         $user_id = $_SESSION['user_id'];
-        
+
         Game::create([
             'name' => NULL,
             'releasedate' => NULL,
