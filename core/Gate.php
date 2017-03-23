@@ -15,18 +15,34 @@ class Gate
     }
     private static function SeeGames()
     {
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['group_id'] == 2);
     }
     private static function CreateGames()
     {
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['group_id'] == 2);
     }
     private static function UpdateGames()
     {
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['group_id'] == 2);
     }
     private static function DeleteGames()
     {
-        return isset($_SESSION['user_id']);
+        return isset($_SESSION['group_id'] == 2);
+    }
+    private static function SeeUsers()
+    {
+        return isset($_SESSION['group_id'] == 1);
+    }
+    private static function CreateUsers()
+    {
+        return isset($_SESSION['group_id'] == 1);
+    }
+    private static function UpdateUsers()
+    {
+        return isset($_SESSION['group_id'] == 1);
+    }
+    private static function DeleteUsers()
+    {
+        return isset($_SESSION['group_id'] == 1);
     }
 }

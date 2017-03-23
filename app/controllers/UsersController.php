@@ -31,10 +31,34 @@ class UsersController
             'name' => $req->get('name'),
             'email' => $req->get('email'),
             'password' => password_hash($req->get('password'), PASSWORD_DEFAULT)
+            'group_id' => '2';
         ]);
 
         $_SESSION['success'] = "Account created!";
         header('Location: /register');
+    }
+    public function showAdmin()
+    {
+        $users = User::all();
+        return view('admin', compact('users'));
+    }
+    public function delete()
+    {
+        if(!Gate::can('delete-users')) {
+            $_SESSION['failure'] = 'Please login to access that!';
+            return header('Location: /login');
+        }
+
+        $request = App::get('request')->request;
+
+        if(!$request->has('id'))
+        {
+            $_SESSION['failure'] = 'Missing id!';
+            return;
+        }
+
+        User::delete($request->get('id'));
+        $_SESSION['success'] = 'Succesfully removed!';
     }
 	public function showLogin()
 	{
@@ -49,7 +73,13 @@ class UsersController
             $_SESSION['name'] = $user->name;
             $_SESSION['user_id'] = $user->id;
             $_SESSION['success'] = "Succesfully logged in!";
-            header('Location: /games');
+            if($user->group_id == 1) {
+                $_SESSION['superuser'] = true;
+                header('Location: /admin');
+            }
+            else{
+                header('Location: /games');
+            }
         }
         else
         {
@@ -61,7 +91,7 @@ class UsersController
     {
         session_unset();
         session_destroy();
-
-        return view("index", ["success" => "Succesfully logged out!"]);
+        header('Location: /');
+        //return view("index", ["success" => "Succesfully logged out!"]);
     }
 }

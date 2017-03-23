@@ -27,6 +27,10 @@ class GamesController
     }
     public function create()
     {
+        if(!Gate::can('create-games')) {
+            $_SESSION['failure'] = 'Please login to access that!';
+            return header('Location: /login');
+        }
         $user_id = $_SESSION['user_id'];
 
         Game::create([
@@ -38,6 +42,10 @@ class GamesController
     }
     public function delete()
     {
+        if(!Gate::can('delete-games')) {
+            $_SESSION['failure'] = 'Please login to access that!';
+            return header('Location: /login');
+        }
         $request = App::get('request')->request;
 
         if(!$request->has('id'))
@@ -51,6 +59,10 @@ class GamesController
     }
     public function update()
     {
+        if(!Gate::can('update-games')) {
+            $_SESSION['failure'] = 'Please login to access that!';
+            return header('Location: /login');
+        }
         $user_id = $_SESSION['user_id'];
         $request = App::get('request')->request;
         if($request->has('name'))
