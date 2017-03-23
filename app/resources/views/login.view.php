@@ -1,10 +1,5 @@
 <?php require "_header.view.php";?>
     <div class="panel-body">
-        <?php if(isset($message)): ?>
-            <div class="alert alert-info">
-                <?= $message ?>
-            </div>
-        <?php endif; ?>
         <div class="center-block login-form">
             <form action="<?= url('/login') ?>" method="POST">
                 <div class="input-group">

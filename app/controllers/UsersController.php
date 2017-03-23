@@ -10,22 +10,30 @@ class UsersController
 {
     public function showRegister()
     {
-        if(isset($_SESSION['message']))
+        if(isset($_SESSION['success']))
         {
-            $message = $_SESSION['message'];
-            unset($_SESSION['message']);
+            $message = $_SESSION['success'];
+            unset($_SESSION['success']);
         }
-        return view('register', compact('message'));
+        if(isset($_SESSION['failure']))
+        {
+            $message = $_SESSION['failure'];
+            unset($_SESSION['failure']);
+        }
+
+        return view('register', compact('success', 'failure'));
     }
     public function register()
     {
         $req = App::get('request');
+
         $errors = (new Validator([
             'name' => 'required',
             'email' => 'required',
             'email' => 'validEmail',
             'password' => 'required'
         ]))->validate();
+
         if(count($errors) > 0) {
             return view("register", compact("errors"));
         }
@@ -35,17 +43,22 @@ class UsersController
             'password' => password_hash($req->get('password'), PASSWORD_DEFAULT)
         ]);
 
-        $_SESSION['message'] = "Account created!";
+        $_SESSION['success'] = "Account created!";
         header('Location: /register');
     }
 	public function showLogin()
 	{
-        if(isset($_SESSION['message']))
+        if(isset($_SESSION['success']))
         {
-            $message = $_SESSION['message'];
-            unset($_SESSION['message']);
+            $success = $_SESSION['success'];
+            unset($_SESSION['success']);
         }
-        return view('login', compact('message'));
+        if(isset($_SESSION['failure']))
+        {
+            $message = $_SESSION['failure'];
+            unset($_SESSION['failure']);
+        }
+        return view('login', compact('success', 'failure'));
 	}
     public function login()
     {
@@ -59,7 +72,7 @@ class UsersController
         }
         else
         {
-            $_SESSION['message'] = "Invalid email or password!";
+            $_SESSION['failure'] = "Invalid email or password!";
             return header('Location: /login');
         }
     }
@@ -68,6 +81,6 @@ class UsersController
         session_unset();
         session_destroy();
 
-        return view("index", ["message" => "Succesfully logged out!"]);
+        return view("index", ["success" => "Succesfully logged out!"]);
     }
 }

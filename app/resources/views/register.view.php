@@ -1,17 +1,5 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <?php if(isset($message)): ?>
-            <div class="alert alert-success">
-                <?= $message ?>
-            </div>
-        <?php endif; ?>
-        <?php if(isset($errors)): ?>
-            <div class="alert alert-danger">
-            <?php foreach($errors as $error): ?>
-                <?= $error; ?><br>
-            <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
         <div class="center-block register-form">
             <form action="<?= url('/register') ?>" method="POST">
                 <div class="input-group">

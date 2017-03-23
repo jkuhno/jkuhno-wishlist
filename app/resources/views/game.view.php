@@ -1,10 +1,5 @@
 <?php require "_header.view.php";?>
     <div class="panel-body">
-        <?php if(isset($message) && strlen($message) > 0): ?>
-        <div class="alert alert-info">
-        <?= $message; ?>
-        </div>
-        <?php endif; ?>
         <table id="videogame_grid" class="table table-condensed bootgrid-table" width="60%" cellspacing="0">
             <thead>
                 <tr>

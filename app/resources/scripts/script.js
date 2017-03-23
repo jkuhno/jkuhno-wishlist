@@ -3,7 +3,7 @@ $(document).ready(function() {
     headers:
       { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
   });
-  /*if(localStorage.getItem("Failure")) {
+  if(localStorage.getItem("failure")) {
       toastr.options = {
         "closeButton": false,
         "debug": false,
@@ -21,9 +21,9 @@ $(document).ready(function() {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
       }
-      toastr.error(localStorage.getItem("Failure"));
+      toastr.error(localStorage.getItem("failure"));
       localStorage.clear();
-  } else if(localStorage.getItem("Success")) {
+  } else if(localStorage.getItem("success")) {
       toastr.options = {
         "closeButton": false,
         "debug": false,
@@ -41,9 +41,9 @@ $(document).ready(function() {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
       }
-      toastr.success(localStorage.getItem("Success"));
+      toastr.success(localStorage.getItem("success"));
       localStorage.clear();
-  }*/
+  }
   $('.edit').click(function() {
       if($(this).find('span').hasClass("glyphicon-edit")) {
         $(this).find('span').removeClass("glyphicon-edit");

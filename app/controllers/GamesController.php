@@ -12,6 +12,7 @@ class GamesController
     public function __construct()
     {
         if(!Gate::can('see-games')) {
+            $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
         }
     }
@@ -22,17 +23,22 @@ class GamesController
         $data = array('releasedate ASC', 'name ASC');
         $games = Game::allOrdered($field, $user_id, $data);
 
-        if(isset($_SESSION['message']))
+        if(isset($_SESSION['success']))
         {
-            $message = $_SESSION['message'];
-            unset($_SESSION['message']);
+            $message = $_SESSION['success'];
+            unset($_SESSION['success']);
+        }
+        if(isset($_SESSION['failure']))
+        {
+            $message = $_SESSION['failure'];
+            unset($_SESSION['failure']);
         }
 
         date_default_timezone_set('Europe/Helsinki');
         $currentDate = date('Y-m-d');
         $currentMonth = date('m');
 
-        return view('game', compact('message', 'games', 'token', 'currentDate', 'currentMonth'));
+        return view('game', compact('success', 'failure', 'games', 'token', 'currentDate', 'currentMonth'));
     }
     public function create()
     {
@@ -42,7 +48,7 @@ class GamesController
             'releasedate' => NULL,
             'user_id' => $user_id   
         ]);
-        $_SESSION['message'] = 'Succesfully created!';
+        $_SESSION['success'] = 'Succesfully created!';
     }
     public function delete()
     {
@@ -50,12 +56,12 @@ class GamesController
 
         if(!$request->has('id'))
         {
-            $_SESSION['message'] = 'Missing id!';
+            $_SESSION['failure'] = 'Missing id!';
             return;
         }
 
         Game::delete($request->get('id'));
-        $_SESSION['message'] = 'Succesfully removed!';
+        $_SESSION['success'] = 'Succesfully removed!';
     }
     public function update()
     {
@@ -72,7 +78,7 @@ class GamesController
             }
             else
             {
-                $_SESSION['message'] = 'Failed to update!';
+                $_SESSION['failure'] = 'Failed to update!';
                 return;
             }
         }
@@ -88,11 +94,11 @@ class GamesController
             }
             else
             {
-                $_SESSION['message'] = 'Failed to update!';
+                $_SESSION['failure'] = 'Failed to update!';
                 return;
             }
         }
 
-        $_SESSION['message'] = 'Succesfully updated!';
+        $_SESSION['success'] = 'Succesfully updated!';
     }
 }

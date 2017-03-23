@@ -32,11 +32,6 @@
     <body>
         <div class="container">
         <div class="panel panel-default">
-        <!--<?php if(isset($_SESSION['user_id'])): ?>
-            <div class="text-right">
-                <a class="text-right btn btn-default" href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Kirjaudu ulos</a>
-            </div>
-        <?php endif; ?>-->
         <div class="panel-heading">
             <?php if(isset($_SESSION['user_id'])): ?>
                 <div class="text-right">
@@ -46,3 +41,13 @@
             <?php endif; ?>
             <h1>Wishlist</h1>
         </div>
+        <?php if(isset($success)): ?>
+            <script>
+                localStorage.setItem('success', '<?= $_SESSION['success']; ?>')
+            </script>
+        <?php endif; ?>
+        <?php if(isset($failure)): ?>
+            <script>
+                localStorage.setItem('failure', '<?= $_SESSION['failure']; ?>')
+            </script>
+        <?php endif; ?>
