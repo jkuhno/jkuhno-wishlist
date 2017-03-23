@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta content="<?= echo bin2hex(openssl_random_pseudo_bytes(32)); ?>" name="csrf-token"/>
         <title>Wishlist</title>
         <!-- Favicon -->
         <link rel="icon" href="app/resources/img/favicon.png"/>
