@@ -9,5 +9,5 @@ class User extends Model
     public $name;
     public $email;
     public $password;
-    public $grou_id;
+    public $group_id;
 }
