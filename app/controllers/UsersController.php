@@ -31,7 +31,6 @@ class UsersController
             'name' => $req->get('name'),
             'email' => $req->get('email'),
             'password' => password_hash($req->get('password'), PASSWORD_DEFAULT)
-            'group_id' => '2';
         ]);
 
         $_SESSION['success'] = "Account created!";
