@@ -58,9 +58,6 @@
     <body>
         <div class="container">
         <div class="panel panel-default">
-        <div class="panel-heading">
-            <h1>Wishlist</h1>
-        </div>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -69,6 +66,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span> 
                     </button>
+                    <a class="navbar-brand" href="#">Wishlist</a>
                 </div>
                 <?php if(isset($_SESSION['user_id'])): ?>
                     <div class="collapse navbar-collapse" id="myNavbar">
