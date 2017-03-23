@@ -71,6 +71,7 @@ class UsersController
         if($user && password_verify($req->get('password'), $user->password)) {
             $_SESSION['name'] = $user->name;
             $_SESSION['user_id'] = $user->id;
+            $_SESSION['group_id'] = $user->group_id;
             $_SESSION['success'] = "Succesfully logged in!";
             if($user->group_id == 1) {
                 $_SESSION['superuser'] = true;
