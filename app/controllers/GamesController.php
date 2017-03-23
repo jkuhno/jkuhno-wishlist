@@ -11,10 +11,10 @@ class GamesController
 {
     public function __construct()
     {
-        if(!Gate::can('see-games')) {
+        /*if(!Gate::can('see-games')) {
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
-        }
+        }*/
     }
     public function index()
     {
