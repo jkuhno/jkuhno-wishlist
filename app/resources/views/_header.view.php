@@ -43,11 +43,11 @@
         </div>
         <?php if(isset($success)): ?>
             <script>
-                localStorage.setItem('success', '<?= $_SESSION['success']; ?>')
+                localStorage.setItem('success', '<?= $_SESSION['success']; ?>');
             </script>
         <?php endif; ?>
         <?php if(isset($failure)): ?>
             <script>
-                localStorage.setItem('failure', '<?= $_SESSION['failure']; ?>')
+                localStorage.setItem('failure', '<?= $_SESSION['failure']; ?>');
             </script>
         <?php endif; ?>
