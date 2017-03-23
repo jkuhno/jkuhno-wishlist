@@ -61,7 +61,7 @@
         <div class="panel-heading">
             <h1>Wishlist</h1>
         </div>
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
