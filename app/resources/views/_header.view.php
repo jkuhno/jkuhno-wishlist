@@ -32,9 +32,14 @@
     <body>
         <div class="container">
         <div class="panel panel-default">
-        <?php if(isset($_SESSION['user_id'])): ?>
+        <!--<?php if(isset($_SESSION['user_id'])): ?>
             <div class="text-right">
-                <a href="<?= url('/logout') ?>">Kirjaudu ulos</a>
+                <a class="text-right btn btn-default" href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Kirjaudu ulos</a>
             </div>
-        <?php endif; ?>
-        <div class="panel-heading"><h1>Wishlist</h1></div>
+        <?php endif; ?>-->
+        <div class="panel-heading">
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <a class="text-right btn btn-default" href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Kirjaudu ulos</a>
+            <?php endif; ?>
+            <h1>Wishlist</h1>
+        </div>
