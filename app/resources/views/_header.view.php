@@ -40,7 +40,8 @@
         <div class="panel-heading">
             <?php if(isset($_SESSION['user_id'])): ?>
                 <div class="text-right">
-                    <a class="btn btn-sm" href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Kirjaudu ulos</a>
+                    <p>You are logged in as <?= $_SESSION['name']; ?></p>&nbsp;
+                    <a class="btn btn-sm" href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
                 </div>
             <?php endif; ?>
             <h1>Wishlist</h1>
