@@ -27,15 +27,15 @@ class UsersController
     {
         $req = App::get('request');
 
-        $errors = (new Validator([
+        $failure = (new Validator([
             'name' => 'required',
             'email' => 'required',
             'email' => 'validEmail',
             'password' => 'required'
         ]))->validate();
 
-        if(count($errors) > 0) {
-            return view("register", compact("errors"));
+        if(count($failure) > 0) {
+            return view('register', compact('failure'));
         }
         User::create([
             'name' => $req->get('name'),
