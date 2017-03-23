@@ -23,7 +23,7 @@ class GamesController
         $data = array('releasedate ASC', 'name ASC');
         $games = Game::allOrdered($field, $user_id, $data);
 
-        if(isset($_SESSION['success']))
+        /*if(isset($_SESSION['success']))
         {
             $success = $_SESSION['success'];
             unset($_SESSION['success']);
@@ -32,9 +32,9 @@ class GamesController
         {
             $failure = $_SESSION['failure'];
             unset($_SESSION['failure']);
-        }
+        }*/
 
-        return view('game', compact('success', 'failure', 'games'));
+        return view('game', compact('games'));
     }
     public function create()
     {

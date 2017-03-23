@@ -41,6 +41,14 @@
             <?php endif; ?>
             <h1>Wishlist</h1>
         </div>
+        <?php if(isset($_SESSION['success'])): ?>
+            $success = $_SESSION['success'];
+            unset($_SESSION['success']);
+        <?php endif; ?>
+        <?php if(isset($_SESSION['failure'])): ?>
+            $failure = $_SESSION['failure'];
+            unset($_SESSION['failure']);
+        <?php endif; ?>
         <?php if(isset($success)): ?>
             <script>
                 localStorage.setItem('success', '<?= $success; ?>');

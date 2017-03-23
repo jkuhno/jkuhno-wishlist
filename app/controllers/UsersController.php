@@ -10,7 +10,7 @@ class UsersController
 {
     public function showRegister()
     {
-        if(isset($_SESSION['success']))
+        /*if(isset($_SESSION['success']))
         {
             $success = $_SESSION['success'];
             unset($_SESSION['success']);
@@ -19,9 +19,9 @@ class UsersController
         {
             $failure = $_SESSION['failure'];
             unset($_SESSION['failure']);
-        }
+        }*/
 
-        return view('register', compact('success', 'failure'));
+        return view('register');
     }
     public function register()
     {
@@ -49,7 +49,7 @@ class UsersController
     }
 	public function showLogin()
 	{
-        if(isset($_SESSION['success']))
+        /*if(isset($_SESSION['success']))
         {
             $success = $_SESSION['success'];
             unset($_SESSION['success']);
@@ -58,8 +58,8 @@ class UsersController
         {
             $failure = $_SESSION['failure'];
             unset($_SESSION['failure']);
-        }
-        return view('login', compact('success', 'failure'));
+        }*/
+        return view('login');
 	}
     public function login()
     {

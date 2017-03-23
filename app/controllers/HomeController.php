@@ -5,7 +5,7 @@ class HomeController
 {
     public function index()
     {
-        if(isset($_SESSION['success']))
+        /*if(isset($_SESSION['success']))
         {
             $success = $_SESSION['success'];
             unset($_SESSION['success']);
@@ -14,7 +14,7 @@ class HomeController
         {
             $failure = $_SESSION['failure'];
             unset($_SESSION['failure']);
-        }
-        return view('index', compact('success', 'failure'));
+        }*/
+        return view('index');
     }
 }
