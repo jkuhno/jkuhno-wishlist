@@ -3,7 +3,7 @@
         <div class="center-block well">
             <?php foreach($users as $user) :?>
                 <ul class="list-group">
-                    <li class="list-group-item"><?= htmlspecialchars($user->name); ?> | <?= htmlspecialchars($user->email); ?> | <?= htmlspecialchars($user->password) ?> | <?= htmlspecialchars($user->group_id) ?></li>
+                    <li class="list-group-item"><?= htmlspecialchars($user->name); ?> | <?= htmlspecialchars($user->email); ?> | <?= htmlspecialchars($user->group_id) ?></li>
                 </ul>
             <?php endforeach; ?>
             <!--<form action="<?= url('/register') ?>" method="POST">
