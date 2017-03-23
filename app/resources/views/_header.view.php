@@ -32,4 +32,9 @@
     <body>
         <div class="container">
         <div class="panel panel-default">
+        <?php if(isset($_SESSION['user_id'])): ?>
+            <div class="text-right">
+                <a href="<?= url('/logout') ?>">Kirjaudu ulos</a>
+            </div>
+        <?php endif; ?>
         <div class="panel-heading"><h1>Wishlist</h1></div>

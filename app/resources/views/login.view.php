@@ -16,7 +16,7 @@
                     <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-default">Log in</button>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span>Log in</button>
                 </div>
             </form>
         </div>

@@ -5,9 +5,6 @@
         <?= $message; ?>
         </div>
         <?php endif; ?>
-        <div>
-            <a href="<?= url('/logout') ?>">Kirjaudu ulos</a>
-        </div>
         <table id="videogame_grid" class="table table-condensed bootgrid-table" width="60%" cellspacing="0">
             <thead>
                 <tr>
