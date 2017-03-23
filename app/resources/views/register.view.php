@@ -1,6 +1,6 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <div class="pull-left text-left register-form">
+        <div class="pull-left text-left register-form form-group">
             <form action="<?= url('/register') ?>" method="POST">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -14,7 +14,7 @@
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
                 </div>
-                <div class="text-center">
+                <div>
                     <button class="btn btn-default">Register</button>
                 </div>
             </form>
