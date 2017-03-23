@@ -74,7 +74,6 @@ class UsersController
             $_SESSION['group_id'] = $user->group_id;
             $_SESSION['success'] = "Succesfully logged in!";
             if($user->group_id == 1) {
-                $_SESSION['superuser'] = true;
                 header('Location: /admin');
             }
             else{
