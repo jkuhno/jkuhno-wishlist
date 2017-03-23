@@ -43,6 +43,7 @@ class GamesController
     public function create()
     {
         $user_id = $_SESSION['user_id'];
+        
         Game::create([
             'name' => NULL,
             'releasedate' => NULL,
