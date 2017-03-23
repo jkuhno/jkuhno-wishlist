@@ -1,6 +1,6 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <div class="center-block register-form">
+        <div class="pull-left text-left register-form">
             <form action="<?= url('/register') ?>" method="POST">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
