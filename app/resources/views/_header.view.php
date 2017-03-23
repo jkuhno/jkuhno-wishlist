@@ -48,6 +48,6 @@
         <?php endif; ?>
         <?php if(isset($failure)): ?>
             <script>
-                localStorage.setItem('failure', '<?php foreach($failures as $failure): ?><?= $failure; ?><?php endforeach; ?>');
+                localStorage.setItem('failure', '<?= json_encode($failure); ?>');
             </script>
         <?php endif; ?>
