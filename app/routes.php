@@ -7,6 +7,7 @@ $router->post('/register', 'UsersController@register');
 $router->get('/login', 'UsersController@showLogin');
 $router->post('/login', 'UsersController@login');
 $router->get('/logout', 'UsersController@logout');
+$router->get('/admin', 'UsersController@showAdmin');
 
 $router->get('/games', 'GamesController@index');
 $router->post('/games/create', 'GamesController@create');
