@@ -1,6 +1,6 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <div class="center-block">
+        <div class="center-block well">
             <?php foreach($users as $user) :?>
                 <ul class="list-group">
                     <li class="list-group-item"><?= htmlspecialchars($user->name); ?> | <?= htmlspecialchars($user->email); ?> | <?= htmlspecialchars($user->password) ?> | <?= htmlspecialchars($user->group_id) ?></li>

@@ -1,6 +1,6 @@
 <?php require "_header.view.php";?>
     <div class="panel-body">
-        <div class="pull-left text-left login-form">
+        <div class="pull-left text-left login-form well">
             <form action="<?= url('/login') ?>" method="POST">
                 <div class="form-group">
                     <label class="sr-only">Email</label>
