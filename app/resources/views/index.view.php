@@ -1,6 +1,6 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <div class="center-block text-center">
+        <div class="pull-right text-right">
             <a href="/login">Login</a><br>
             <a href="/register">Register</a>
         </div>
