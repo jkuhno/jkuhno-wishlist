@@ -76,7 +76,7 @@
                             <li><a href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
                     </div>
-                <?php else; ?>
+                <?php else: ?>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
                             <li><a href="<?= url('/register') ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
