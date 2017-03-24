@@ -36,7 +36,7 @@
                 <button class="btn btn-default">Create</button>
             </form>
             <h3>Update user</h3>
-            <form class="form-inline" action="<?= url('/update') ?>" method="POST">
+            <form class="form-inline" action="<?= url('/admin/update') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <div class="form-group">
                     <label class="sr-only">Id</label>
