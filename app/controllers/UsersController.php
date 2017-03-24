@@ -46,13 +46,13 @@ class UsersController
     }
     public function delete()
     {
-        if(!Gate::can('delete-users')) {
+        /*if(!Gate::can('delete-users')) {
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
-        }
+        }*/
 
         $request = App::get('request')->request;
-        
+
         if(!isset($_SESSION['token'])
             || $request->get('token') !== $_SESSION['token']) {
             throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
