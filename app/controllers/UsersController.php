@@ -46,10 +46,10 @@ class UsersController
     }
     public function delete()
     {
-        /*if(!Gate::can('delete-users')) {
+        if(!Gate::can('delete-users')) {
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
-        }*/
+        }
 
         $request = App::get('request')->request;
 
