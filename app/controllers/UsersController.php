@@ -89,7 +89,7 @@ class UsersController
             $_SESSION['user_id'] = $user->id;
             $_SESSION['group_id'] = $user->group_id;
             $_SESSION['success'] = "Succesfully logged in!";
-            if($user->group_id == 1) {
+            if($_SESSION['group_id'] == 1) {
                 header('Location: /admin');
             }
             else{
