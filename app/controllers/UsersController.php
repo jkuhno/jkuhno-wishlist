@@ -121,7 +121,7 @@ class UsersController
             $data['email'] = $request->get('email');
         }
         if($request->has('password') && !empty($request->get('password'))) {
-            $data['password'] = password_hash($req->get('password'), PASSWORD_DEFAULT);
+            $data['password'] = password_hash($request->get('password'), PASSWORD_DEFAULT);
         }
         
         if(!empty($data)) {
