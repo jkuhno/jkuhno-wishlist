@@ -15,6 +15,12 @@ class UsersController
     }
     public function register()
     {
+        if(isset($_SESSION['user_id'])) {
+            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
+                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+            }
+        }
+
         $req = App::get('request');
 
         $errors = (new Validator([
@@ -64,8 +70,7 @@ class UsersController
 
         $request = App::get('request')->request;
 
-        if(!isset($_SESSION['token'])
-            || $request->get('token') !== $_SESSION['token']) {
+        if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
             throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
         }
 
