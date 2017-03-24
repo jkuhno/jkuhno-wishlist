@@ -5,7 +5,7 @@
             <?php foreach($users as $user) :?>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <?= htmlspecialchars($user->id); ?> | <?= htmlspecialchars($user->name); ?> | <?= htmlspecialchars($user->email); ?> | <?= htmlspecialchars($user->group_id) ?><form action="<?= url('/admin/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form>
+                        <?= htmlspecialchars($user->id); ?> | <?= htmlspecialchars($user->name); ?> | <?= htmlspecialchars($user->email); ?> | <form class="form-inline" action="<?= url('/admin/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form>
                     </li>
                 </ul>
             <?php endforeach; ?>
