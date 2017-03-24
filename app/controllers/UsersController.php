@@ -36,6 +36,7 @@ class UsersController
         $_SESSION['success'] = "Account created!";
         header('Location: /register');
     }
+
     public function showAdmin()
     {
         $_SESSION['token'] = '';
@@ -68,6 +69,7 @@ class UsersController
         $_SESSION['success'] = 'Succesfully removed!';
         header('Location: /admin');
     }
+
 	public function showLogin()
 	{
         return view('login');
