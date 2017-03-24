@@ -15,13 +15,13 @@ class UsersController
     }
     public function register()
     {
+        $req = App::get('request');
+
         if(isset($_SESSION['user_id'])) {
             if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
                 throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
             }
         }
-
-        $req = App::get('request');
 
         $errors = (new Validator([
             'name' => 'required',
@@ -58,7 +58,9 @@ class UsersController
         $_SESSION['token'] = '';
         $token= bin2hex(openssl_random_pseudo_bytes(32));
         $_SESSION['token'] = $token;
+
         $users = User::findAllWhere('group_id', 2);
+
         return view('admin', compact('users', 'token'));
     }
     public function delete()
