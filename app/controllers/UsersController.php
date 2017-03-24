@@ -102,7 +102,7 @@ class UsersController
             $_SESSION['failure'] = "Missing id!";
             return header('Location: /admin');
         }
-        if($request->has('email')) {
+        if($request->has('email') && !empty($request->get('email'))) {
             $errors = (new Validator([
                 'email' => 'validEmail'
             ]))->validate();
@@ -114,13 +114,13 @@ class UsersController
         }
 
         $data = array();
-        if($request->has('name')) {
+        if($request->has('name') && !empty($request->get('name'))) {
             $data['name'] = $request->get('name');
         }
-        if($request->has('email')) {
+        if($request->has('email') && !empty($request->get('email'))) {
             $data['email'] = $request->get('email');
         }
-        if($request->has('password')) {
+        if($request->has('password') && !empty($request->get('password'))) {
             $data['password'] = password_hash($req->get('password'), PASSWORD_DEFAULT);
         }
         
