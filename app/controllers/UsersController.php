@@ -35,7 +35,11 @@ class UsersController
         ]);
 
         $_SESSION['success'] = "Account created!";
-        header('Location: /register');
+        if($_SESSION['group_id'] == 1) {
+            header('Location: /admin');
+        } else {
+            header('Location: /register');
+        }
     }
 
     public function showAdmin()
