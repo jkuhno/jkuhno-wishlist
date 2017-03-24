@@ -38,6 +38,9 @@ class UsersController
     }
     public function showAdmin()
     {
+        $_SESSION['token'] = '';
+        $token= bin2hex(openssl_random_pseudo_bytes(32));
+        $_SESSION['token'] = $token;
         $users = User::findAllWhere('group_id', 2);
         return view('admin', compact('users'));
     }
