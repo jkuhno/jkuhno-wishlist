@@ -39,6 +39,11 @@ class UsersController
 
     public function showAdmin()
     {
+        if(!Gate::can('see-users')) {
+            $_SESSION['failure'] = 'Please login to access that!';
+            return header('Location: /login');
+        }
+
         $_SESSION['token'] = '';
         $token= bin2hex(openssl_random_pseudo_bytes(32));
         $_SESSION['token'] = $token;
@@ -47,10 +52,10 @@ class UsersController
     }
     public function delete()
     {
-        /*if(!Gate::can('delete-users')) {
+        if(!Gate::can('delete-users')) {
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
-        }*/
+        }
 
         $request = App::get('request')->request;
 
