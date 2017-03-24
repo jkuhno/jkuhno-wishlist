@@ -3,6 +3,7 @@
 namespace Wishlist\App\Controllers;
 
 use Wishlist\Core\App;
+use Wishlist\Core\Gate;
 use Wishlist\App\Models\User;
 use Wishlist\Core\Validator;
 
