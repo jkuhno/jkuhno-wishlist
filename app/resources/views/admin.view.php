@@ -14,7 +14,7 @@
                     <label class="sr-only">Name</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="name" class="form-control" type="text" name="name" placeholder="Enter your name">
+                        <input id="name" class="form-control" type="text" name="name" placeholder="Enter name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -31,9 +31,7 @@
                         <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
                     </div>
                 </div>
-                <div>
-                    <button class="btn btn-default">Register</button>
-                </div>
+                <button class="btn btn-default">Create</button>
             </form>
         </div>
     </div>
