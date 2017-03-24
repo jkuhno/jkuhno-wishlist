@@ -118,7 +118,7 @@ class UsersController
             $data['name'] = $request->get('name');
         }
         if($request->has('email')) {
-            $data['email'] = $request->-get('email');
+            $data['email'] = $request->get('email');
         }
         if($request->has('password')) {
             $data['password'] = password_hash($req->get('password'), PASSWORD_DEFAULT);
