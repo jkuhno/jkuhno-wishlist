@@ -15,7 +15,7 @@ class UsersController
     }
     public function register()
     {
-        $req = App::get('request');
+        $request = App::get('request');
 
         if(isset($_SESSION['user_id'])) {
             if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
@@ -35,9 +35,9 @@ class UsersController
             return header('Location: /register');
         }
         User::create([
-            'name' => $req->get('name'),
-            'email' => $req->get('email'),
-            'password' => password_hash($req->get('password'), PASSWORD_DEFAULT)
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => password_hash($request->get('password'), PASSWORD_DEFAULT)
         ]);
 
         $_SESSION['success'] = "Account created!";
@@ -142,10 +142,10 @@ class UsersController
 	}
     public function login()
     {
-        $req = App::get('request');
-        $user = User::findWhere('email', $req->get('email'));
+        $request = App::get('request');
+        $user = User::findWhere('email', $request->get('email'));
 
-        if($user && password_verify($req->get('password'), $user->password)) {
+        if($user && password_verify($request->get('password'), $user->password)) {
             $_SESSION['name'] = $user->name;
             $_SESSION['user_id'] = $user->id;
             $_SESSION['group_id'] = $user->group_id;
@@ -167,7 +167,6 @@ class UsersController
     {
         session_unset();
         session_destroy();
-        header('Location: /');
-        //return view("index", ["success" => "Succesfully logged out!"]);
+        header('Location: /'); // Add notification
     }
 }
