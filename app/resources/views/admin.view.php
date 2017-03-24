@@ -2,13 +2,24 @@
     <div class="panel-body">
         <div class="center-block well">
             <h3>Users</h3>
-            <?php foreach($users as $user) :?>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <?= htmlspecialchars($user->id); ?> | <?= htmlspecialchars($user->name); ?> | <?= htmlspecialchars($user->email); ?> | <form class="form-inline" action="<?= url('/admin/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form>
-                    </li>
-                </ul>
-            <?php endforeach; ?>
+            <table class="table table-condensed bootgrid-table" width="60%" cellspacing="0">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <?php foreach($users as $user) :?>
+                        <tr>
+                            <td><?= htmlspecialchars($user->id); ?></td>
+                            <td><?= htmlspecialchars($user->name); ?></td>
+                            <td><?= htmlspecialchars($user->email); ?></td>
+                            <td><form class="form-inline" action="<?= url('/admin/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
             <h3>Create user</h3>
             <form class="form-inline" action="<?= url('/register') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
