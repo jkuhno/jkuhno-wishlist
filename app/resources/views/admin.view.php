@@ -42,7 +42,7 @@
                     <label class="sr-only">Id</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                        <input id="updateid" class="form-control" type="number" placeholder="Enter ID of user you want to update">
+                        <input id="updateid" class="form-control" type="number" name="id" placeholder="Enter ID">
                     </div>
                 </div>
                 <div class="form-group">
