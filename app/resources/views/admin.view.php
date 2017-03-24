@@ -15,7 +15,6 @@
                             <td><?= htmlspecialchars($user->id); ?></td>
                             <td><?= htmlspecialchars($user->name); ?></td>
                             <td><?= htmlspecialchars($user->email); ?></td>
-                            <td><form class="form-inline" action="<?= url('/admin/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -78,6 +77,18 @@
                     </div>
                 </div>
                 <button class="btn btn-default">Update</button>
+            </form>
+            <h3>Delete user</h3>
+            <form class="form-inline" action="<?= url('/admin/delete') ?>" method="POST">
+                <input type="hidden" name="token" value="<?= $token; ?>">
+                <div class="form-group">
+                    <label class="sr-only">Id</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                        <input id="removeid" class="form-control" type="number" name="id" placeholder="Enter ID">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default">Remove</button>
             </form>
         </div>
     </div>
