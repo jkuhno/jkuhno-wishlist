@@ -52,6 +52,11 @@ class UsersController
         }
 
         $request = App::get('request')->request;
+        
+        if(!isset($_SESSION['token'])
+            || $request->get('token') !== $_SESSION['token']) {
+            throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+        }
 
         if(!$request->has('id'))
         {
