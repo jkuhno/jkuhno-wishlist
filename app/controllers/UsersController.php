@@ -53,11 +53,12 @@ class UsersController
         if(!$request->has('id'))
         {
             $_SESSION['failure'] = 'Missing id!';
-            return;
+            return header('Location: /admin');
         }
 
         User::delete($request->get('id'));
         $_SESSION['success'] = 'Succesfully removed!';
+        header('Location: /admin');
     }
 	public function showLogin()
 	{
