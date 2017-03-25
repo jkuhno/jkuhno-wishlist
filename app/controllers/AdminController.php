@@ -26,7 +26,7 @@ class AdminController
 
         $users = User::findAllWhere('group_id', 2);
 
-        return view('admin', compact('users', 'token'));
+        return view('admin', compact('users', 'games', 'token'));
     }
     public function create()
     {
