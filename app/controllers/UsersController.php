@@ -127,7 +127,7 @@ class UsersController
         if(!empty($data)) {
             User::update($request->get('id'),$data);
 
-            $_SESSION['success'] = "Updated!";
+            $_SESSION['success'] = "Succesfully updated!";
             header('Location: /admin');
         }
         else {
