@@ -101,7 +101,16 @@ abstract class Model
 			->bind(':id', $id)
 			->execute();
 	}
-
+	public static function deleteWhere($id, $field, $data)
+	{
+		App::get('database')
+			->query('DELETE FROM '
+				. static::getTableName()
+				. ' WHERE ' . static::$primaryKey . ' = :id AND ' . $field . ' = ' . $data)
+			->bind(':id', $id)
+			->bind($field, $data)
+			->execute();
+	}
 	public static function update($id, $data)
 	{
 		$sql = 'UPDATE ' . static::getTableName() . ' SET ';
