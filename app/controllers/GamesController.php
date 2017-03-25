@@ -35,6 +35,10 @@ class GamesController
         if($_SESSION['group_id'] == 1) {
             $request = App::get('request')->request;
 
+            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
+                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+            }
+
             $data = array();
 
             if($request->has('user_id') && !empty($request->get('user_id'))) {
@@ -79,7 +83,7 @@ class GamesController
         }
         $request = App::get('request')->request;
 
-        if(!$request->has('id'))
+        if(!$request->has('id') && !empty($request->get('id')))
         {
             $_SESSION['failure'] = 'Missing id!';
             if($_SESSION['group_id'] == 1) {
@@ -89,7 +93,11 @@ class GamesController
         }
 
         $field = 'user_id';
-        $data = $_SESSION['user_id'];
+        if($_SESSION['group_id'] == 1) {
+            $data = $request->get('user_id');
+        } else {
+            $data = $_SESSION['user_id'];
+        }
 
         Game::deleteWhere($request->get('id'),$field,$data);
         $_SESSION['success'] = 'Succesfully removed!';
@@ -105,7 +113,8 @@ class GamesController
         }
         $user_id = $_SESSION['user_id'];
         $request = App::get('request')->request;
-        if($request->has('name'))
+        
+        if($request->has('name') && !empty($request->has('name')))
         {
             if(preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$request->get('name')))
             {
@@ -123,7 +132,7 @@ class GamesController
                 return;
             }
         }
-        if($request->has('releasedate'))
+        if($request->has('releasedate') && !empty($request->has('releasedate')))
         {
             $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
             if($dt !== false && !array_sum($dt->getLastErrors())) {

@@ -4,18 +4,18 @@
             <h3>Users</h3>
             <ul class="list-group">
                 <?php foreach($users as $user): ?>
-                    <li>ID: <?= htmlspecialchars($user->id); ?> | Name: <?= htmlspecialchars($user->name); ?> | Email: <?= htmlspecialchars($user->email); ?> | <form class="form-inline" action="<?= url('/admin/deleteUser') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="userid" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></li>
+                    <li>ID: <?= htmlspecialchars($user->id); ?> | Name: <?= htmlspecialchars($user->name); ?> | Email: <?= htmlspecialchars($user->email); ?> | <form class="form-inline" action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="userid" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></li>
                     <ul>
                         <?php foreach($games as $game): ?>
                             <?php if($game->user_id == $user->id): ?>
-                                <li>Game id: <?= htmlspecialchars($game->id); ?> | Game name: <?= htmlspecialchars($game->name); ?> | Game release date: <?= htmlspecialchars($game->releasedate); ?> | <form class="form-inline" action="<?= url('/admin/deleteGame') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="gameid" value="<?= $game->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></li>
+                                <li>Game id: <?= htmlspecialchars($game->id); ?> | Game name: <?= htmlspecialchars($game->name); ?> | Game release date: <?= htmlspecialchars($game->releasedate); ?> | <form class="form-inline" action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="gameid" value="<?= $game->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></li>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
                 <?php endforeach; ?>
             </ul>
             <h3>Update user</h3>
-            <form class="form-inline" action="<?= url('/admin/update') ?>" method="POST">
+            <form class="form-inline" action="<?= url('/user/update') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <div class="form-group">
                     <label class="sr-only">Id</label>
@@ -47,17 +47,38 @@
                 </div>
                 <button class="btn btn-default">Update</button>
             </form>
-            <h3>Delete user</h3>
-            <form class="form-inline" action="<?= url('/admin/delete') ?>" method="POST">
+            <h3>Update game</h3>
+            <form class="form-inline" action="<?= url('/games/update') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <div class="form-group">
-                    <label class="sr-only">Id</label>
+                    <label class="sr-only">User ID</label>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                        <input id="removeid" class="form-control" type="number" name="id" placeholder="Enter ID">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="updategameuserid" class="form-control" type="number" name="user_id" placeholder="Enter user id">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-default">Remove</button>
+                <div class="form-group">
+                    <label class="sr-only">Game ID</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                        <input id="updategameid" class="form-control" type="number" name="id" placeholder="Enter game id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Name</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="updategamename" class="form-control" type="text" name="name" placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Release date</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input id="updategamerdate" class="form-control" type="text" name="releasedate" placeholder="Enter release date">
+                    </div>
+                </div>
+                <button class="btn btn-default">Update</button>
             </form>
         </div>
     </div>

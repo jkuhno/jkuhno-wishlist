@@ -44,4 +44,11 @@ class Gate
     {
         return isset($_SESSION['user_id']);
     }
+    private static function SeeAdmin()
+    {
+        if(isset($_SESSION['group_id']) && $_SESSION['group_id'] == 1) {
+            return true;
+        }
+        return false;
+    }
 }

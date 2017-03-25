@@ -11,7 +11,7 @@ $router->get('/user', 'UsersController@showUser');
 $router->post('/user/delete', 'UsersController@delete');
 $router->post('/user/update', 'UsersController@update');
 
-//$router->get('/admin', 'AdminController@showAdmin');
+$router->get('/admin', 'AdminController@showAdmin');
 
 $router->get('/games', 'GamesController@index');
 $router->post('/games/create', 'GamesController@create');
