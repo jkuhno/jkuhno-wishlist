@@ -2,7 +2,23 @@
     <div class="panel-body">
         <div class="center-block well">
             <h3>Users</h3>
-            <table class="table table-condensed bootgrid-table" width="60%" cellspacing="0">
+            <ul class="list-group">
+                <?php foreach($users as $user): ?>
+                    <li>ID: <?= htmlspecialchars($user->id); ?></li>
+                    <li>Name: <?= htmlspecialchars($user->name); ?></li>
+                    <li>Email: <?= htmlspecialchars($user->email); ?></li>
+                    <ul>
+                        <?php foreach($games as $game): ?>
+                            <?php if($game->user_id == $user->id): ?>
+                                <li>Game id: <?= htmlspecialchars($game->id); ?></li>
+                                <li>Game name: <?= htmlspecialchars($game->name); ?></li>
+                                <li>Game release date: <?= htmlspecialchars($game->releasedate); ?></li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endforeach; ?>
+            </ul>
+            <!--<table class="table table-condensed bootgrid-table" width="60%" cellspacing="0">
                 <thead>
                     <th>ID</th>
                     <th>Name</th>
@@ -18,7 +34,7 @@
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-            </table>
+            </table>-->
             <h3>Create user</h3>
             <form class="form-inline" action="<?= url('/register') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">

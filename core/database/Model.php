@@ -28,7 +28,7 @@ abstract class Model
 			->query("SELECT $selectFields FROM " . static::getTableName())
 			->getAll(get_called_class());
 	}
-	public static function allOrdered($field, $id, $data)
+	public static function allWhereOrdered($field, $id, $data)
 	{
 		$orderNames = implode(", ", $data);
 		return App::get('database')
@@ -36,7 +36,13 @@ abstract class Model
 			->bind(':id', $id)
 			->getAll(get_called_class());
 	}
-
+	public static function allOrdered($data)
+	{
+		$orderNames = implode(", ", $data);
+		return App::get('database')
+			->query("SELECT * FROM " . static::getTableName() . " ORDER BY " . $orderNames)
+			->getAll(get_called_class());
+	}
 	public static function find($id)
 	{
 		return App::get('database')

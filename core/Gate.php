@@ -47,6 +47,13 @@ class Gate
         }
         return false;
     }
+    private static function CreateUsers()
+    {
+        if (isset($_SESSION['group_id']) && $_SESSION['group_id'] == 1) {
+            return true;
+        }
+        return false;
+    }
     private static function UpdateUsers()
     {
         if (isset($_SESSION['group_id']) && $_SESSION['group_id'] == 1) {

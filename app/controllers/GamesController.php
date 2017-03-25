@@ -21,7 +21,7 @@ class GamesController
         $field = 'user_id';
         $user_id = $_SESSION['user_id'];
         $data = array('releasedate ASC', 'name ASC');
-        $games = Game::allOrdered($field, $user_id, $data);
+        $games = Game::allWhereOrdered($field, $user_id, $data);
 
         return view('game', compact('games'));
     }
