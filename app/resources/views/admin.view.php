@@ -8,7 +8,7 @@
                     <ul>
                         <?php foreach($games as $game): ?>
                             <?php if($game->user_id == $user->id): ?>
-                                <li>Game id: <?= htmlspecialchars($game->id); ?> | Game name: <?= htmlspecialchars($game->name); ?> | Game release date: <?= htmlspecialchars($game->releasedate); ?> | <form class="form-inline" action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $game->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></li>
+                                <li>Game id: <?= htmlspecialchars($game->id); ?> | Game name: <?= htmlspecialchars($game->name); ?> | Game release date: <?= htmlspecialchars($game->releasedate); ?> | <form class="form-inline" action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $game->id; ?>"><input type="hidden" name="user_id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></li>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label class="sr-only">User ID</label>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
                         <input id="updategameuserid" class="form-control" type="number" name="user_id" placeholder="Enter user id">
                     </div>
                 </div>
