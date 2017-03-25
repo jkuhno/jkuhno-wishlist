@@ -106,9 +106,10 @@ abstract class Model
 		App::get('database')
 			->query('DELETE FROM '
 				. static::getTableName()
-				. ' WHERE ' . static::$primaryKey . ' = :id AND ' . $field . ' = ' . $data)
+				. ' WHERE ' . static::$primaryKey . ' = :id AND :field = :data')
 			->bind(':id', $id)
-			->bind($field, $data)
+			->bind(':field', $field)
+			->bind(':data', $data)
 			->execute();
 	}
 	public static function update($id, $data)
