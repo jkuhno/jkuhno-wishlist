@@ -4,15 +4,11 @@
             <h3>Users</h3>
             <ul class="list-group">
                 <?php foreach($users as $user): ?>
-                    <li>ID: <?= htmlspecialchars($user->id); ?></li>
-                    <li>Name: <?= htmlspecialchars($user->name); ?></li>
-                    <li>Email: <?= htmlspecialchars($user->email); ?></li>
+                    <li>ID: <?= htmlspecialchars($user->id); ?> | Name: <?= htmlspecialchars($user->name); ?> | Email: <?= htmlspecialchars($user->email); ?></li>
                     <ul>
                         <?php foreach($games as $game): ?>
                             <?php if($game->user_id == $user->id): ?>
-                                <li>Game id: <?= htmlspecialchars($game->id); ?></li>
-                                <li>Game name: <?= htmlspecialchars($game->name); ?></li>
-                                <li>Game release date: <?= htmlspecialchars($game->releasedate); ?></li>
+                                <li>Game id: <?= htmlspecialchars($game->id); ?> | Game name: <?= htmlspecialchars($game->name); ?> | Game release date: <?= htmlspecialchars($game->releasedate); ?></li>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
