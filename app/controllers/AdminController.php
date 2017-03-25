@@ -12,7 +12,7 @@ class AdminController
 {
     public function __construct()
     {
-        if(!Gate::can('see-users')) {
+        if(!Gate::can('see-admin')) {
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
         }
