@@ -119,7 +119,7 @@ class GamesController
         }
 
         $request = App::get('request')->request;
-        
+
         if($_SESSION['group_id'] == 1) {
             if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
                 throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
@@ -136,7 +136,7 @@ class GamesController
             $user_id = $_SESSION['user_id'];
         }
 
-        if($request->has('name') && !empty($request->has('name')))
+        if($request->has('name') && !empty($request->get('name')))
         {
             if(preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$request->get('name')))
             {
@@ -154,7 +154,7 @@ class GamesController
                 return;
             }
         }
-        if($request->has('releasedate') && !empty($request->has('releasedate')))
+        if($request->has('releasedate') && !empty($request->get('releasedate')))
         {
             $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
             if($dt !== false && !array_sum($dt->getLastErrors())) {
