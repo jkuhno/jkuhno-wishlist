@@ -31,14 +31,45 @@ class GamesController
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
         }
-        $user_id = $_SESSION['user_id'];
 
-        Game::create([
-            'name' => NULL,
-            'releasedate' => NULL,
-            'user_id' => $user_id   
-        ]);
+        if($_SESSION['group_id'] == 1) {
+            $request = App::get('request')->request;
+
+            $data = array();
+
+            if($request->has('user_id') && !empty($request->get('user_id'))) {
+                $data['user_id'] = $request->get('user_id');
+            } else {
+                $_SESSION['failure'] = "Missing id!";
+                return header('Location: /admin');
+            }
+            if($request->has('name') && !empty($request->get('name'))) {
+                $data['name'] = $request->get('name');
+            }
+            if($request->has('releasedate') && !empty($request->get('releasedate'))) {
+                $data['releasedate'] = $request->get('releasedate');
+            }
+
+            if(!empty($data)) {
+                Game::create($data);
+            } else {
+                $_SESSION['failure'] = "Nothing to update!";
+                return header('Location: /admin');
+            }
+        }
+        else {
+            $user_id = $_SESSION['user_id'];
+
+            Game::create([
+                'name' => NULL,
+                'releasedate' => NULL,
+                'user_id' => $user_id   
+            ]);
+        }
         $_SESSION['success'] = 'Succesfully created!';
+        if($_SESSION['group_id'] == 1) {
+            return header('Location: /admin');
+        }
     }
     public function delete()
     {
@@ -51,6 +82,9 @@ class GamesController
         if(!$request->has('id'))
         {
             $_SESSION['failure'] = 'Missing id!';
+            if($_SESSION['group_id'] == 1) {
+                return header('Location: /admin');
+            }
             return;
         }
 
@@ -59,6 +93,9 @@ class GamesController
 
         Game::deleteWhere($request->get('id'),$field,$data);
         $_SESSION['success'] = 'Succesfully removed!';
+        if($_SESSION['group_id'] == 1) {
+            return header('Location: /admin');
+        }
     }
     public function update()
     {
@@ -80,6 +117,9 @@ class GamesController
             else
             {
                 $_SESSION['failure'] = 'Failed to update!';
+                if($_SESSION['group_id'] == 1) {
+                    return header('Location: /admin');
+                }
                 return;
             }
         }
@@ -96,10 +136,16 @@ class GamesController
             else
             {
                 $_SESSION['failure'] = 'Failed to update!';
+                if($_SESSION['group_id'] == 1) {
+                    return header('Location: /admin');
+                }
                 return;
             }
         }
 
         $_SESSION['success'] = 'Succesfully updated!';
+        if($_SESSION['group_id'] == 1) {
+            return header('Location: /admin');
+        }
     }
 }
