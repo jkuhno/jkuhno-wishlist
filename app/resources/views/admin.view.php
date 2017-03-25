@@ -4,59 +4,16 @@
             <h3>Users</h3>
             <ul class="list-group">
                 <?php foreach($users as $user): ?>
-                    <li>ID: <?= htmlspecialchars($user->id); ?> | Name: <?= htmlspecialchars($user->name); ?> | Email: <?= htmlspecialchars($user->email); ?></li>
+                    <li>ID: <?= htmlspecialchars($user->id); ?> | Name: <?= htmlspecialchars($user->name); ?> | Email: <?= htmlspecialchars($user->email); ?> | <form class="form-inline" action="<?= url('/admin/deleteUser') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="userid" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></li>
                     <ul>
                         <?php foreach($games as $game): ?>
                             <?php if($game->user_id == $user->id): ?>
-                                <li>Game id: <?= htmlspecialchars($game->id); ?> | Game name: <?= htmlspecialchars($game->name); ?> | Game release date: <?= htmlspecialchars($game->releasedate); ?></li>
+                                <li>Game id: <?= htmlspecialchars($game->id); ?> | Game name: <?= htmlspecialchars($game->name); ?> | Game release date: <?= htmlspecialchars($game->releasedate); ?> | <form class="form-inline" action="<?= url('/admin/deleteGame') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="gameid" value="<?= $game->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></li>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
                 <?php endforeach; ?>
             </ul>
-            <!--<table class="table table-condensed bootgrid-table" width="60%" cellspacing="0">
-                <thead>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <?php foreach($users as $user) :?>
-                        <tr>
-                            <td><?= htmlspecialchars($user->id); ?></td>
-                            <td><?= htmlspecialchars($user->name); ?></td>
-                            <td><?= htmlspecialchars($user->email); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>-->
-            <h3>Create user</h3>
-            <form class="form-inline" action="<?= url('/admin/create') ?>" method="POST">
-                <input type="hidden" name="token" value="<?= $token; ?>">
-                <div class="form-group">
-                    <label class="sr-only">Name</label>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="createname" class="form-control" type="text" name="name" placeholder="Enter name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only">Email</label>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input id="createemail" class="form-control" type="email" name="email" placeholder="Enter email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only">Password</label>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input id="createpwd" class="form-control" type="password" name="password" placeholder="Enter password">
-                    </div>
-                </div>
-                <button class="btn btn-default">Create</button>
-            </form>
             <h3>Update user</h3>
             <form class="form-inline" action="<?= url('/admin/update') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">

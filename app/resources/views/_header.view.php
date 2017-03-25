@@ -70,12 +70,21 @@
                 </div>
                 <?php if(isset($_SESSION['user_id'])): ?>
                     <div class="collapse navbar-collapse" id="myNavbar">
+                        <?php if($_SESSION['group_id'] == 2): ?>
+                            <ul class=" nav navbar-nav">
+                                <li><a href="<?= url('/games') ?>">Games</a></li>
+                                <li><a href="<?= url('/user') ?>">User info</a></li>
+                            </ul>
+                        <?php endif; ?>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
                     <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul clas="nav navbar-nav">
+                            <li><a href="<?= url('/') ?>">Home</a></li>
+                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="<?= url('/register') ?>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                             <li><a href="<?= url('/login') ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
