@@ -174,7 +174,7 @@ class GamesController
             }
         }
 
-        if(!empty($request->get('name')) && !empty($request->get('releasedate'))) {
+        if(empty($request->get('name')) && empty($request->get('releasedate'))) {
             $_SESSION['failure'] = "Nothing to update!";
         } else {
             $_SESSION['success'] = 'Succesfully updated!';
