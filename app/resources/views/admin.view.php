@@ -32,7 +32,7 @@
                 </tbody>
             </table>-->
             <h3>Create user</h3>
-            <form class="form-inline" action="<?= url('/register') ?>" method="POST">
+            <form class="form-inline" action="<?= url('/admin/create') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <div class="form-group">
                     <label class="sr-only">Name</label>
