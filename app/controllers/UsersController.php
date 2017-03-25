@@ -66,7 +66,7 @@ class UsersController
         {
             $_SESSION['failure'] = 'Missing id!';
             if($_SESSION['group_id'] == 1) {
-                return header('Location: /admin');
+                return header('Location: /showAdmin');
             }
             return header('Location: /user');
         }
@@ -74,7 +74,7 @@ class UsersController
         User::delete($request->get('id'));
         $_SESSION['success'] = 'Succesfully removed!';
         if($_SESSION['group_id'] == 1) {
-            return header('Location: /admin');
+            return header('Location: /showAdmin');
         }
         header('Location: /logout');
     }
@@ -94,7 +94,7 @@ class UsersController
         if(!$request->has('id')) {
             $_SESSION['failure'] = "Missing id!";
             if($_SESSION['group_id'] == 1) {
-                return header('Location: /admin');
+                return header('Location: /showAdmin');
             }
             return header('Location: /user');
         }
@@ -106,7 +106,7 @@ class UsersController
             if(count($errors) > 0) {
                 $_SESSION['failure'] = $errors;
                 if($_SESSION['group_id'] == 1) {
-                    return header('Location: /admin');
+                    return header('Location: /showAdmin');
                 }
                 return header('Location: /user');
             }
@@ -128,14 +128,14 @@ class UsersController
 
             $_SESSION['success'] = "Succesfully updated!";
             if($_SESSION['group_id'] == 1) {
-                return header('Location: /admin');
+                return header('Location: /showAdmin');
             }
             header('Location: /user');
         }
         else {
             $_SESSION['failure'] = "Nothing to update!";
             if($_SESSION['group_id'] == 1) {
-                return header('Location: /admin');
+                return header('Location: /showAdmin');
             }
             header('Location: /user');
         }
@@ -156,7 +156,7 @@ class UsersController
             $_SESSION['group_id'] = $user->group_id;
             $_SESSION['success'] = "Succesfully logged in!";
             if($_SESSION['group_id'] == 1) {
-                header('Location: /admin');
+                header('Location: /showAdmin');
             }
             else{
                 header('Location: /games');
