@@ -54,9 +54,9 @@ class GamesController
             return;
         }
 
-        $field = 'group_id';
-        $data = $_SESSION['group_id'];
-        
+        $field = 'user_id';
+        $data = $_SESSION['user_id'];
+
         Game::deleteWhere($request->get('id'),$field,$data);
         $_SESSION['success'] = 'Succesfully removed!';
     }
