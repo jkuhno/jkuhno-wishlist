@@ -83,6 +83,12 @@ class GamesController
         }
         $request = App::get('request')->request;
 
+        if($_SESSION['group_id'] == 1) {
+            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
+                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+            }
+        }
+
         if(!$request->has('id') && !empty($request->get('id')))
         {
             $_SESSION['failure'] = 'Missing id!';
@@ -111,8 +117,24 @@ class GamesController
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
         }
-        $user_id = $_SESSION['user_id'];
+
+        if($_SESSION['group_id'] == 1) {
+            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
+                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+            }
+        }
+
         $request = App::get('request')->request;
+
+        if($_SESSION['group_id'] == 1) {
+            if(!$request->has('user_id') && !empty($request->has('user_id'))) {
+                $_SESSION['failure'] = "Missing user id!";
+                return header('Location: /showAdmin');
+            }
+            $user_id = $request->get('user_id');
+        } else {
+            $user_id = $_SESSION['user_id'];
+        }
 
         if($request->has('name') && !empty($request->has('name')))
         {
@@ -152,7 +174,11 @@ class GamesController
             }
         }
 
-        $_SESSION['success'] = 'Succesfully updated!';
+        if(!empty($request->get('name')) && !empty($request->get('releasedate'))) {
+            $_SESSION['failure'] = "Nothing to update!";
+        } else {
+            $_SESSION['success'] = 'Succesfully updated!';
+        }
         if($_SESSION['group_id'] == 1) {
             return header('Location: /showAdmin');
         }
