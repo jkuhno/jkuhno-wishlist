@@ -115,11 +115,15 @@ class UsersController
         $data = array();
         if($request->has('name') && !empty($request->get('name'))) {
             $data['name'] = $request->get('name');
-            $_SESSION['name'] = $request->get('name');
+            if($_SESSION['group_id'] != 1) {
+                $_SESSION['name'] = $request->get('name');
+            }
         }
         if($request->has('email') && !empty($request->get('email'))) {
             $data['email'] = $request->get('email');
-            $_SESSION['email'] = $request->get('email');
+            if($_SESSION['group_id'] != 1) {
+                $_SESSION['email'] = $request->get('email');
+            }
         }
         if($request->has('password') && !empty($request->get('password'))) {
             $data['password'] = password_hash($request->get('password'), PASSWORD_DEFAULT);
@@ -129,7 +133,7 @@ class UsersController
             User::update($request->get('id'),$data);
 
             $_SESSION['success'] = "Succesfully updated!";
-            if($request->has('password') && !empty($request->get('password'))) {
+            if($request->has('password') && !empty($request->get('password')) && $_SESSION['group_id'] != 1) {
                 return header('Location: /logout');
             }
             if($_SESSION['group_id'] == 1) {
