@@ -1,4 +1,2 @@
-# tranquil-anchorage-29605
+# jkuhno-wishlist
 wishlist for videogames
-
-secret
