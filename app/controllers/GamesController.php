@@ -118,13 +118,13 @@ class GamesController
             return header('Location: /login');
         }
 
+        $request = App::get('request')->request;
+        
         if($_SESSION['group_id'] == 1) {
             if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
                 throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
             }
         }
-
-        $request = App::get('request')->request;
 
         if($_SESSION['group_id'] == 1) {
             if(!$request->has('user_id') && !empty($request->has('user_id'))) {

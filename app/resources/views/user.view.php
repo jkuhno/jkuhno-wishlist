@@ -13,14 +13,14 @@
                     <label class="sr-only">Name</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="updatename" class="form-control" type="text" name="name" placeholder="New password">
+                        <input id="updatename" class="form-control" type="text" name="name" placeholder="New name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only">Email</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input id="updateemail" class="form-control" type="email" name="email" placeholder="New password">
+                        <input id="updateemail" class="form-control" type="email" name="email" placeholder="New email">
                     </div>
                 </div>
                 <div class="form-group">
