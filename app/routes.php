@@ -9,7 +9,7 @@ $router->post('/login', 'UsersController@login');
 $router->get('/logout', 'UsersController@logout');
 
 $router->get('/admin', 'AdminController@showAdmin');
-$router->post('/admin/create'), 'AdminController@create');
+$router->post('/admin/create', 'AdminController@create');
 $router->post('/admin/delete', 'AdminController@delete');
 $router->post('/admin/update', 'AdminController@update');
 
