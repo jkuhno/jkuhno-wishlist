@@ -45,7 +45,7 @@ class GamesController
                 $data['user_id'] = $request->get('user_id');
             } else {
                 $_SESSION['failure'] = "Missing id!";
-                return header('Location: /admin');
+                return header('Location: /showAdmin');
             }
             if($request->has('name') && !empty($request->get('name'))) {
                 $data['name'] = $request->get('name');
@@ -58,7 +58,7 @@ class GamesController
                 Game::create($data);
             } else {
                 $_SESSION['failure'] = "Nothing to update!";
-                return header('Location: /admin');
+                return header('Location: /showAdmin');
             }
         }
         else {
@@ -72,7 +72,7 @@ class GamesController
         }
         $_SESSION['success'] = 'Succesfully created!';
         if($_SESSION['group_id'] == 1) {
-            return header('Location: /admin');
+            return header('Location: /showAdmin');
         }
     }
     public function delete()
@@ -87,7 +87,7 @@ class GamesController
         {
             $_SESSION['failure'] = 'Missing id!';
             if($_SESSION['group_id'] == 1) {
-                return header('Location: /admin');
+                return header('Location: /showAdmin');
             }
             return;
         }
@@ -102,7 +102,7 @@ class GamesController
         Game::deleteWhere($request->get('id'),$field,$data);
         $_SESSION['success'] = 'Succesfully removed!';
         if($_SESSION['group_id'] == 1) {
-            return header('Location: /admin');
+            return header('Location: /showAdmin');
         }
     }
     public function update()
@@ -113,7 +113,7 @@ class GamesController
         }
         $user_id = $_SESSION['user_id'];
         $request = App::get('request')->request;
-        
+
         if($request->has('name') && !empty($request->has('name')))
         {
             if(preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$request->get('name')))
@@ -127,7 +127,7 @@ class GamesController
             {
                 $_SESSION['failure'] = 'Failed to update!';
                 if($_SESSION['group_id'] == 1) {
-                    return header('Location: /admin');
+                    return header('Location: /showAdmin');
                 }
                 return;
             }
@@ -146,7 +146,7 @@ class GamesController
             {
                 $_SESSION['failure'] = 'Failed to update!';
                 if($_SESSION['group_id'] == 1) {
-                    return header('Location: /admin');
+                    return header('Location: /showAdmin');
                 }
                 return;
             }
@@ -154,7 +154,7 @@ class GamesController
 
         $_SESSION['success'] = 'Succesfully updated!';
         if($_SESSION['group_id'] == 1) {
-            return header('Location: /admin');
+            return header('Location: /showAdmin');
         }
     }
 }
