@@ -76,7 +76,9 @@
                             </ul>
                         <?php endif; ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="<?= url('/user') ?>"><span class="glyphicon glyphicon-user"></span> <?= $_SESSION['name'] ?></a></li>
+                            <?php if($_SESSION['group_id'] != 1) ?>
+                                <li><a href="<?= url('/user') ?>"><span class="glyphicon glyphicon-user"></span> <?= $_SESSION['name'] ?></a></li>
+                            <?php endif; ?>
                             <li><a href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
                     </div>
