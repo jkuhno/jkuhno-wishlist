@@ -51,7 +51,7 @@ $(document).ready(function() {
         var currentTD = $(this).parent('td').parent('tr').find('.editable-col');
         $.each(currentTD, function () {
           $(this).prop('contenteditable', true); //HIGHLIGHT
-          $(this).addClass("bg-primary text-white");
+          $(this).addClass("bg-inverse text-white");
         });
       } else {
         $(this).find('span').removeClass("glyphicon-check");
@@ -59,7 +59,7 @@ $(document).ready(function() {
         var currentTD = $(this).parent('td').parent('tr').find('.editable-col');
         $.each(currentTD, function () {
           $(this).prop('contenteditable', false); //HIGHLIGHT
-          $(this).removeClass("bg-primary text-white");
+          $(this).removeClass("bg-inverse text-white");
         });
         data = {};
         data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
