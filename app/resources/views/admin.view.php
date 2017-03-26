@@ -2,30 +2,32 @@
     <div class="panel-body">
         <div class="center-block well">
             <h3>Users</h3>
-            <table class="table table-condensed">
-                <?php foreach($users as $user): ?>
-                    <thead>
-                        <tr>
-                            <th><?= htmlspecialchars($user->id); ?></th>
-                            <th><?= htmlspecialchars($user->name); ?></th>
-                            <th><?= htmlspecialchars($user->email); ?></th>
-                            <th><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></th>
-                        </tr>
-                    <thead>
-                    <?php foreach($games as $game): ?>
-                        <?php if($game->user_id == $user->id): ?>
-                            <tbody>
-                                <tr>
-                                    <td><?= htmlspecialchars($game->id); ?></td>
-                                    <td><?= htmlspecialchars($game->name); ?></td>
-                                    <td><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y");?></td> 
-                                    <td><form action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $game->id; ?>"><input type="hidden" name="user_id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></td>
-                                </tr>
-                            </tbody>
-                        <?php endif; ?>
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <?php foreach($users as $user): ?>
+                        <thead>
+                            <tr class="info">
+                                <th><?= htmlspecialchars($user->id); ?></th>
+                                <th><?= htmlspecialchars($user->name); ?></th>
+                                <th><?= htmlspecialchars($user->email); ?></th>
+                                <th><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></th>
+                            </tr>
+                        <thead>
+                        <?php foreach($games as $game): ?>
+                            <?php if($game->user_id == $user->id): ?>
+                                <tbody>
+                                    <tr>
+                                        <td><?= htmlspecialchars($game->id); ?></td>
+                                        <td><?= htmlspecialchars($game->name); ?></td>
+                                        <td><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y");?></td> 
+                                        <td><form action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $game->id; ?>"><input type="hidden" name="user_id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></td>
+                                    </tr>
+                                </tbody>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     <?php endforeach; ?>
-                <?php endforeach; ?>
-            </table>
+                </table>
+            </div>
             <h3>Update user</h3>
             <form class="form-inline" action="<?= url('/user/update') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
