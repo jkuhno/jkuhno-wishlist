@@ -12,5 +12,5 @@ body {
     width: 300px;
 }
 .highlight {
-    outline: 1px inset red;
+    outline: 1px inset #1C2331;
 }
