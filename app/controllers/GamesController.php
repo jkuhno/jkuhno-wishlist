@@ -100,7 +100,7 @@ class GamesController
 
         $field = 'user_id';
         if($_SESSION['group_id'] == 1) {
-            if(!$request->has('user_id') && !empty($request->get('user_id')) {
+            if(!$request->has('user_id') && !empty($request->get('user_id'))) {
                 $_SESSION['failure'] = "Missing user id!";
                 return header('Location: /showAdmin');
             }
