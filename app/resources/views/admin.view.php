@@ -3,21 +3,13 @@
         <div class="center-block well">
             <h3>Users</h3>
             <table class="table">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th></th>
                 <?php foreach($users as $user): ?>
                     <tr>
-                        <td><?= htmlspecialchars($user->id); ?></td>
-                        <td><?= htmlspecialchars($user->name); ?></td>
-                        <td><?= htmlspecialchars($user->email); ?></td>
-                        <td><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></td>
+                        <th><?= htmlspecialchars($user->id); ?></th>
+                        <th><?= htmlspecialchars($user->name); ?></th>
+                        <th><?= htmlspecialchars($user->email); ?></th>
+                        <th><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></th>
                     </tr>
-                    <th>Game id</th>
-                    <th>Game name</th>
-                    <th>Game release date</th>
-                    <th></th>
                     <?php foreach($games as $game): ?>
                         <?php if($game->user_id == $user->id): ?>
                             <tr>
