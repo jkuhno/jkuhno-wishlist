@@ -4,7 +4,7 @@
             <h3>Users</h3>
             <ul class="list-group">
                 <?php foreach($users as $user): ?>
-                    <li><div class="row">ID: <?= htmlspecialchars($user->id); ?> | Name: <?= htmlspecialchars($user->name); ?> | Email: <?= htmlspecialchars($user->email); ?> | <form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></div></li>
+                    <li>ID: <?= htmlspecialchars($user->id); ?> | Name: <?= htmlspecialchars($user->name); ?> | Email: <?= htmlspecialchars($user->email); ?> | <form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></li>
                     <ul>
                         <?php foreach($games as $game): ?>
                             <?php if($game->user_id == $user->id): ?>
@@ -60,22 +60,22 @@
                 <div class="form-group">
                     <label class="sr-only">Game ID</label>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-gbp"></i></span>
                         <input id="updategameid" class="form-control" type="number" name="id" placeholder="Enter game id">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only">Name</label>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="updategamename" class="form-control" type="text" name="name" placeholder="Enter name">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-tower"></i></span>
+                        <input id="updategamename" class="form-control" type="text" name="name" placeholder="Enter game name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only">Release date</label>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input id="updategamerdate" class="form-control" type="text" name="releasedate" placeholder="Enter release date">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input id="updategamerdate" class="form-control" type="text" name="releasedate" placeholder="Enter game release date">
                     </div>
                 </div>
                 <button class="btn btn-default">Update</button>

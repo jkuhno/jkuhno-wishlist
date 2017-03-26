@@ -73,10 +73,10 @@
                         <?php if($_SESSION['group_id'] == 2): ?>
                             <ul class="nav navbar-nav">
                                 <li><a href="<?= url('/games') ?>">Games</a></li>
-                                <li><a href="<?= url('/user') ?>">User info</a></li>
                             </ul>
                         <?php endif; ?>
                         <ul class="nav navbar-nav navbar-right">
+                            <li><a href="<?= url('/user') ?>"><span class="glyphicon glyphicon-user"></span> <?= $_SESSION['name'] ?></a></li>
                             <li><a href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
                     </div>
