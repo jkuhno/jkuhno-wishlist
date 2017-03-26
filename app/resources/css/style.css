@@ -12,5 +12,5 @@ body {
     width: 300px;
 }
 .highlight {
-    outline: green dotted thick;
+    outline: 1px inset red;
 }
