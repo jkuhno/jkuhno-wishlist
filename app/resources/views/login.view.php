@@ -1,17 +1,17 @@
 <?php require "_header.view.php";?>
     <div class="panel-body">
-        <div class="pull-left text-left login-form well">
+        <div class="well">
             <form action="<?= url('/login') ?>" method="POST">
                 <div class="form-group">
                     <label class="sr-only">Email</label>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <div class="input-group col-xs-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <input id="email" class="form-control" type="email" name="email" placeholder="Enter email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only">Password</label>
-                    <div class="input-group">
+                    <div class="input-group col-xs-4">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input id="pwd" class="form-control" type="password" name="password" placeholder="Enter password">
                     </div>

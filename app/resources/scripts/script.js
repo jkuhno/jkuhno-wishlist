@@ -50,14 +50,16 @@ $(document).ready(function() {
         $(this).find('span').addClass("glyphicon-check");
         var currentTD = $(this).parent('td').parent('tr').find('.editable-col');
         $.each(currentTD, function () {
-          $(this).prop('contenteditable', true);
+          $(this).prop('contenteditable', true); //HIGHLIGHT
+          $(this).addClass("highlight");
         });
       } else {
         $(this).find('span').removeClass("glyphicon-check");
         $(this).find('span').addClass("glyphicon-edit");
         var currentTD = $(this).parent('td').parent('tr').find('.editable-col');
         $.each(currentTD, function () {
-          $(this).prop('contenteditable', false);
+          $(this).prop('contenteditable', false); //HIGHLIGHT
+          $(this).removeClass("highlight");
         });
         data = {};
         data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');

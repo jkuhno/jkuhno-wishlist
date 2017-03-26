@@ -17,12 +17,6 @@ class UsersController
     {
         $request = App::get('request');
 
-        if(isset($_SESSION['user_id'])) {
-            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
-                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
-            }
-        }
-
         $errors = (new Validator([
             'name' => 'required',
             'email' => 'required',
@@ -41,27 +35,19 @@ class UsersController
         ]);
 
         $_SESSION['success'] = "Account created!";
-        if($_SESSION['group_id'] == 1) {
-            header('Location: /admin');
-        } else {
-            header('Location: /register');
-        }
+        header('Location: /register');
     }
-
-    public function showAdmin()
+    public function showUser()
     {
         if(!Gate::can('see-users')) {
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
         }
-
         $_SESSION['token'] = '';
         $token= bin2hex(openssl_random_pseudo_bytes(32));
         $_SESSION['token'] = $token;
 
-        $users = User::findAllWhere('group_id', 2);
-
-        return view('admin', compact('users', 'token'));
+        return view('user', compact('token'));
     }
     public function delete()
     {
@@ -76,15 +62,21 @@ class UsersController
             throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
         }
 
-        if(!$request->has('id'))
+        if(!$request->has('id') || empty($request->get('id')))
         {
             $_SESSION['failure'] = 'Missing id!';
-            return header('Location: /admin');
+            if($_SESSION['group_id'] == 1) {
+                return header('Location: /showAdmin');
+            }
+            return header('Location: /user');
         }
 
         User::delete($request->get('id'));
         $_SESSION['success'] = 'Succesfully removed!';
-        header('Location: /admin');
+        if($_SESSION['group_id'] == 1) {
+            return header('Location: /showAdmin');
+        }
+        header('Location: /logout');
     }
     public function update()
     {
@@ -98,9 +90,13 @@ class UsersController
         if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
             throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
         }
-        if(!$request->has('id')) {
+
+        if(!$request->has('id') || empty($request->get('id'))) {
             $_SESSION['failure'] = "Missing id!";
-            return header('Location: /admin');
+            if($_SESSION['group_id'] == 1) {
+                return header('Location: /showAdmin');
+            }
+            return header('Location: /user');
         }
         if($request->has('email') && !empty($request->get('email'))) {
             $errors = (new Validator([
@@ -109,16 +105,25 @@ class UsersController
 
             if(count($errors) > 0) {
                 $_SESSION['failure'] = $errors;
-                return header('Location: /admin');
+                if($_SESSION['group_id'] == 1) {
+                    return header('Location: /showAdmin');
+                }
+                return header('Location: /user');
             }
         }
 
         $data = array();
         if($request->has('name') && !empty($request->get('name'))) {
             $data['name'] = $request->get('name');
+            if($_SESSION['group_id'] != 1) {
+                $_SESSION['name'] = $request->get('name');
+            }
         }
         if($request->has('email') && !empty($request->get('email'))) {
             $data['email'] = $request->get('email');
+            if($_SESSION['group_id'] != 1) {
+                $_SESSION['email'] = $request->get('email');
+            }
         }
         if($request->has('password') && !empty($request->get('password'))) {
             $data['password'] = password_hash($request->get('password'), PASSWORD_DEFAULT);
@@ -128,14 +133,26 @@ class UsersController
             User::update($request->get('id'),$data);
 
             $_SESSION['success'] = "Succesfully updated!";
+<<<<<<< HEAD
             header('Location: /admin');
+=======
+            if($request->has('password') && !empty($request->get('password')) && $_SESSION['group_id'] != 1) {
+                return header('Location: /logout');
+            }
+            if($_SESSION['group_id'] == 1) {
+                return header('Location: /showAdmin');
+            }
+            header('Location: /user');
+>>>>>>> experimental
         }
         else {
             $_SESSION['failure'] = "Nothing to update!";
-            header('Location: /admin');
+            if($_SESSION['group_id'] == 1) {
+                return header('Location: /showAdmin');
+            }
+            header('Location: /user');
         }
     }
-
 	public function showLogin()
 	{
         return view('login');
@@ -147,11 +164,12 @@ class UsersController
 
         if($user && password_verify($request->get('password'), $user->password)) {
             $_SESSION['name'] = $user->name;
+            $_SESSION['email'] = $user->email;
             $_SESSION['user_id'] = $user->id;
             $_SESSION['group_id'] = $user->group_id;
             $_SESSION['success'] = "Succesfully logged in!";
             if($_SESSION['group_id'] == 1) {
-                header('Location: /admin');
+                header('Location: /showAdmin');
             }
             else{
                 header('Location: /games');
