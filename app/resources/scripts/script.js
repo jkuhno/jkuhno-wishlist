@@ -51,9 +51,9 @@ $(document).ready(function() {
         var currentTD = $(this).parent('td').parent('tr').find('.editable-col');
         $.each(currentTD, function () {
           $(this).prop('contenteditable', true); //HIGHLIGHT
-          $(this).focus(function() {
+          $(this).blur(function() {
             $(this).addClass("blinking-cursor");
-          }).blur(function () {
+          }).focus(function () {
             $(this).removeClass("blinking-cursor");
           });
         });
