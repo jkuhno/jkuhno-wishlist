@@ -19,7 +19,7 @@
                     <?php foreach($games as $game) :?>
                         <?php if(!is_null($game->name) && !is_null($game->releasedate) && date("Y-m-d", strtotime(htmlspecialchars($game->releasedate))) <= $currentDate):?>
                             <tr class="active" data-row-id="<?= htmlspecialchars($game->id);?>">
-                        <?php elseif(!is_null($game->name) && !is_null($game->releasedate) && date("m", strtotime(htmlspecialchars($game->releasedate))) == $currentMonth) && strtotime(htmlspecialchars($game->releasedate)) == $currentYear:?>
+                        <?php elseif(!is_null($game->name) && !is_null($game->releasedate) && date("m", strtotime(htmlspecialchars($game->releasedate))) == $currentMonth && date("Y", strtotime(htmlspecialchars($game->releasedate))) == $currentYear):?>
                             <tr class="success" data-row-id="<?= htmlspecialchars($game->id);?>">
                         <?php else:?>
                             <tr class="info" data-row-id="<?= htmlspecialchars($game->id);?>">
