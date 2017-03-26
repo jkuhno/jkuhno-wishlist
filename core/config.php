@@ -10,9 +10,5 @@ return [
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 		]
 	],
-<<<<<<< HEAD
     'beginning' => 'https://jkuhno-wishlist.herokuapp.com' //https://jkuhno-wishlist-experimental.herokuapp.com
-=======
-    'beginning' => 'https://jkuhno-wishlist-experimental.herokuapp.com' //https://jkuhno-wishlist.herokuapp.com
->>>>>>> experimental
 ];
