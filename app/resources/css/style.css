@@ -11,9 +11,6 @@ body {
 .register-form {
     width: 300px;
 }
-@keyframes blink { 
-   50% { border-bottom-color: #ff0000; } 
-}
 .highlight {
-    animation: blink .5s step-end infinite alternate;
+    border-bottom: 1px solid black;
 }
