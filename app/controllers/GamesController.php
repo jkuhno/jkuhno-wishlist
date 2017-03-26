@@ -9,15 +9,12 @@ use Wishlist\Core\Gate;
 
 class GamesController
 {
-    public function __construct()
+    public function index()
     {
         if(!Gate::can('see-games')) {
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
         }
-    }
-    public function index()
-    {
         $field = 'user_id';
         $user_id = $_SESSION['user_id'];
         $data = array('releasedate ASC', 'name ASC');
