@@ -5,7 +5,7 @@
             <p>Name: <?= $_SESSION['name']; ?></p>
             <p>Email: <?= $_SESSION['email']; ?></p>
             <h3>Update info</h3>
-            <p class="lead bg-info">Enter a new value to the field(s) you want to update.</p>
+            <p class="lead text-info">Enter a new value to the field(s) you want to update.</p>
             <form class="form" action="<?= url('/user/update') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
@@ -32,8 +32,8 @@
                 </div>
                 <button class="btn btn-default">Update</button>
             </form>
-            <h3>Delete your account</h3>
-            <p class="lead bg-danger">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED WITH IT!</p>
+            <h3>Delete account</h3>
+            <p class="lead text-danger">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED WITH IT!</p>
             <form class="form-inline" action="<?= url('/user/delete') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
