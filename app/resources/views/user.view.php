@@ -11,22 +11,22 @@
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
                 <div class="form-group">
                     <label class="sr-only">Name</label>
-                    <div class="input-group">
-                        <span class="input-group-addon col-xs-4"><i class="glyphicon glyphicon-user"></i></span>
+                    <div class="input-group col-xs-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input id="updatename" class="form-control" type="text" name="name" placeholder="New name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only">Email</label>
-                    <div class="input-group">
-                        <span class="input-group-addon col-xs-4"><i class="glyphicon glyphicon-envelope"></i></span>
+                    <div class="input-group col-xs-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <input id="updateemail" class="form-control" type="email" name="email" placeholder="New email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only">Password</label>
-                    <div class="input-group">
-                        <span class="input-group-addon col-xs-4"><i class="glyphicon glyphicon-lock"></i></span>
+                    <div class="input-group col-xs-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input id="updatepwd" class="form-control" type="password" name="password" placeholder="New password">
                     </div>
                 </div>
