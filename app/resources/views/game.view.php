@@ -17,11 +17,11 @@
                     ?>
                     <?php foreach($games as $game) :?>
                         <?php if(!is_null($game->name) && !is_null($game->releasedate) && date("Y-m-d", strtotime(htmlspecialchars($game->releasedate))) <= $currentDate):?>
-                            <tr data-row-id="<?= htmlspecialchars($game->id);?>">
+                            <tr class="active" data-row-id="<?= htmlspecialchars($game->id);?>">
                         <?php elseif(!is_null($game->name) && !is_null($game->releasedate) && date("m", strtotime(htmlspecialchars($game->releasedate))) == $currentMonth):?>
-                            <tr data-row-id="<?= htmlspecialchars($game->id);?>">
+                            <tr class="success" data-row-id="<?= htmlspecialchars($game->id);?>">
                         <?php else:?>
-                            <tr data-row-id="<?= htmlspecialchars($game->id);?>">
+                            <tr class="info" data-row-id="<?= htmlspecialchars($game->id);?>">
                         <?php endif;?>
                             <td><a href="#" class="remove"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;<a href="#" class="edit"><span class="glyphicon glyphicon-edit"></span></a></td>
                             <td class="editable-col" contenteditable="false" col-index='0' oldVal="<?= htmlspecialchars($game->name);?>"><?= htmlspecialchars($game->name);?></td>
