@@ -9,10 +9,10 @@
                 <th></th>
                 <?php foreach($users as $user): ?>
                     <tr>
-                        <th>ID: <?= htmlspecialchars($user->id); ?></th>
-                        <th>Name: <?= htmlspecialchars($user->name); ?></th>
-                        <th>Email: <?= htmlspecialchars($user->email); ?></th>
-                        <th><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></th>
+                        <td><?= htmlspecialchars($user->id); ?></td>
+                        <td><?= htmlspecialchars($user->name); ?></td>
+                        <td><?= htmlspecialchars($user->email); ?></td>
+                        <td><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></td>
                     </tr>
                     <th>Game id</th>
                     <th>Game name</th>
