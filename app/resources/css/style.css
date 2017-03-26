@@ -11,6 +11,6 @@ body {
 .register-form {
     width: 300px;
 }
-.bordered {
+.highlight {
     border: 1px solid #f00;
 }
