@@ -2,7 +2,7 @@
     <div class="panel-body">
         <div class="center-block well">
             <h3>Users</h3>
-            <table class="table">
+            <table class="table table-condensed">
                 <?php foreach($users as $user): ?>
                     <thead>
                         <tr>
