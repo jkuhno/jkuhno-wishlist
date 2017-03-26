@@ -21,9 +21,9 @@
                     <?php foreach($games as $game): ?>
                         <?php if($game->user_id == $user->id): ?>
                             <tr>
-                                <td>Game id: <?= htmlspecialchars($game->id); ?></td>
-                                <td>Game name: <?= htmlspecialchars($game->name); ?></td>
-                                <td>Game release date: <?= htmlspecialchars($game->releasedate); ?></td> 
+                                <td><?= htmlspecialchars($game->id); ?></td>
+                                <td><?= htmlspecialchars($game->name); ?></td>
+                                <td><?= htmlspecialchars($game->releasedate); ?></td> 
                                 <td><form action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $game->id; ?>"><input type="hidden" name="user_id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></td>
                             </tr>
                         <?php endif; ?>
