@@ -1,12 +1,12 @@
 <?php require "_header.view.php"; ?>
     <div class="panel-body">
-        <div class="center-block well">
+        <div class="well">
             <h3>User info</h3>
             <p>Name: <?= $_SESSION['name']; ?></p>
             <p>Email: <?= $_SESSION['email']; ?></p>
-            <h3>Update user</h3>
-            <p></p>
-            <form class="form-inline" action="<?= url('/user/update') ?>" method="POST">
+            <h3>Update info</h3>
+            <p class="info">Enter new value to the field you want to update.</p>
+            <form class="form" action="<?= url('/user/update') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
                 <div class="form-group">
@@ -32,7 +32,8 @@
                 </div>
                 <button class="btn btn-default">Update</button>
             </form>
-            <h3>Delete user</h3>
+            <h3>Delete your account</h3>
+            <p class="warning">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED TO IT!</p>
             <form class="form-inline" action="<?= url('/user/delete') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
