@@ -100,6 +100,10 @@ class GamesController
 
         $field = 'user_id';
         if($_SESSION['group_id'] == 1) {
+            if(!$request->has('user_id') && !empty($request->get('user_id')) {
+                $_SESSION['failure'] = "Missing user id!";
+                return header('Location: /showAdmin');
+            }
             $data = $request->get('user_id');
         } else {
             $data = $_SESSION['user_id'];
@@ -127,8 +131,8 @@ class GamesController
         }
 
         if($_SESSION['group_id'] == 1) {
-            if(!$request->has('user_id') && !empty($request->has('user_id'))) {
-                $_SESSION['failure'] = "Missing user id!";
+            if(!$request->has('user_id') && !empty($request->get('user_id') && $request->has('id') && !empty($request->get('id')))) {
+                $_SESSION['failure'] = "Missing user and/or game id!";
                 return header('Location: /showAdmin');
             }
             $user_id = $request->get('user_id');
