@@ -11,3 +11,6 @@ body {
 .register-form {
     width: 300px;
 }
+.bordered {
+    border: 1px solid #f00;
+}
