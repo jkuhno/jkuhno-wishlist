@@ -5,7 +5,7 @@
                 <div class="form-group">
                     <label class="sr-only">Email</label>
                     <div class="input-group col-xs-4">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-email"></i></span>
                         <input id="email" class="form-control" type="email" name="email" placeholder="Enter email">
                     </div>
                 </div>
