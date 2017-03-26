@@ -10,15 +10,12 @@ use Wishlist\Core\Validator;
 
 class AdminController
 {
-    public function __construct()
+    public function showAdmin()
     {
         if(!Gate::can('see-admin')) {
             $_SESSION['failure'] = 'Please login to access that!';
             return header('Location: /login');
         }
-    }
-    public function showAdmin()
-    {
         $_SESSION['token'] = '';
         $token= bin2hex(openssl_random_pseudo_bytes(32));
         $_SESSION['token'] = $token;
