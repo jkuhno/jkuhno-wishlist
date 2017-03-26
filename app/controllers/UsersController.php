@@ -133,9 +133,6 @@ class UsersController
             User::update($request->get('id'),$data);
 
             $_SESSION['success'] = "Succesfully updated!";
-<<<<<<< HEAD
-            header('Location: /admin');
-=======
             if($request->has('password') && !empty($request->get('password')) && $_SESSION['group_id'] != 1) {
                 return header('Location: /logout');
             }
@@ -143,7 +140,6 @@ class UsersController
                 return header('Location: /showAdmin');
             }
             header('Location: /user');
->>>>>>> experimental
         }
         else {
             $_SESSION['failure'] = "Nothing to update!";
