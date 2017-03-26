@@ -51,7 +51,11 @@ $(document).ready(function() {
         var currentTD = $(this).parent('td').parent('tr').find('.editable-col');
         $.each(currentTD, function () {
           $(this).prop('contenteditable', true); //HIGHLIGHT
-          $(this).addClass("highlight");
+          $(this).focus(function() {
+            $(this).addClass("blinking-cursor");
+          }).blur(function () {
+            $(this).removeClass("blinking-cursor");
+          });
         });
       } else {
         $(this).find('span').removeClass("glyphicon-check");
@@ -59,7 +63,6 @@ $(document).ready(function() {
         var currentTD = $(this).parent('td').parent('tr').find('.editable-col');
         $.each(currentTD, function () {
           $(this).prop('contenteditable', false); //HIGHLIGHT
-          $(this).removeClass("highlight");
         });
         data = {};
         data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
