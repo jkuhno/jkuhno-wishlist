@@ -33,7 +33,7 @@
                 <button class="btn btn-default">Update</button>
             </form>
             <h3>Delete your account</h3>
-            <p class="bg-danger">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED TO IT!</p>
+            <p class="bg-danger">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED WITH IT!</p>
             <form class="form-inline" action="<?= url('/user/delete') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
