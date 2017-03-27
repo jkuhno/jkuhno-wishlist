@@ -26,7 +26,7 @@ class Validator
     }
     private function validReleaseDate($name)
     {
-        $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
+        $dt = DateTime::createFromFormat("F d, Y", $this->request->get($name);
         if($dt === false || array_sum($dt->getLastErrors())) {
             $this->errors[] = "Please enter date in correct format, e.g. January 24, 2017!";
             return false;
