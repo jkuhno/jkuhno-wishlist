@@ -23,7 +23,7 @@ class Validator
     }
     private function validReleaseDate($name)
     {
-        if($name === false && array_sum($name->getLastErrors())) {
+        if($name === false || array_sum($name->getLastErrors())) {
             $this->errors[] = "Please enter date in correct format, e.g. January 24, 2017!";
             return false;
         }
