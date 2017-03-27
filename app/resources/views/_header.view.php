@@ -40,7 +40,7 @@
         }
     ?>
     <?php
-        if ($_GET['msg']) {
+        if (isset($_GET['msg'])) {
             $success = base64_decode(urldecode$_GET['msg']));
         }
     ?>
