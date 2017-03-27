@@ -185,7 +185,6 @@ class UsersController
     {
         session_unset();
         session_destroy();
-        //header('Location: /'); // Add notification
-        header('Location: /?msg=' . urlencode(base64_encode("You have been successfully logged out!")));
+        header('Location: /?msg=' . urlencode(base64_encode("Succesfully logged out!")));
     }
 }
