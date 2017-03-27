@@ -1,6 +1,9 @@
 <?php
 namespace Wishlist\Core;
+
+use \DateTime;
 use Wishlist\Core\App;
+
 class Validator
 {
     protected $validables = [];
@@ -21,26 +24,47 @@ class Validator
         }
         return $this->errors;
     }
-    private function validEmail($name)
+    private function validReleaseDate($name)
     {
-        if(!$this->request->has($name)) {
-            $this->errors[] = "The variable {$name} did not exist";
-            return false;
-        }
-        if (!filter_var($this->request->get($name), FILTER_VALIDATE_EMAIL)) {
-            $this->errors[] = "The variable {$name} is not a valid email";
+        $dt = DateTime::createFromFormat("F d, Y", $this->request->get($name));
+        if($dt === false || array_sum($dt->getLastErrors())) {
+            $this->errors[] = "Please enter date in correct format, e.g. January 24, 2017!";
             return false;
         }
         return true;
     }
-    private function required($name)
+    private function validGameName($name)
     {
         if(!$this->request->has($name)) {
-            $this->errors[] = "The variable {$name} did not exist";
+            $this->errors[] = "Missing {$name}!";
+            return false;
+        }
+        if (!preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$this->request->get($name))) {
+            $this->errors[] = "Invalid name for a game!";
+            return false;
+        }
+        return true;
+    }
+    private function validEmail($name)
+    {
+        if(!$this->request->has($name)) {
+            $this->errors[] = "Missing {$name}!";
+            return false;
+        }
+        if (!filter_var($this->request->get($name), FILTER_VALIDATE_EMAIL)) {
+            $this->errors[] = "{$name} is not a valid email!";
+            return false;
+        }
+        return true;
+    }
+    private function exists($name)
+    {
+        if(!$this->request->has($name)) {
+            $this->errors[] = "Missing {$name}!";
             return false;
         }
         if(empty($this->request->get($name))) {
-            $this->errors[] = "The variable {$name} was empty";
+            $this->errors[] = "Please enter a {$name}!";
             return false;
         }
         return true;

@@ -6,6 +6,7 @@ use \DateTime;
 use Wishlist\App\Models\Game;
 use Wishlist\Core\App;
 use Wishlist\Core\Gate;
+use Wishlist\Core\Validator;
 
 class GamesController
 {
@@ -38,22 +39,22 @@ class GamesController
 
             $data = array();
 
-            if($request->has('user_id') && !empty($request->get('user_id'))) {
+            if(count($hasUser = (new Validator(['user_id' => 'exists']))->validate()) == 0) {
                 $data['user_id'] = $request->get('user_id');
             } else {
-                $_SESSION['failure'] = "Missing id!";
+                $_SESSION['failure'] = $hasUser;
                 return header('Location: /showAdmin');
             }
-            if($request->has('name') && !empty($request->get('name'))) {
+            if(count($hasName = (new Validator(['name' => 'exists']))->validate()) == 0) {
                 $data['name'] = $request->get('name');
             }
-            if($request->has('releasedate') && !empty($request->get('releasedate'))) {
+            if(count($hasReleaseDate = (new Validator(['releasedate' => 'exists']))->validate()) == 0) {
                 $data['releasedate'] = $request->get('releasedate');
             }
 
             if(!empty($data)) {
                 Game::create($data);
-            } else {
+            } else { // INDIVIDUALITY!
                 $_SESSION['failure'] = "Nothing to update!";
                 return header('Location: /showAdmin');
             }
@@ -86,9 +87,9 @@ class GamesController
             }
         }
 
-        if(!$request->has('id') || empty($request->get('id')))
+        if(count($hasID = (new Validator(['id' => 'exists']))->validate()) == 0)
         {
-            $_SESSION['failure'] = 'Missing id!';
+            $_SESSION['failure'] = $hasID;
             if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
@@ -97,8 +98,8 @@ class GamesController
 
         $field = 'user_id';
         if($_SESSION['group_id'] == 1) {
-            if(!$request->has('user_id') || empty($request->get('user_id'))) {
-                $_SESSION['failure'] = "Missing user id!";
+            if(count($hasUserID = (new Validator(['user_id' => 'exists']))->validate()) == 0) {
+                $_SESSION['failure'] = $hasUserID;
                 return header('Location: /showAdmin');
             }
             $data = $request->get('user_id');
@@ -128,8 +129,12 @@ class GamesController
         }
 
         if($_SESSION['group_id'] == 1) {
-            if((!$request->has('user_id') || empty($request->get('user_id'))) || (!$request->has('id') || empty($request->get('id')))) {
-                $_SESSION['failure'] = "Missing user and/or game id!";
+            $errors = (new Validator([
+                'user_id' => 'exists',
+                'id' => 'exists'
+            ]))->validate();
+            if(count($errors) > 0) {
+                $_SESSION['failure'] = $errors;
                 return header('Location: /showAdmin');
             }
             $user_id = $request->get('user_id');
@@ -137,9 +142,9 @@ class GamesController
             $user_id = $_SESSION['user_id'];
         }
 
-        if($request->has('name') && !empty($request->get('name')))
+        if(count($hasName = (new Validator(['name' => 'exists']))->validate()) == 0)
         {
-            if(preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$request->get('name')))
+            if(count($validGameName = (new Validator(['name' => 'validGameName']))->validate()) == 0)
             {
                 Game::update($request->get('id'), [
                     'name' => $request->get('name'),
@@ -148,17 +153,18 @@ class GamesController
             }
             else
             {
-                $_SESSION['failure'] = 'Failed to update!';
+                $_SESSION['failure'] = $validGameName;
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
                 return;
             }
         }
-        if($request->has('releasedate') && !empty($request->get('releasedate')))
+        if(count($hasReleaseDate = (new Validator(['releasedate' => 'exists']))->validate()) == 0)
         {
-            $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
-            if($dt !== false && !array_sum($dt->getLastErrors())) {
+            if(count($hasReleaseDate = (new Validator(['releasedate' => 'validReleaseDate']))->validate()) == 0)
+            {
+                $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
                 $rdate = $dt->format("Y-m-d");
                 Game::update($request->get('id'), [
                     'releasedate' => $rdate,
@@ -167,7 +173,7 @@ class GamesController
             }
             else
             {
-                $_SESSION['failure'] = 'Failed to update!';
+                $_SESSION['failure'] = 'Incorrect format for date, please use e.g. January 24, 2017!';
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
@@ -177,7 +183,7 @@ class GamesController
 
         if(empty($request->get('name')) && empty($request->get('releasedate'))) {
             $_SESSION['failure'] = "Nothing to update!";
-        } else {
+        } else { //INDIVIDUALITY!
             $_SESSION['success'] = 'Succesfully updated!';
         }
         if($_SESSION['group_id'] == 1) {
