@@ -18,10 +18,10 @@ class UsersController
         $request = App::get('request');
 
         $errors = (new Validator([
-            'name' => 'required',
-            'email' => 'required',
+            'name' => 'exists',
+            'email' => 'exists',
             'email' => 'validEmail',
-            'password' => 'required'
+            'password' => 'exists'
         ]))->validate();
 
         if(count($errors) > 0) {
@@ -63,7 +63,7 @@ class UsersController
         }
 
         $errors = (new Validator([
-            'id' => 'required'
+            'id' => 'exists'
         ]))->validate();
 
         if(count($errors) > 0) {
@@ -94,41 +94,42 @@ class UsersController
             throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
         }
 
-        if(!$request->has('id') || empty($request->get('id'))) {
-            $_SESSION['failure'] = "Missing id!";
+        $errors = (new Validator([
+            'id' => 'exists',
+        ]))->validate();
+
+        if(count($errors) > 0) {
+            $_SESSION['failure'] = $errors;
             if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
             return header('Location: /user');
         }
-        if($request->has('email') && !empty($request->get('email'))) {
-            $errors = (new Validator([
-                'email' => 'validEmail'
-            ]))->validate();
 
-            if(count($errors) > 0) {
-                $_SESSION['failure'] = $errors;
+        $data = array();
+        if(count($hasName = (new Validator(['name' => 'exists']))->validate()) > 0) {
+            $data['name'] = $request->get('name');
+            if($_SESSION['group_id'] != 1) {
+                $_SESSION['name'] = $request->get('name');
+            }
+        }
+        if(count($hasEmail = (new Validator(['email' => 'exists']))->validate()) > 0) {
+            if(count($validEmail = (new Validator(['email' => 'validEmail']))->validate()) > 0) {
+                $data['email'] = $request->get('email');
+                if($_SESSION['group_id'] != 1) {
+                    $_SESSION['email'] = $request->get('email');
+                }
+            }
+            else
+            {
+                $_SESSION['failure'] = $validEmail;
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
                 return header('Location: /user');
             }
         }
-
-        $data = array();
-        if($request->has('name') && !empty($request->get('name'))) {
-            $data['name'] = $request->get('name');
-            if($_SESSION['group_id'] != 1) {
-                $_SESSION['name'] = $request->get('name');
-            }
-        }
-        if($request->has('email') && !empty($request->get('email'))) {
-            $data['email'] = $request->get('email');
-            if($_SESSION['group_id'] != 1) {
-                $_SESSION['email'] = $request->get('email');
-            }
-        }
-        if($request->has('password') && !empty($request->get('password'))) {
+        if(count($hasPassword = (new Validator(['password' => 'exists']))->validate()) > 0) {
             $data['password'] = password_hash($request->get('password'), PASSWORD_DEFAULT);
         }
         

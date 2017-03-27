@@ -33,7 +33,7 @@ class Validator
         }
         return true;
     }
-    private function required($name)
+    private function exists($name)
     {
         if(!$this->request->has($name)) {
             $this->errors[] = "The variable {$name} did not exist";
