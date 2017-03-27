@@ -107,14 +107,14 @@ class UsersController
         }
 
         $data = array();
-        if(count($hasName = (new Validator(['name' => 'exists']))->validate()) > 0) {
+        if(count($hasName = (new Validator(['name' => 'exists']))->validate()) == 0) {
             $data['name'] = $request->get('name');
             if($_SESSION['group_id'] != 1) {
                 $_SESSION['name'] = $request->get('name');
             }
         }
-        if(count($hasEmail = (new Validator(['email' => 'exists']))->validate()) > 0) {
-            if(count($validEmail = (new Validator(['email' => 'validEmail']))->validate()) > 0) {
+        if(count($hasEmail = (new Validator(['email' => 'exists']))->validate()) == 0) {
+            if(count($validEmail = (new Validator(['email' => 'validEmail']))->validate()) == 0) {
                 $data['email'] = $request->get('email');
                 if($_SESSION['group_id'] != 1) {
                     $_SESSION['email'] = $request->get('email');
@@ -129,7 +129,7 @@ class UsersController
                 return header('Location: /user');
             }
         }
-        if(count($hasPassword = (new Validator(['password' => 'exists']))->validate()) > 0) {
+        if(count($hasPassword = (new Validator(['password' => 'exists']))->validate()) == 0) {
             $data['password'] = password_hash($request->get('password'), PASSWORD_DEFAULT);
         }
         
