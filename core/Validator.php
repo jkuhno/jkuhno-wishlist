@@ -35,7 +35,7 @@ class Validator
             $this->errors[] = "Missing {$name}!";
             return false;
         }
-        if (!preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$this->$request->get($name))) {
+        if (!preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$this->request->get($name))) {
             $this->errors[] = "Invalid name for a game!";
             return false;
         }
