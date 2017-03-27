@@ -5,7 +5,7 @@
             <p>You've stumbled upon this little project of mine.</p>
             <p>The project has two main purposes:</p>
             <ol>
-                <li>to act as a storage for you to store video games and their release dates.</li>
+                <li>to act as a storage for you to store and keep track of video games you want.</li>
                 <li>to serve as practical work for a university course about web programming (<a href="https://www10.uta.fi/opas/opetusohjelma/marjapuuro.htm?id=32120" target="_blank">TIETA12</a>).</li>
             </ol>
             <p>Things to do:</p>
