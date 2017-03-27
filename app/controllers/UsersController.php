@@ -62,9 +62,12 @@ class UsersController
             throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
         }
 
-        if(!$request->has('id') || empty($request->get('id')))
-        {
-            $_SESSION['failure'] = 'Missing id!';
+        $errors = (new Validator([
+            'id' => 'required'
+        ]))->validate();
+
+        if(count($errors) > 0) {
+            $_SESSION['failure'] = $errors;
             if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
