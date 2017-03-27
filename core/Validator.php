@@ -23,7 +23,7 @@ class Validator
     }
     private function validReleaseDate($name)
     {
-        if($name === false && array_sum($dt->getLastErrors())) {
+        if($name === false && array_sum($name->getLastErrors())) {
             return false;
         }
         return true;
