@@ -162,9 +162,8 @@ class GamesController
         }
         if(count($hasReleaseDate = (new Validator(['releasedate' => 'exists']))->validate()) == 0)
         {
-            // DATE CHECK
             $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
-            if(count($validReleaseDate = (new Validator([$dt => 'validReleaseDate']))->validate()) == 0) {
+            if($name !== false && !array_sum($name->getLastErrors())) {
                 $rdate = $dt->format("Y-m-d");
                 Game::update($request->get('id'), [
                     'releasedate' => $rdate,
