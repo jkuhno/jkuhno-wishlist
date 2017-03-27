@@ -1,6 +1,9 @@
 <?php
 namespace Wishlist\Core;
+
+use \DateTime;
 use Wishlist\Core\App;
+
 class Validator
 {
     protected $validables = [];
@@ -20,6 +23,14 @@ class Validator
             $this->$rule($name);
         }
         return $this->errors;
+    }
+    private function validReleaseDate($name)
+    {
+        if($name === false || array_sum($name->getLastErrors())) {
+            $this->errors[] = "Please enter date in correct format, e.g. January 24, 2017!";
+            return false;
+        }
+        return true;
     }
     private function validGameName($name)
     {
@@ -52,7 +63,7 @@ class Validator
             return false;
         }
         if(empty($this->request->get($name))) {
-            $this->errors[] = "{$name} was empty!";
+            $this->errors[] = "Please enter a {$name}!";
             return false;
         }
         return true;

@@ -54,7 +54,7 @@ class GamesController
 
             if(!empty($data)) {
                 Game::create($data);
-            } else {
+            } else { // INDIVIDUALITY!
                 $_SESSION['failure'] = "Nothing to update!";
                 return header('Location: /showAdmin');
             }
@@ -163,7 +163,8 @@ class GamesController
         if(count($hasReleaseDate = (new Validator(['releasedate' => 'exists']))->validate()) == 0)
         {
             $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
-            if($dt !== false && !array_sum($dt->getLastErrors())) {
+            //if($dt !== false && !array_sum($dt->getLastErrors())) {
+            if(count($hasReleaseDate = (new Validator([$dt => 'exists']))->validate()) == 0)
                 $rdate = $dt->format("Y-m-d");
                 Game::update($request->get('id'), [
                     'releasedate' => $rdate,
@@ -172,7 +173,7 @@ class GamesController
             }
             else
             {
-                $_SESSION['failure'] = 'Failed to update!';
+                $_SESSION['failure'] = 'Incorrect format for date, please use e.g. January 24, 2017!';
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
@@ -182,7 +183,7 @@ class GamesController
 
         if(empty($request->get('name')) && empty($request->get('releasedate'))) {
             $_SESSION['failure'] = "Nothing to update!";
-        } else {
+        } else { //INDIVIDUALITY!
             $_SESSION['success'] = 'Succesfully updated!';
         }
         if($_SESSION['group_id'] == 1) {
