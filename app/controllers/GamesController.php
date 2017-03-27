@@ -133,7 +133,7 @@ class GamesController
                 'user_id' => 'exists',
                 'id' => 'exists'
             ]))->validate();
-            if((count($errors) > 0) {
+            if(count($errors) > 0) {
                 $_SESSION['failure'] = $errors;
                 return header('Location: /showAdmin');
             }
