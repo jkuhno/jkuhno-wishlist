@@ -67,13 +67,24 @@ class GamesController
             $data = $_SESSION['user_id'];
         }
 
-        if(!$request->has('id') && !empty($request->get('id'))) {
-            $_SESSION['failure'] = "Missing or empty id!";
+        $errors = (new Validator([
+            'id' => 'exists'
+        ]))->validate();
+
+        if(count($errors) > 0) {
+            $_SESSION['failure'] = $errors;
             if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
             return;
         }
+        /*if(!$request->has('id') && !empty($request->get('id'))) {
+            $_SESSION['failure'] = "Missing or empty id!";
+            if($_SESSION['group_id'] == 1) {
+                return header('Location: /showAdmin');
+            }
+            return;
+        }*/
 
         Game::deleteWhere($request->get('id'),$field,$data);
         $_SESSION['success'] = 'Succesfully removed!';
@@ -147,7 +158,7 @@ class GamesController
             }
             else
             {
-                $_SESSION['failure'] = 'Incorrect format for date, please use format: F d, Y; e.g. January 24, 2017!';
+                $_SESSION['failure'] = $hasReleaseDate;
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }

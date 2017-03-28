@@ -64,7 +64,7 @@ class Validator
             return false;
         }
         if(empty($this->request->get($name))) {
-            $this->errors[] = "Please enter a {$name}!";
+            $this->errors[] = "Requires {$name}!";
             return false;
         }
         return true;
