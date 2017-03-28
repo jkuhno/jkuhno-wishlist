@@ -19,7 +19,7 @@
                                     <tr>
                                         <td><?= htmlspecialchars($game->id); ?></td>
                                         <td><?= htmlspecialchars($game->name); ?></td>
-                                        <td><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y");?></td> 
+                                        <td><?php if(!is_null($game->releasedate)):?><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y");?><?php endif;?></td> 
                                         <td><form action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $game->id; ?>"><input type="hidden" name="user_id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></td>
                                     </tr>
                                 </tbody>
