@@ -68,7 +68,7 @@ class GamesController
         }
 
         if(count($hasID = (new Validator(['id' => 'exists']))->validate()) == 0) {
-            $_SESSION['failure'] =" YO!";
+            $_SESSION['failure'] = $hasID;
             return;
         }
 
