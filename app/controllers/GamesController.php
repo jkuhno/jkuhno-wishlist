@@ -87,14 +87,14 @@ class GamesController
             }
         }
 
-        if(count($hasID = (new Validator(['id' => 'exists']))->validate()) == 0)
+        /*if(count($hasID = (new Validator(['id' => 'exists']))->validate()) == 0)
         {
             $_SESSION['failure'] = $hasID;
             if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
             return;
-        }
+        }*/
 
         $field = 'user_id';
         if($_SESSION['group_id'] == 1) {
