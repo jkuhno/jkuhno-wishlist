@@ -135,8 +135,9 @@ class UsersController
         
         if(!empty($data)) {
             User::update($request->get('id'),$data);
-
+            
             $_SESSION['success'] = "Succesfully updated!"; // INDIVIDUALITY!
+
             if($request->has('password') && !empty($request->get('password')) && $_SESSION['group_id'] != 1) {
                 return header('Location: /logout');
             }
