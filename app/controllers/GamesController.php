@@ -69,18 +69,11 @@ class GamesController
 
         if(!$request->has('id') && !empty($request->get('id'))) {
             $_SESSION['failure'] = "Missing or empty id!";
-            return;
-        }
-
-        /*if($_SESSION['group_id'] == 1) {
-            if(count($hasIDs = (new Validator(['user_id' => 'exists']))->validate()) == 0) {
-                $_SESSION['failure'] = $hasIDs;
+            if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
-            $data = $request->get('user_id');
-        } else {
-            $data = $_SESSION['user_id'];
-        }*/
+            return;
+        }
 
         Game::deleteWhere($request->get('id'),$field,$data);
         $_SESSION['success'] = 'Succesfully removed!';
