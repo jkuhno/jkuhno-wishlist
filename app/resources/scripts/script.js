@@ -96,7 +96,7 @@ $(document).ready(function() {
       });
   });
   $('.remove').click(function() {
-      data = {};
+      data = [];
       data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
       $.ajax({
           type: "POST",
