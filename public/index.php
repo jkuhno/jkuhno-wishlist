@@ -2,7 +2,7 @@
 
 session_start();
 
-require '../vendor/autoload.php';
+require 'vendor/autoload.php';
 
 use Wishlist\Core\Router;
 use Wishlist\Core\App;
