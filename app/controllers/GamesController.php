@@ -67,8 +67,8 @@ class GamesController
             $data = $_SESSION['user_id'];
         }
 
-        if(!$request->has('id')) {
-            $_SESSION['failure'] = "Missing id!";
+        if(!$request->has('id') && !empty($request->get('id'))) {
+            $_SESSION['failure'] = "Missing or empty id!";
             return;
         }
 
