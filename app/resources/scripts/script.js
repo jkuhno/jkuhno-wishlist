@@ -97,7 +97,7 @@ $(document).ready(function() {
   });
   $('.remove').click(function() {
       data = {};
-      data['id'] = $(this).parent('td').parent('tr').attr('data-row-id').text();
+      data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
       $.ajax({
           type: "POST",
           url: "/games/delete",
