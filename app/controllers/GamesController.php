@@ -66,6 +66,12 @@ class GamesController
         } else {
             $data = $_SESSION['user_id'];
         }
+
+        if(count($hasID = (new Validator(['id' => 'exists']))->validate()) == 0) {
+            $_SESSION['failure'] =" YO!";
+            return;
+        }
+
         /*if($_SESSION['group_id'] == 1) {
             if(count($hasIDs = (new Validator(['user_id' => 'exists']))->validate()) == 0) {
                 $_SESSION['failure'] = $hasIDs;
@@ -92,8 +98,14 @@ class GamesController
         $request = App::get('request')->request;
 
         if($_SESSION['group_id'] == 1) {
-            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
-                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+            try {
+                if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
+                    throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+                }
+            }
+            catch (Exception $e) {
+                echo $e->getMessage();
+                die();
             }
         }
 

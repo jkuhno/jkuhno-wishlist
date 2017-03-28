@@ -58,8 +58,14 @@ class UsersController
 
         $request = App::get('request')->request;
 
-        if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
-            throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+        try {
+            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
+                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+            }
+        }
+        catch (Exception $e) {
+            echo $e->getMessage();
+            die();
         }
 
         $errors = (new Validator([
@@ -90,8 +96,14 @@ class UsersController
 
         $request = App::get('request')->request;
 
-        if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
-            throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+        try {
+            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
+                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+            }
+        }
+        catch (Exception $e) {
+            echo $e->getMessage();
+            die();
         }
 
         $errors = (new Validator([
