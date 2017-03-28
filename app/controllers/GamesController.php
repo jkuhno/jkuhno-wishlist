@@ -30,48 +30,15 @@ class GamesController
             return header('Location: /login');
         }
 
-        if($_SESSION['group_id'] == 1) {
-            $request = App::get('request')->request;
+        $user_id = $_SESSION['user_id'];
 
-            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
-                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
-            }
+        Game::create([
+            'name' => NULL,
+            'releasedate' => NULL,
+            'user_id' => $user_id   
+        ]);
 
-            $data = array();
-
-            if(count($hasUser = (new Validator(['user_id' => 'exists']))->validate()) == 0) {
-                $data['user_id'] = $request->get('user_id');
-            } else {
-                $_SESSION['failure'] = $hasUser;
-                return header('Location: /showAdmin');
-            }
-            if(count($hasName = (new Validator(['name' => 'exists']))->validate()) == 0) {
-                $data['name'] = $request->get('name');
-            }
-            if(count($hasReleaseDate = (new Validator(['releasedate' => 'exists']))->validate()) == 0) {
-                $data['releasedate'] = $request->get('releasedate');
-            }
-
-            if(!empty($data)) {
-                Game::create($data);
-            } else { // INDIVIDUALITY!
-                $_SESSION['failure'] = "Nothing to update!";
-                return header('Location: /showAdmin');
-            }
-        }
-        else {
-            $user_id = $_SESSION['user_id'];
-
-            Game::create([
-                'name' => NULL,
-                'releasedate' => NULL,
-                'user_id' => $user_id   
-            ]);
-        }
         $_SESSION['success'] = 'Succesfully created!';
-        if($_SESSION['group_id'] == 1) {
-            return header('Location: /showAdmin');
-        }
     }
     public function delete()
     {
@@ -82,8 +49,14 @@ class GamesController
         $request = App::get('request')->request;
 
         if($_SESSION['group_id'] == 1) {
-            if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
-                throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+            try {
+                if(!isset($_SESSION['token']) || $request->get('token') !== $_SESSION['token']) {
+                    throw new \Exception('CSRF TOKEN MISMATCH EXCPETION');
+                }
+            }
+            catch Exception($e) {
+                echo $e->getMessage();
+                die();
             }
         }
 
@@ -183,7 +156,7 @@ class GamesController
             $_SESSION['success'] = "Succesfully updated game name!";
         } else if(empty($request->get('name')) && !empty($request->get('releasedate'))) {
             $_SESSION['success'] = "Succesfully updated game release date!";
-        } else { //INDIVIDUALITY!
+        } else {
             $_SESSION['success'] = 'Succesfully updated game name and release date!';
         }
         if($_SESSION['group_id'] == 1) {
