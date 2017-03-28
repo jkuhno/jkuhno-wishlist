@@ -87,19 +87,10 @@ class GamesController
             }
         }
 
-        /*if(count($hasID = (new Validator(['id' => 'exists']))->validate()) == 0)
-        {
-            $_SESSION['failure'] = $hasID;
-            if($_SESSION['group_id'] == 1) {
-                return header('Location: /showAdmin');
-            }
-            return;
-        }*/
-
         $field = 'user_id';
         if($_SESSION['group_id'] == 1) {
-            if(count($hasUserID = (new Validator(['user_id' => 'exists']))->validate()) == 0) {
-                $_SESSION['failure'] = $hasUserID;
+            if(count($hasIDs = (new Validator(['id' => 'exists','user_id' => 'exists']))->validate()) == 0) {
+                $_SESSION['failure'] = $hasIDs;
                 return header('Location: /showAdmin');
             }
             $data = $request->get('user_id');
@@ -173,7 +164,7 @@ class GamesController
             }
             else
             {
-                $_SESSION['failure'] = 'Incorrect format for date, please use e.g. January 24, 2017!';
+                $_SESSION['failure'] = 'Incorrect format for date, please use format Month day, Year; e.g. January 24, 2017!';
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
