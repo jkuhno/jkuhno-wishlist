@@ -169,7 +169,7 @@ class GamesController
             }
             else
             {
-                $_SESSION['failure'] = 'Incorrect format for date, please use format Month day, Year; e.g. January 24, 2017!';
+                $_SESSION['failure'] = 'Incorrect format for date, please use format: F d, Y; e.g. January 24, 2017!';
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
@@ -179,8 +179,12 @@ class GamesController
 
         if(empty($request->get('name')) && empty($request->get('releasedate'))) {
             $_SESSION['failure'] = "Nothing to update!";
+        } else if(!empty($request->get('name')) && empty($request->get('releasedate'))) {
+            $_SESSION['success'] = "Succesfully updated game name!";
+        } else if(empty($request->get('name')) && !empty($request->get('releasedate'))) {
+            $_SESSION['success'] = "Succesfully updated game release date!";
         } else { //INDIVIDUALITY!
-            $_SESSION['success'] = 'Succesfully updated!';
+            $_SESSION['success'] = 'Succesfully updated game name and release date!';
         }
         if($_SESSION['group_id'] == 1) {
             return header('Location: /showAdmin');
