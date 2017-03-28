@@ -89,6 +89,11 @@ class GamesController
 
         $field = 'user_id';
         if($_SESSION['group_id'] == 1) {
+            $data = $request->get('user_id');
+        } else {
+            $data = $_SESSION['user_id'];
+        }
+        /*if($_SESSION['group_id'] == 1) {
             if(count($hasIDs = (new Validator(['user_id' => 'exists']))->validate()) == 0) {
                 $_SESSION['failure'] = $hasIDs;
                 return header('Location: /showAdmin');
@@ -96,7 +101,7 @@ class GamesController
             $data = $request->get('user_id');
         } else {
             $data = $_SESSION['user_id'];
-        }
+        }*/
 
         Game::deleteWhere($request->get('id'),$field,$data);
         $_SESSION['success'] = 'Succesfully removed!';
