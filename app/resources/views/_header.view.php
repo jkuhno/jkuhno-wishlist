@@ -6,7 +6,7 @@
         <meta content="<?= bin2hex(openssl_random_pseudo_bytes(32)); ?>" name="csrf-token"/>
         <title>Wishlist</title>
         <!-- Favicon -->
-        <link rel="icon" href="img/favicon.png"/>
+        <link rel="icon" href="app/resources/img/favicon.png"/>
 
         <!-- Latest Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
 
         <!-- Custom stylesheet -->
-        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="app/resources/css/style.css"/>
 
         <!-- Lates jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -27,7 +27,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     
         <!-- Custom scripts -->
-        <script src="scripts/script.js"></script>
+        <script src="app/resources/scripts/script.js"></script>
     </head>
     <?php if(isset($_SESSION['success'])) {
             $success = $_SESSION['success'];
