@@ -89,7 +89,7 @@ class GamesController
 
         $field = 'user_id';
         if($_SESSION['group_id'] == 1) {
-            if(count($hasIDs = (new Validator(['id' => 'exists','user_id' => 'exists']))->validate()) == 0) {
+            if(count($hasIDs = (new Validator(['user_id' => 'exists']))->validate()) == 0) {
                 $_SESSION['failure'] = $hasIDs;
                 return header('Location: /showAdmin');
             }
