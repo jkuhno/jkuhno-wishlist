@@ -96,13 +96,13 @@ $(document).ready(function() {
       });
   });
   $('.remove').click(function() {
-      data['id'] = $(this).parent('td').parent('tr').attr('data-row-id');
-      var data_to_send = $.serialize(data);
+      data = {};
+      data['id'] = $(this).parent('td').parent('tr').attr('data-row-id').text();
       $.ajax({
           type: "POST",
           url: "/games/delete",
           cache: false, //in case of IE8
-          data: data_to_send,
+          data: data,
           complete: function(data) {
             location.reload();
           }
