@@ -77,7 +77,12 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <?php if($_SESSION['group_id'] == 2): ?>
                             <ul class="nav navbar-nav">
-                                <li><a href="<?= url('/games') ?>">Games</a></li>
+                                <?php if(strpos($_SERVER['REQUEST_URI'], "games") !== false) ?>
+                                    <li>
+                                <?php else: ?>
+                                    <li class="active">
+                                <? endif; ?>
+                                <a href="<?= url('/games') ?>">Games</a></li>
                             </ul>
                         <?php endif; ?>
                         <ul class="nav navbar-nav navbar-right">
