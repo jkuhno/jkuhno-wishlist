@@ -81,7 +81,7 @@
                                     <li>
                                 <?php else: ?>
                                     <li class="active">
-                                <? endif; ?>
+                                <?php endif; ?>
                                 <a href="<?= url('/games') ?>">Games</a></li>
                             </ul>
                         <?php endif; ?>
