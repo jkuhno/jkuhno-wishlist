@@ -87,7 +87,12 @@
                         <?php endif; ?>
                         <ul class="nav navbar-nav navbar-right">
                             <?php if($_SESSION['group_id'] != 1): ?>
-                                <li><a href="<?= url('/user') ?>"><span class="glyphicon glyphicon-user"></span> <?= $_SESSION['name'] ?></a></li>
+                                <?php if(strpos($_SERVER['REQUEST_URI'], "user") !== false): ?>
+                                    <li class="active">
+                                <?php else: ?>
+                                    <li>
+                                <?php endif; ?>
+                                <a href="<?= url('/user') ?>"><span class="glyphicon glyphicon-user"></span> <?= $_SESSION['name'] ?></a></li>
                             <?php endif; ?>
                             <li><a href="<?= url('/logout') ?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
@@ -95,11 +100,26 @@
                 <?php else: ?>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?= url('/') ?>">Home</a></li>
+                            <?php if($_SERVER['REQUEST_URI'] == '/'): ?>
+                                <li class="active">
+                            <?php else: ?>
+                                <li>
+                            <?php endif; ?>
+                            <a href="<?= url('/') ?>">Home</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="<?= url('/register') ?>"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-                            <li><a href="<?= url('/login') ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <?php if(strpos($_SERVER['REQUEST_URI'], "register") !== false): ?>
+                                <li class="active">
+                            <?php else: ?>
+                                <li>
+                            <?php endif; ?>
+                            <a href="<?= url('/register') ?>"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                            <?php if(strpos($_SERVER['REQUEST_URI'], "login") !== false): ?>
+                                <li class="active">
+                            <?php else: ?>
+                                <li>
+                            <?php endif; ?>
+                            <a href="<?= url('/login') ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         </ul>
                     </div>
                 <?php endif; ?>
