@@ -78,9 +78,9 @@
                         <?php if($_SESSION['group_id'] == 2): ?>
                             <ul class="nav navbar-nav">
                                 <?php if(strpos($_SERVER['REQUEST_URI'], "games") !== false): ?>
-                                    <li>
-                                <?php else: ?>
                                     <li class="active">
+                                <?php else: ?>
+                                    <li>
                                 <?php endif; ?>
                                 <a href="<?= url('/games') ?>">Games</a></li>
                             </ul>
