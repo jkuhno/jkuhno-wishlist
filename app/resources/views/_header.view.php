@@ -77,7 +77,7 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <?php if($_SESSION['group_id'] == 2): ?>
                             <ul class="nav navbar-nav">
-                                <?php if(strpos($_SERVER['REQUEST_URI'], "games") !== false): ?>
+                                <?php if($_SERVER['REQUEST_URI'] == "/games"): ?>
                                     <li class="active">
                                 <?php else: ?>
                                     <li>
@@ -87,7 +87,7 @@
                         <?php endif; ?>
                         <ul class="nav navbar-nav navbar-right">
                             <?php if($_SESSION['group_id'] != 1): ?>
-                                <?php if(strpos($_SERVER['REQUEST_URI'], "user") !== false): ?>
+                                <?php if($_SERVER['REQUEST_URI'] == "/user"): ?>
                                     <li class="active">
                                 <?php else: ?>
                                     <li>
@@ -100,7 +100,7 @@
                 <?php else: ?>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <?php if($_SERVER['REQUEST_URI'] != '/' || $_SERVER['REQUEST_URI'] == "/logout"): ?>
+                            <?php if($_SERVER['REQUEST_URI'] != '/'): ?>
                                 <li>
                             <?php else: ?>
                                 <li class="active">
@@ -114,7 +114,7 @@
                                 <li>
                             <?php endif; ?>
                             <a href="<?= url('/register') ?>"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-                            <?php if(strpos($_SERVER['REQUEST_URI'], "login") !== false): ?>
+                            <?php if($_SERVER['REQUEST_URI'] == "/login"): ?>
                                 <li class="active">
                             <?php else: ?>
                                 <li>
