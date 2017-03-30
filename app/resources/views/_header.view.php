@@ -100,7 +100,7 @@
                 <?php else: ?>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <?php if($_SERVER['REQUEST_URI'] != '/'): ?>
+                            <?php if($_SERVER['REQUEST_URI'] != '/' || strtok($_SERVER["REQUEST_URI"],'?') != '/'): ?>
                                 <li>
                             <?php else: ?>
                                 <li class="active">
