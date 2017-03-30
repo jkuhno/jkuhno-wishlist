@@ -100,7 +100,7 @@
                 <?php else: ?>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <?php if($_SERVER['REQUEST_URI'] != '/'): ?>
+                            <?php if($_SERVER['REQUEST_URI'] != '/' || $_SERVER['REQUEST_URI'] == "/logout"): ?>
                                 <li>
                             <?php else: ?>
                                 <li class="active">
@@ -108,7 +108,7 @@
                             <a href="<?= url('/') ?>">Home</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <?php if(strpos($_SERVER['REQUEST_URI'], "register") !== false): ?>
+                            <?php if($_SERVER['REQUEST_URI'] == "/register"): ?>
                                 <li class="active">
                             <?php else: ?>
                                 <li>
