@@ -68,12 +68,12 @@ class UsersController
             die();
         }
 
-        $errors = (new Validator([
+        $id_error = (new Validator([
             'id' => 'exists'
         ]))->validate();
 
-        if(count($errors) > 0) {
-            $_SESSION['failure'] = $errors;
+        if(count($id_error) > 0) {
+            $_SESSION['failure'] = $id_error;
             if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
@@ -81,7 +81,7 @@ class UsersController
         }
 
         User::delete($request->get('id'));
-        $_SESSION['success'] = 'Succesfully removed!';
+        $_SESSION['success'] = 'User removed!';
         if($_SESSION['group_id'] == 1) {
             return header('Location: /showAdmin');
         }
@@ -106,12 +106,12 @@ class UsersController
             die();
         }
 
-        $errors = (new Validator([
-            'id' => 'exists',
+        $id_error = (new Validator([
+            'id' => 'exists'
         ]))->validate();
 
-        if(count($errors) > 0) {
-            $_SESSION['failure'] = $errors;
+        if(count($id_error) > 0) {
+            $_SESSION['failure'] = $id_error;
             if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
@@ -119,14 +119,28 @@ class UsersController
         }
 
         $data = array();
-        if(count($hasName = (new Validator(['name' => 'exists']))->validate()) == 0) {
+
+        $name_exists = (new Validator([
+            'name' => 'exists'
+        ]))->validate();
+
+        if(count($name_exists) == 0) {
             $data['name'] = $request->get('name');
             if($_SESSION['group_id'] != 1) {
                 $_SESSION['name'] = $request->get('name');
             }
         }
-        if(count($hasEmail = (new Validator(['email' => 'exists']))->validate()) == 0) {
-            if(count($validEmail = (new Validator(['email' => 'validEmail']))->validate()) == 0) {
+
+        $email_exists = (new Validator([
+            'email' => 'exists'
+        ]))->validate();
+
+        if(count($email_exists) == 0) {
+            $email_valid = (new Validator([
+                'email' => 'validEmail'
+            ]))->validate();
+
+            if(count($email_valid) == 0) {
                 $data['email'] = $request->get('email');
                 if($_SESSION['group_id'] != 1) {
                     $_SESSION['email'] = $request->get('email');
@@ -134,14 +148,19 @@ class UsersController
             }
             else
             {
-                $_SESSION['failure'] = $validEmail;
+                $_SESSION['failure'] = $email_valid;
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
                 return header('Location: /user');
             }
         }
-        if(count($hasPassword = (new Validator(['password' => 'exists']))->validate()) == 0) {
+
+        $password_exists = (new Validator([
+            'password' => 'exists'
+        ]))->validate();
+
+        if(count($password_exists) == 0) {
             $data['password'] = password_hash($request->get('password'), PASSWORD_DEFAULT);
         }
         
@@ -180,7 +199,7 @@ class UsersController
             $_SESSION['email'] = $user->email;
             $_SESSION['user_id'] = $user->id;
             $_SESSION['group_id'] = $user->group_id;
-            $_SESSION['success'] = "Succesfully logged in!";
+            $_SESSION['success'] = "Logged in!";
             if($_SESSION['group_id'] == 1) {
                 header('Location: /showAdmin');
             }
@@ -190,7 +209,28 @@ class UsersController
         }
         else
         {
-            $_SESSION['failure'] = "Invalid email or password!";
+            if(empty($request->get('email')) || empty($request->get('password'))) {
+                if(empty($request->get('email')) && empty($request->get('password'))) {
+                    $_SESSION['failure'] = "Please enter email and password to log in!";
+                }
+                else if(empty($request->get('email'))) {
+                    $_SESSION['failure'] = "Email is required!";
+                }
+                else if(empty($request->get('password'))) {
+                    $_SESSION['failure'] = "Password is required!";
+                }
+            }
+            else {
+                if(!$user && !password_verify($request->get('password'), $user->password)) {
+                    $_SESSION['failure'] = "Invalid email and password!";
+                }
+                else if(!$user) {
+                    $_SESSION['failure'] = "Invalid email!";
+                }
+                else if(!password_verify($request->get('password'), $user->password)) {
+                    $_SESSION['failure'] = "Invalid password!";
+                }
+            }
             return header('Location: /login');
         }
     }
@@ -198,6 +238,6 @@ class UsersController
     {
         session_unset();
         session_destroy();
-        header('Location: /?msg=' . urlencode(base64_encode("Succesfully logged out!")));
+        header('Location: /?msg=' . urlencode(base64_encode("Logged out!")));
     }
 }
