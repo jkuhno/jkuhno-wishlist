@@ -20,9 +20,8 @@ class UsersController
         $errors = (new Validator([
             'name' => 'exists',
             'email' => 'exists',
-            'email' => 'validEmail',
             'password' => 'exists'
-        ]))->validate();
+        ]))->validate(); //EMAIL VALID
 
         if(count($errors) > 0) {
             $_SESSION['failure'] = $errors;
