@@ -2,7 +2,28 @@
     <div class="panel-body">
         <div class="center-block well">
             <h3>Users</h3>
-            <div class="table-responsive">
+            <?php foreach($users as $user): ?>
+                <div class="row">
+                    <div class="col-xs-4"><?= htmlspecialchars($user->id); ?></div>
+                    <div class="col-xs-4"><?= htmlspecialchars($user->name); ?></div>
+                    <div class="col-xs-4"><?= htmlspecialchars($user->email); ?></div>
+                    <div class="col-xs-4"><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></div>
+                </div>
+                <h2><a data-toggle="collapse" href="#collapse<?= htmlspecialchars($user->id); ?>"><?= htmlspecialchars($user->name>); ?>'s games</a></h2>
+                <div id="collapse<?= htmlspecialchars($user->id); ?>" class="collapse">
+                    <?php foreach($games as $game): ?>
+                        <?php if($game->user_id == $user->id): ?>
+                            <div class="row">
+                                <div class="col-xs-4"><?= htmlspecialchars($game->id); ?></div>
+                                <div class="col-xs-4"><?php if(!is_null($game->name)):?><?= htmlspecialchars($game->name); ?><?php endif;?></div>
+                                <div class="col-xs-4"><?php if(!is_null($game->releasedate)):?><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y"); ?><?php endif;?></div>
+                                <div class="col-xs-4"><form action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $game->id; ?>"><input type="hidden" name="user_id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+            <!--<div class="table-responsive">
                 <table class="table table-condensed">
                     <?php foreach($users as $user): ?>
                         <thead>
@@ -16,7 +37,7 @@
                         <?php foreach($games as $game): ?>
                             <?php if($game->user_id == $user->id): ?>
                                 <tbody>
-                                    <tr id="test">
+                                    <tr>
                                         <td><?= htmlspecialchars($game->id); ?></td>
                                         <td><?php if(!is_null($game->name)):?><?= htmlspecialchars($game->name); ?><?php endif;?></td>
                                         <td><?php if(!is_null($game->releasedate)):?><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y"); ?><?php endif;?></td> 
@@ -27,7 +48,7 @@
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </table>
-            </div>
+            </div>-->
             <h3>Update user</h3>
             <form class="form-inline" action="<?= url('/user/update') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
