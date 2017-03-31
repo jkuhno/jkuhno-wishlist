@@ -38,7 +38,7 @@ class GamesController
             'user_id' => $user_id   
         ]);
 
-        $_SESSION['success'] = 'Succesfully created!';
+        $_SESSION['success'] = 'Row succesfully created!';
     }
     public function delete()
     {
@@ -67,27 +67,20 @@ class GamesController
             $data = $_SESSION['user_id'];
         }
 
-        $errors = (new Validator([
+        $id_error = (new Validator([
             'id' => 'exists'
         ]))->validate();
 
-        if(count($errors) > 0) {
-            $_SESSION['failure'] = $errors;
+        if(count($id_error) > 0) {
+            $_SESSION['failure'] = $id_error;
             if($_SESSION['group_id'] == 1) {
                 return header('Location: /showAdmin');
             }
             return;
         }
-        /*if(!$request->has('id') && !empty($request->get('id'))) {
-            $_SESSION['failure'] = "Missing or empty id!";
-            if($_SESSION['group_id'] == 1) {
-                return header('Location: /showAdmin');
-            }
-            return;
-        }*/
 
         Game::deleteWhere($request->get('id'),$field,$data);
-        $_SESSION['success'] = 'Succesfully removed!';
+        $_SESSION['success'] = 'Game succesfully removed!';
         if($_SESSION['group_id'] == 1) {
             return header('Location: /showAdmin');
         }
@@ -114,22 +107,40 @@ class GamesController
         }
 
         if($_SESSION['group_id'] == 1) {
-            $errors = (new Validator([
+            $id_errors = (new Validator([
                 'user_id' => 'exists',
                 'id' => 'exists'
             ]))->validate();
-            if(count($errors) > 0) {
-                $_SESSION['failure'] = $errors;
+            if(count($id_errors) > 0) {
+                $_SESSION['failure'] = $id_errors;
                 return header('Location: /showAdmin');
             }
             $user_id = $request->get('user_id');
         } else {
+            $id_error = (new Validator([
+                'id' => 'exists'
+            ]))->validate();
+            if(count($id_error) > 0) {
+                $_SESSION['failure'] = $id_error;
+                return;
+            }
             $user_id = $_SESSION['user_id'];
         }
 
-        if(count($hasName = (new Validator(['name' => 'exists']))->validate()) == 0)
+        $name_exists = (new Validator([
+            'name' => 'exists'
+        ]))->validate();
+        $rdate_exists = (new Validator([
+            'releasedate' => 'exists'
+        ]))->validate();
+
+        if(count($name_exists) == 0)
         {
-            if(count($validGameName = (new Validator(['name' => 'validGameName']))->validate()) == 0)
+            $name_valid = (new Validator([
+                'name' => 'validGameName'
+            ]))->validate();
+
+            if(count($name_valid) == 0)
             {
                 Game::update($request->get('id'), [
                     'name' => $request->get('name'),
@@ -138,16 +149,20 @@ class GamesController
             }
             else
             {
-                $_SESSION['failure'] = $validGameName;
+                $_SESSION['failure'] = $name_valid;
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
                 return;
             }
         }
-        if(count($hasReleaseDate = (new Validator(['releasedate' => 'exists']))->validate()) == 0)
+        if(count($rdate_exists) == 0)
         {
-            if(count($hasReleaseDate = (new Validator(['releasedate' => 'validReleaseDate']))->validate()) == 0)
+            $rdate_valid = (new Validator([
+                'releasedate' => 'validReleaseDate'
+            ]))->validate();
+
+            if(count($rdate_valid) == 0)
             {
                 $dt = DateTime::createFromFormat("F d, Y", $request->get('releasedate'));
                 $rdate = $dt->format("Y-m-d");
@@ -158,7 +173,7 @@ class GamesController
             }
             else
             {
-                $_SESSION['failure'] = $hasReleaseDate;
+                $_SESSION['failure'] = $rdate_valid;
                 if($_SESSION['group_id'] == 1) {
                     return header('Location: /showAdmin');
                 }
