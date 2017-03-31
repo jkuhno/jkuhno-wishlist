@@ -25,7 +25,7 @@
                             <tr class="info" data-row-id="<?= htmlspecialchars($game->id);?>">
                         <?php endif;?>
                             <td><a href="#" data-toggle="tooltip" title="Remove row" class="remove"><span class="glyphicon glyphicon-remove"></span></a>&nbsp;&nbsp;<a href="#" data-toggle="tooltip" title="Update row" class="edit"><span class="glyphicon glyphicon-edit"></span></a></td>
-                            <td class="editable-col" contenteditable="false" col-index='0' oldVal="<?= htmlspecialchars($game->name);?>"><?php if(is_null($game->name)): ?>e.g. Yakuza 0<?php else: ?><?= htmlspecialchars($game->name);?><?php endif; ?></td>
+                            <td class="editable-col" contenteditable="false" col-index='0' oldVal="<?= htmlspecialchars($game->name);?>"><?= htmlspecialchars($game->name);?></td>
                             <td class="editable-col" contenteditable="false" col-index='1' oldVal="<?php if(!is_null($game->releasedate)):?><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y");?><?php endif;?>"><?php if(!is_null($game->releasedate)):?><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y");?><?php endif;?></td>
                         </tr>
                     <?php endforeach;?>
