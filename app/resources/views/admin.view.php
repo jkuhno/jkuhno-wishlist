@@ -80,7 +80,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
                         <select class="form-control" name="user_id">
-                            <option value="" disabled select hidden>Select user</option>
+                            <option value="" disabled selected hidden>Select user</option>
                             <?php foreach($users as $user): ?>
                                 <option value="<?= $user->id; ?>"><?= htmlspecialchars($user->name); ?></option>
                             <?php endforeach; ?>
