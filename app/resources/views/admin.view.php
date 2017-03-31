@@ -3,11 +3,11 @@
         <div class="center-block well">
             <h3>Users</h3>
             <?php foreach($users as $user): ?>
-                <div class="row">
-                    <div class="col-xs-1"><a data-toggle="collapse" href="#collapse<?= htmlspecialchars($user->id); ?>"><?= htmlspecialchars($user->name); ?>'s games</a></div>
+                <div class="row info">
+                    <div class="col-xs-4"><a data-toggle="collapse" href="#collapse<?= htmlspecialchars($user->id); ?>"><?= htmlspecialchars($user->name); ?>'s games</a></div>
                     <div class="col-xs-1"><?= htmlspecialchars($user->id); ?></div>
-                    <div class="col-xs-5"><?= htmlspecialchars($user->name); ?></div>
-                    <div class="col-xs-5"><?= htmlspecialchars($user->email); ?></div>
+                    <div class="col-xs-3"><?= htmlspecialchars($user->name); ?></div>
+                    <div class="col-xs-3"><?= htmlspecialchars($user->email); ?></div>
                     <div class="col-xs-1"><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></div>
                 </div>
                 <div id="collapse<?= htmlspecialchars($user->id); ?>" class="collapse">
