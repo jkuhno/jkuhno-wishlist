@@ -28,8 +28,8 @@
                     <div class="input-group col-xs-4">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input id="updatepwd" class="form-control" type="password" name="password" placeholder="New password">
-                        <small class="text-muted">Changing password will log you out.</small>
                     </div>
+                    <small class="text-muted">Changing password will log you out.</small>
                 </div>
                 <button class="btn btn-default">Update</button>
             </form>
@@ -37,7 +37,7 @@
             <form class="form-inline" action="<?= url('/user/delete') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
-                <span class="help-block bg-danger">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED WITH IT!</span>
+                <div class="row"><div class="col-xs-4"><span class="help-block bg-danger">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED WITH IT!</span></div></div>
                 <button type="submit" class="btn btn-danger">Remove user</button>
             </form>
         </div>
