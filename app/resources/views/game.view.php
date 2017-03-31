@@ -6,7 +6,7 @@
                     <tr>
                         <th><a href="#" data-toggle="tooltip" title="Create row" id="create"><span class="table-add glyphicon glyphicon-plus"></span></a></th>
                         <th>Name</th>
-                        <th>Release date <small>e.g. January 24, 2017</small></th>
+                        <th>Release date <small>(e.g. January 24, 2017)</small></th>
                     </tr>
                 </thead>
                 <tbody id="_editable_table">
