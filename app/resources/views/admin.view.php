@@ -2,15 +2,26 @@
     <div class="panel-body">
         <div class="center-block well">
             <h3>Users</h3>
+            <div class="row">
+                <div class="col-xs-2">Show wishlist</div>
+                <div class="col-xs-4">User name</div>
+                <div class="col-xs-4">User email</div>
+                <div class="col-xs-2">Remove user</div>
+            </div>
             <?php foreach($users as $user): ?>
                 <div class="row bg-info">
                     <div class="col-xs-2"><a data-toggle="collapse" href="#collapse<?= htmlspecialchars($user->id); ?>"><?= htmlspecialchars($user->name); ?>'s games</a></div>
-                    <div class="col-xs-1"><?= htmlspecialchars($user->id); ?></div>
                     <div class="col-xs-4"><?= htmlspecialchars($user->name); ?></div>
                     <div class="col-xs-4"><?= htmlspecialchars($user->email); ?></div>
-                    <div class="col-xs-1"><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></div>
+                    <div class="col-xs-2"><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></div>
                 </div>
                 <div id="collapse<?= htmlspecialchars($user->id); ?>" class="collapse">
+                    <div class="row">
+                        <div class="col-xs-1">Game id</div>
+                        <div class="col-xs-5">Game name</div>
+                        <div class="col-xs-5">Game release date</div>
+                        <div class="col-xs-1">Remove game</div>
+                    </div>
                     <?php foreach($games as $game): ?>
                         <?php if($game->user_id == $user->id): ?>
                             <div class="row">
@@ -32,6 +43,7 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
                         <!--<input id="updateid" class="form-control" type="number" name="id" placeholder="Enter ID">-->
                         <select class="form-control" name="id">
+                            <option>Select user to update</option>
                             <?php foreach($users as $user): ?>
                                 <option value="<?= $user->id; ?>"><?= htmlspecialchars($user->name); ?></option>
                             <?php endforeach; ?>
