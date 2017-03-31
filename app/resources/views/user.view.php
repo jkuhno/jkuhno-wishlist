@@ -27,9 +27,12 @@
                     <div class="input-group col-xs-4">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input id="updatepwd" class="form-control" type="password" name="password" placeholder="New password">
+                        <small class="text-muted">Changing password will log you out.</small>
                     </div>
                 </div>
+                <div class="col-xs-4">
                 <span class="help-block bg-info">Enter a new value to the field(s) you want to update.</span>
+                </div>
                 <button class="btn btn-default">Update</button>
             </form>
             <h3>Delete account</h3>
