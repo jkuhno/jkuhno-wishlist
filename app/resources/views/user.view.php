@@ -37,7 +37,7 @@
             <form class="form-inline" action="<?= url('/user/delete') ?>" method="POST">
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
-                <div class="row"><div class="col-xs-4"><span class="help-block bg-danger">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED WITH IT!</span></div></div>
+                <div class="row"><div class="col-xs-6"><span class="help-block bg-danger">THIS WILL PERMANENTLY DELETE YOUR ACCOUNT AND ALL GAMES ASSOCIATED WITH IT!</span></div></div>
                 <button type="submit" class="btn btn-danger">Remove user</button>
             </form>
         </div>
