@@ -23,7 +23,7 @@ class UsersController
             'password' => 'exists'
         ]))->validate();
 
-        if(count($field_exist) > 0) {
+        if(count($fields_exist) > 0) {
             $_SESSION['failure'] = $fields_exist;
             return header('Location: /register');
         }
