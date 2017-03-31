@@ -12,8 +12,10 @@
                                 <th><?= htmlspecialchars($user->email); ?></th>
                                 <th><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></th>
                             </tr>
+                            <tr>
+                                <button data-toggle="collapse" data-target="#test" class="btn btn-link" value="Games"></button>
+                            </tr>
                         <thead>
-                        <button data-toggle="collapse" data-target="#test" class="btn btn-link" value="Games"></button>
                         <?php foreach($games as $game): ?>
                             <?php if($game->user_id == $user->id): ?>
                                 <tbody>
