@@ -3,10 +3,10 @@
         <div class="center-block well">
             <h3>Users</h3>
             <div class="row">
-                <div class="col-xs-2">Show wishlist</div>
-                <div class="col-xs-4">User name</div>
-                <div class="col-xs-4">User email</div>
-                <div class="col-xs-2">Remove user</div>
+                <div class="col-xs-2"></div>
+                <div class="col-xs-4"><strong>User name</strong></div>
+                <div class="col-xs-4"><strong>User email</strong></div>
+                <div class="col-xs-2"></div>
             </div>
             <?php foreach($users as $user): ?>
                 <div class="row bg-info">
@@ -17,10 +17,10 @@
                 </div>
                 <div id="collapse<?= htmlspecialchars($user->id); ?>" class="collapse">
                     <div class="row">
-                        <div class="col-xs-1">Game id</div>
-                        <div class="col-xs-5">Game name</div>
-                        <div class="col-xs-5">Game release date</div>
-                        <div class="col-xs-1">Remove game</div>
+                        <div class="col-xs-1"><strong>Game id</strong></div>
+                        <div class="col-xs-5"><strong>Game name</strong></div>
+                        <div class="col-xs-5"><strong>Game release date</strong></div>
+                        <div class="col-xs-1"></div>
                     </div>
                     <?php foreach($games as $game): ?>
                         <?php if($game->user_id == $user->id): ?>
@@ -43,7 +43,7 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
                         <!--<input id="updateid" class="form-control" type="number" name="id" placeholder="Enter ID">-->
                         <select class="form-control" name="id">
-                            <option>Select user to update</option>
+                            <option value="" disabled selected hidden>Select user to update</option>
                             <?php foreach($users as $user): ?>
                                 <option value="<?= $user->id; ?>"><?= htmlspecialchars($user->name); ?></option>
                             <?php endforeach; ?>
