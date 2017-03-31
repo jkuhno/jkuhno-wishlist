@@ -6,6 +6,7 @@
             <p>Email: <?= $_SESSION['email']; ?></p>
             <h3>Update info</h3>
             <form class="form" action="<?= url('/user/update') ?>" method="POST">
+                <div class="row"><div class="col-xs-4"><span class="help-block bg-info">Enter a new value to the field(s) you want to update.</span></div></div>
                 <input type="hidden" name="token" value="<?= $token; ?>">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']; ?>">
                 <div class="form-group">
@@ -29,9 +30,6 @@
                         <input id="updatepwd" class="form-control" type="password" name="password" placeholder="New password">
                         <small class="text-muted">Changing password will log you out.</small>
                     </div>
-                </div>
-                <div class="col-xs-4">
-                <span class="help-block bg-info">Enter a new value to the field(s) you want to update.</span>
                 </div>
                 <button class="btn btn-default">Update</button>
             </form>
