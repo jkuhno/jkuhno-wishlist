@@ -6,5 +6,9 @@ body {
     background: radial-gradient(circle, #1a1a1a, #333333); /* Standard syntax */
 }
 .highlight {
-    outline: 1px inset #1C2331;
+    border-color: rgba(82,168,236,.8);
+    outline: 0;
+    outline: thin dotted \9;
+    -moz-box-shadow: 0 0 8px rgba(82,168,236,.6);
+    box-shadow: 0 0 8px rgba(82,168,236,.6) !important;
 }
