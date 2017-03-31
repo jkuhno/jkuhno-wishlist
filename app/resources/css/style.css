@@ -5,9 +5,6 @@ body {
     background: -moz-radial-gradient(circle, #1a1a1a, #333333); /* For Firefox 3.6 to 15 */
     background: radial-gradient(circle, #1a1a1a, #333333); /* Standard syntax */
 }
-.default-form {
-    width: 300px;
-}
 .highlight {
     outline: 1px inset #1C2331;
 }

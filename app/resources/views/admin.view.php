@@ -13,10 +13,11 @@
                                 <th><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></th>
                             </tr>
                         <thead>
+                        <button data-toggle="collapse" data-target="#test" class="btn btn-link" value="Games"></button>
                         <?php foreach($games as $game): ?>
                             <?php if($game->user_id == $user->id): ?>
                                 <tbody>
-                                    <tr>
+                                    <tr id="test">
                                         <td><?= htmlspecialchars($game->id); ?></td>
                                         <td><?php if(!is_null($game->name)):?><?= htmlspecialchars($game->name); ?><?php endif;?></td>
                                         <td><?php if(!is_null($game->releasedate)):?><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y"); ?><?php endif;?></td> 
