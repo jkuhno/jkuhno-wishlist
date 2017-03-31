@@ -45,9 +45,15 @@
         }
     ?>
     <?php if(isset($success)): ?>
-        <script>
-            localStorage.setItem('success', '<?= $success; ?>');
-        </script>
+        <?php if(is_array($success)): ?>
+            <script>
+                localStorage.setItem('success', '<?= implode("<br>",$success); ?>');
+            </script>
+        <?php else: ?>
+            <script>
+                localStorage.setItem('success', '<?= $success; ?>');
+            </script>
+        <?php endif; ?>
     <?php endif; ?>
     <?php if(isset($failure)): ?>
         <?php if(is_array($failure)): ?>

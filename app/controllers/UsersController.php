@@ -17,16 +17,26 @@ class UsersController
     {
         $request = App::get('request');
 
-        $errors = (new Validator([
+        $fields_exist = (new Validator([
             'name' => 'exists',
             'email' => 'exists',
             'password' => 'exists'
-        ]))->validate(); //EMAIL VALID
+        ]))->validate();
 
-        if(count($errors) > 0) {
-            $_SESSION['failure'] = $errors;
+        if(count($field_exist) > 0) {
+            $_SESSION['failure'] = $fields_exist;
             return header('Location: /register');
         }
+
+        $email_valid = (new Validator([
+            'email' => 'validEmail'
+        ]))->validate();
+
+        if(count($email_valid) > 0) {
+            $_SESSION['failure'] = $email_valid;
+            return header('Location: /register');
+        }
+
         User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
@@ -118,6 +128,7 @@ class UsersController
         }
 
         $data = array();
+        $success = array();
 
         $name_exists = (new Validator([
             'name' => 'exists'
@@ -125,6 +136,7 @@ class UsersController
 
         if(count($name_exists) == 0) {
             $data['name'] = $request->get('name');
+            $success[] = "Name updated!";
             if($_SESSION['group_id'] != 1) {
                 $_SESSION['name'] = $request->get('name');
             }
@@ -141,6 +153,7 @@ class UsersController
 
             if(count($email_valid) == 0) {
                 $data['email'] = $request->get('email');
+                $success[] = "Email updated!";
                 if($_SESSION['group_id'] != 1) {
                     $_SESSION['email'] = $request->get('email');
                 }
@@ -161,12 +174,13 @@ class UsersController
 
         if(count($password_exists) == 0) {
             $data['password'] = password_hash($request->get('password'), PASSWORD_DEFAULT);
+            $success[] = "Password updated!";
         }
         
         if(!empty($data)) {
             User::update($request->get('id'),$data);
-            
-            $_SESSION['success'] = "Succesfully updated!"; // INDIVIDUALITY!
+
+            $_SESSION['success'] = $success;
 
             if($request->has('password') && !empty($request->get('password')) && $_SESSION['group_id'] != 1) {
                 return header('Location: /logout');
