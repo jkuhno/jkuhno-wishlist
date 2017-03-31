@@ -4,19 +4,19 @@
             <h3>Users</h3>
             <?php foreach($users as $user): ?>
                 <div class="row">
+                    <div class="col-xs-1"><a data-toggle="collapse" href="#collapse<?= htmlspecialchars($user->id); ?>"><?= htmlspecialchars($user->name); ?>'s games</a></div>
                     <div class="col-xs-1"><?= htmlspecialchars($user->id); ?></div>
-                    <div class="col-xs-1"><?= htmlspecialchars($user->name); ?></div>
-                    <div class="col-xs-1"><?= htmlspecialchars($user->email); ?></div>
+                    <div class="col-xs-5"><?= htmlspecialchars($user->name); ?></div>
+                    <div class="col-xs-5"><?= htmlspecialchars($user->email); ?></div>
                     <div class="col-xs-1"><form action="<?= url('/user/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $user->id; ?>"><input type="submit" class="btn btn-link" value="Remove"></form></div>
                 </div>
-                <h6><a data-toggle="collapse" href="#collapse<?= htmlspecialchars($user->id); ?>"><?= htmlspecialchars($user->name); ?>'s games</a></h6>
                 <div id="collapse<?= htmlspecialchars($user->id); ?>" class="collapse">
                     <?php foreach($games as $game): ?>
                         <?php if($game->user_id == $user->id): ?>
                             <div class="row">
                                 <div class="col-xs-1"><?= htmlspecialchars($game->id); ?></div>
-                                <div class="col-xs-1"><?php if(!is_null($game->name)):?><?= htmlspecialchars($game->name); ?><?php endif;?></div>
-                                <div class="col-xs-1"><?php if(!is_null($game->releasedate)):?><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y"); ?><?php endif;?></div>
+                                <div class="col-xs-5"><?php if(!is_null($game->name)):?><?= htmlspecialchars($game->name); ?><?php endif;?></div>
+                                <div class="col-xs-5"><?php if(!is_null($game->releasedate)):?><?= date_format(date_create(htmlspecialchars($game->releasedate)), "F d, Y"); ?><?php endif;?></div>
                                 <div class="col-xs-1"><form action="<?= url('/games/delete') ?>" method="POST"><input type="hidden" name="token" value="<?= $token; ?>"><input type="hidden" name="id" value="<?= $game->id; ?>"><input type="hidden" name="user_id" value="<?= $user->id; ?>"><button type="submit" class="btn btn-link">Remove</button></form></div>
                             </div>
                         <?php endif; ?>
