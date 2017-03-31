@@ -38,7 +38,7 @@ class GamesController
             'user_id' => $user_id   
         ]);
 
-        $_SESSION['success'] = 'Row succesfully created!';
+        $_SESSION['success'] = 'Row created!';
     }
     public function delete()
     {
@@ -80,7 +80,7 @@ class GamesController
         }
 
         Game::deleteWhere($request->get('id'),$field,$data);
-        $_SESSION['success'] = 'Game succesfully removed!';
+        $_SESSION['success'] = 'Game removed!';
         if($_SESSION['group_id'] == 1) {
             return header('Location: /showAdmin');
         }
@@ -184,11 +184,11 @@ class GamesController
         if(empty($request->get('name')) && empty($request->get('releasedate'))) {
             $_SESSION['failure'] = "Nothing to update!";
         } else if(!empty($request->get('name')) && empty($request->get('releasedate'))) {
-            $_SESSION['success'] = "Succesfully updated game name!";
+            $_SESSION['success'] = "Name updated!";
         } else if(empty($request->get('name')) && !empty($request->get('releasedate'))) {
-            $_SESSION['success'] = "Succesfully updated game release date!";
+            $_SESSION['success'] = "Release date updated!";
         } else {
-            $_SESSION['success'] = 'Succesfully updated game name and release date!';
+            $_SESSION['success'] = "Name and release date updated!";
         }
         if($_SESSION['group_id'] == 1) {
             return header('Location: /showAdmin');

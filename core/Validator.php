@@ -29,6 +29,7 @@ class Validator
         $dt = DateTime::createFromFormat("F d, Y", $this->request->get($name));
         if($dt === false || array_sum($dt->getLastErrors())) {
             $this->errors[] = "Please enter date in correct format, e.g. January 24, 2017!";
+            // name of date . is incorrect form for date, please use correct form, e.g. January 24, 2017.
             return false;
         }
         return true;
@@ -36,11 +37,11 @@ class Validator
     private function validGameName($name)
     {
         if(!$this->request->has($name)) {
-            $this->errors[] = "Missing {$name}!";
+            $this->errors[] = ucfirst($name) . " missing!";
             return false;
         }
         if (!preg_match('/^[A-Za-z0-9_~\-:;.,+?!@#\$%\^&\*\'"\(\)\/\\\\ ]+$/',$this->request->get($name))) {
-            $this->errors[] = "Invalid name for a game!";
+            $this->errors[] = "{$name} is not a valid name!";
             return false;
         }
         return true;
@@ -48,7 +49,7 @@ class Validator
     private function validEmail($name)
     {
         if(!$this->request->has($name)) {
-            $this->errors[] = "Missing {$name}!";
+            $this->errors[] = ucfirst($name) . " missing!";
             return false;
         }
         if (!filter_var($this->request->get($name), FILTER_VALIDATE_EMAIL)) {
@@ -60,11 +61,12 @@ class Validator
     private function exists($name)
     {
         if(!$this->request->has($name)) {
-            $this->errors[] = "Missing {$name}!";
+
+            $this->errors[] = ucfirst($name) . " missing!";
             return false;
         }
         if(empty($this->request->get($name))) {
-            $this->errors[] = "Requires {$name}!";
+            $this->errors[] = ucfirst($name) . " is required!";
             return false;
         }
         return true;
